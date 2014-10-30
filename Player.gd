@@ -7,11 +7,13 @@ var max_speed = 6
 var delta_mouse = Vector2(0,0)
 var win_hsize
 var camera
+var exit_game = false
 
 func _ready():
 	camera = get_node("Cam")
 	win_hsize = OS.get_video_mode_size()/2
 	set_process_input(true)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	pass
 
 
@@ -22,9 +24,12 @@ func _integrate_forces(state):
 	Input.warp_mouse_pos(win_hsize)
 
 	# Quit game
+	if exit_game:
+		SceneMainLoop.quit
 	if Input.is_action_pressed("game_quit"):
 		print("quit")
-		#OS.kill(0)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		exit_game = true
 
 	# Handle movement
 	var lv = state.get_linear_velocity()
