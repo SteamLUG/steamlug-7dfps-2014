@@ -7,7 +7,7 @@ var exit_game = false
 
 # Movement
 var walk_speed = 1
-var jump_force = 3000
+var jump_force = 10
 var max_speed = 6
 
 # Camera
@@ -77,13 +77,17 @@ func _integrate_forces(state):
 	lv.x = min( max_speed, abs(lv.x) ) * sign(lv.x)
 	lv.z = min( max_speed, abs(lv.z) ) * sign(lv.z)
 	
-	# Apply walk velocity
-	state.set_linear_velocity(lv)
+
 
 	# Handle jump
 	var onfloor = state.get_contact_count()
 	if onfloor and Input.is_action_pressed("player_jump"):
-		state.add_force(Vector3(0,jump_force,0), Vector3(0,1,0))
+		lv.y = jump_force
+		# if we use forces, jump_force should be over 9000
+		#state.add_force(Vector3(0,jump_force,0), Vector3(0,1,0))
+
+	# Apply walk velocity
+	state.set_linear_velocity(lv)
 
 	# Clamp pitch
 	rotation.y = min( max_pitch, abs(rotation.y) ) * sign( rotation.y )
