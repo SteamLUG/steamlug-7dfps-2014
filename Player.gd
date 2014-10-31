@@ -42,7 +42,7 @@ func _integrate_forces(state):
 
 	# Quit game
 	if exit_game:
-		SceneMainLoop.quit
+		OS.get_main_loop().quit()
 	if Input.is_action_pressed("game_quit"):
 		print("quit")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
