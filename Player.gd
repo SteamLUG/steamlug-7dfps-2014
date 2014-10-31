@@ -1,17 +1,28 @@
 
 extends RigidBody
 
+# Game stuff
+var win_hsize
+var exit_game = false
+
+# Movement
 var walk_speed = 1
 var jump_force = 3000
 var max_speed = 6
-var win_hsize
+
+# Camera
 var camera
-var exit_game = false
 var rotation = Vector2(0,0)
 var max_pitch = deg2rad(50)
 
+# Lantern
+var lantern
+var lantern_now = false
+var lantern_then = false
+
 func _ready():
 	camera = get_node("Cam")
+	lantern = get_node("Cam/Lantern")
 	win_hsize = OS.get_video_mode_size()/2
 	set_process_input(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -36,6 +47,20 @@ func _integrate_forces(state):
 		print("quit")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		exit_game = true
+
+	lantern_now = Input.is_action_pressed("player_lantern")
+
+	var lantern_press = false
+	if lantern_now:
+		if lantern_then == false:
+			lantern_press = true
+	lantern_then = lantern_now
+
+	if lantern_press:
+		if lantern.is_visible():
+			lantern.hide()
+		else:
+			lantern.show()
 
 	# Handle movement
 	var lv = state.get_linear_velocity()
@@ -76,3 +101,4 @@ func _integrate_forces(state):
 func _input(ev):
 	if ev.type == InputEvent.MOUSE_MOTION:
 		rotation += (ev.pos - win_hsize) * 0.001
+
