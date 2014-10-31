@@ -4,10 +4,11 @@ extends RigidBody
 var walk_speed = 1
 var jump_force = 3000
 var max_speed = 6
-var delta_mouse = Vector2(0,0)
 var win_hsize
 var camera
 var exit_game = false
+var rotation = Vector2(0,0)
+var max_pitch = deg2rad(50)
 
 func _ready():
 	camera = get_node("Cam")
@@ -19,9 +20,14 @@ func _ready():
 
 func _integrate_forces(state):
 
+	# Reset mouse
+	Input.warp_mouse_pos(win_hsize)
+
+	# Get directions
 	var forward = camera.get_transform().basis[2]
 	var strafe = camera.get_transform().basis[0]
-	Input.warp_mouse_pos(win_hsize)
+	forward.y = 0
+	strafe.y = 0
 
 	# Quit game
 	if exit_game:
@@ -45,23 +51,28 @@ func _integrate_forces(state):
 	# Clamp speed
 	lv.x = min( max_speed, abs(lv.x) ) * sign(lv.x)
 	lv.z = min( max_speed, abs(lv.z) ) * sign(lv.z)
+	
+	# Apply walk velocity
+	state.set_linear_velocity(lv)
 
 	# Handle jump
-	print( state.get_contact_count())
 	var onfloor = state.get_contact_count()
 	if onfloor and Input.is_action_pressed("player_jump"):
 		state.add_force(Vector3(0,jump_force,0), Vector3(0,1,0))
 
-	state.set_linear_velocity(lv)
-	#state.set_rotation(state.get_rotation() + Vector3(0, -delta_mouse.x,0) * 0.001)
-	#state.set_angular_velocity(state.get_angular_velocity() + Vector3(0,delta_mouse.x,0))
+	# Clamp pitch
+	rotation.y = min( max_pitch, abs(rotation.y) ) * sign( rotation.y )
+
+	# Rotate camera by using transform
+	var rot = Matrix3().rotated(Vector3(0,1,0), rotation.x).rotated(Vector3(1,0,0),rotation.y)
+	var transf = camera.get_transform()
+	transf.basis = rot
+	camera.set_transform(transf)
+
+	# Commit!
 	state.integrate_forces()
 
 
 func _input(ev):
 	if ev.type == InputEvent.MOUSE_MOTION:
-		delta_mouse = (ev.pos - win_hsize)
-		camera.set_rotation(camera.get_rotation() + Vector3(0, -delta_mouse.x,0) * 0.001)
-		#set_rotation( get_rotation() + Vector3(delta_mouse.y, delta_mouse.x,0) )
-		#camera.set_transform( camera.get_transform().rotated(Vector3(0,1,0),delta_mouse.x))
-		print(delta_mouse)
+		rotation += (ev.pos - win_hsize) * 0.001
