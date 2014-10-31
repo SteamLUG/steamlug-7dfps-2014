@@ -13,7 +13,7 @@ Issues
 ======
 
 * Shadow casting seems not to be working very well for spotlights
-
+https://github.com/okamstudio/godot/wiki/tutorial_shadow_mapping
 
 
 
