@@ -36,9 +36,9 @@ func _integrate_forces(state):
 
 	# Get directions
 	var forward = camera.get_transform().basis[2]
+	forward = Vector3(forward.x, 0, forward.z).normalized()
 	var strafe = camera.get_transform().basis[0]
-	forward.y = 0
-	strafe.y = 0
+	strafe = Vector3(strafe.x, 0, strafe.z).normalized()
 
 	# Quit game
 	if exit_game:
@@ -74,10 +74,11 @@ func _integrate_forces(state):
 		lv += strafe * walk_speed
 
 	# Clamp speed
-	lv.x = min( max_speed, abs(lv.x) ) * sign(lv.x)
-	lv.z = min( max_speed, abs(lv.z) ) * sign(lv.z)
-	
-
+	var tmp = Vector3( lv.x, 0, lv.z )
+	if tmp.length() > max_speed:
+		tmp = tmp.normalized() * max_speed
+		lv.x = tmp.x
+		lv.z = tmp.z
 
 	# Handle jump
 	var onfloor = state.get_contact_count()
