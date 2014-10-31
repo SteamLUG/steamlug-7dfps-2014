@@ -7,3 +7,13 @@ https://github.com/SteamLUG/steamlug-7dfps-2013/wiki
 
 And the repo containing source files for all the assets:
 https://github.com/SteamLUG/steamlug-7dfps-2014-asset-sources
+
+
+Issues
+======
+
+* Shadow casting seems not to be working very well for spotlights
+
+
+
+

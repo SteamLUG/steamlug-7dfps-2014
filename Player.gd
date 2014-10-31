@@ -48,8 +48,8 @@ func _integrate_forces(state):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		exit_game = true
 
+	# Handle lantern
 	lantern_now = Input.is_action_pressed("player_lantern")
-
 	var lantern_press = false
 	if lantern_now:
 		if lantern_then == false:
