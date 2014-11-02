@@ -16,15 +16,15 @@ Issues
 https://github.com/okamstudio/godot/wiki/tutorial_shadow_mapping
 
 
-**Networking Doc**
+Networking Doc
+================
 
-TCP\_Server:
-	+ listen for incoming cxs
-	+ accepts cxs and return StreamPeerTCP on taking a cx
+**TCP\_Server**
+* Listen for incoming connections (*listen*)
+* Accepts connections and returns StreamPeerTCP on taking a connection (*is_connection_available*, *take_connection*)
+* Maybe we should use threads if it's blocking
 
-StreamPeerTCP:
-	+ inherits from StreamPeer that has [put|get]_(partial_)?data
-	+ connects to a server
-
-
+**StreamPeerTCP**
+* Connects to a server (*connect*)
+* Sends and receive data across the network (*[put|get]_(partial_)?data*)
 
