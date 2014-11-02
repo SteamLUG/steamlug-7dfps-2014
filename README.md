@@ -20,9 +20,9 @@ Networking Doc
 ================
 
 **TCP\_Server**
-* Listen for incoming connections (*listen*)
+* Start listening for incoming connections (*listen*)
+* Stop listening whenever you want (*stop*)
 * Accepts connections and returns StreamPeerTCP on taking a connection (*is_connection_available*, *take_connection*)
-* Maybe we should use threads if it's blocking
 
 **StreamPeerTCP**
 * Connects to a server (*connect*)

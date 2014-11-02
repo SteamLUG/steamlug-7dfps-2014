@@ -27,11 +27,12 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 0 </int>
+							<int> 2 </int>
 							<string> "sources" </string>
-							<array  len="2" shared="false">
+							<array  len="3" shared="false">
 								<string> "res://lantern.gd" </string>
 								<string> "res://player.gd" </string>
+								<string> "res://lobby_server.gd" </string>
 							</array>
 						</dictionary>
 						<string> "2D" </string>
