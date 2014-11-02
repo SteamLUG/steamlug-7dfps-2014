@@ -1,25 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="2" version="1.0" version_name="Godot Engine v1.0.3917-beta1">
-	<ext_resource path="res://lobby_server.gd" type="Script"></ext_resource>
+	<ext_resource path="res://lobby.gd" type="Script"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="6">
+			<string_array  len="40">
 				<string> "World" </string>
 				<string> "Node" </string>
 				<string> "_import_path" </string>
 				<string> "__meta__" </string>
-				<string> "LobbyServer" </string>
+				<string> "Lobby" </string>
 				<string> "script/script" </string>
+				<string> "NetOption" </string>
+				<string> "OptionButton" </string>
+				<string> "visibility/visible" </string>
+				<string> "visibility/opacity" </string>
+				<string> "visibility/self_opacity" </string>
+				<string> "visibility/behind_parent" </string>
+				<string> "margin/right" </string>
+				<string> "margin/bottom" </string>
+				<string> "focus_neighbour/left" </string>
+				<string> "focus_neighbour/top" </string>
+				<string> "focus_neighbour/right" </string>
+				<string> "focus_neighbour/bottom" </string>
+				<string> "focus/ignore_mouse" </string>
+				<string> "focus/stop_mouse" </string>
+				<string> "size_flags/horizontal" </string>
+				<string> "size_flags/vertical" </string>
+				<string> "size_flags/stretch_ratio" </string>
+				<string> "disabled" </string>
+				<string> "toggle_mode" </string>
+				<string> "click_on_press" </string>
+				<string> "text" </string>
+				<string> "icon" </string>
+				<string> "flat" </string>
+				<string> "clip_text" </string>
+				<string> "align" </string>
+				<string> "selected" </string>
+				<string> "items" </string>
+				<string> "StartButton" </string>
+				<string> "Button" </string>
+				<string> "margin/left" </string>
+				<string> "_on_item_selected" </string>
+				<string> "item_selected" </string>
+				<string> "_on_netmode_start" </string>
+				<string> "pressed" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
-			<int> 0 </int>
-			<string> "node_count" </string>
 			<int> 2 </int>
+			<string> "node_count" </string>
+			<int> 4 </int>
 			<string> "variants" </string>
-			<array  len="3" shared="false">
+			<array  len="18" shared="false">
 				<node_path> "" </node_path>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
@@ -27,12 +61,14 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 2 </int>
+							<int> 5 </int>
 							<string> "sources" </string>
-							<array  len="3" shared="false">
+							<array  len="5" shared="false">
 								<string> "res://lantern.gd" </string>
 								<string> "res://player.gd" </string>
 								<string> "res://lobby_server.gd" </string>
+								<string> "res://OPT_netmode.gd" </string>
+								<string> "res://lobby.gd" </string>
 							</array>
 						</dictionary>
 						<string> "2D" </string>
@@ -40,11 +76,11 @@
 							<string> "pixel_snap" </string>
 							<bool> False </bool>
 							<string> "zoom" </string>
-							<real> 1 </real>
+							<real> 8.62201 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -89, -49 </vector2>
+							<vector2> 48.8493, -15.2176 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -151,12 +187,27 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "Script" </string>
 				</dictionary>
-				<resource  resource_type="Script" path="res://lobby_server.gd">  </resource>
+				<resource  resource_type="Script" path="res://lobby.gd">  </resource>
+				<bool> True </bool>
+				<real> 1 </real>
+				<bool> False </bool>
+				<real> 44 </real>
+				<real> 20 </real>
+				<int> 2 </int>
+				<string> "" </string>
+				<resource name=""></resource>				<int> 0 </int>
+				<int> -1 </int>
+				<array  len="0" shared="false">
+				</array>
+				<real> 99 </real>
+				<real> 161 </real>
+				<string> "START!" </string>
+				<int> 1 </int>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="22"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 1, 4, -1, 2, 2, 0, 5, 2, 0 </int_array>
+			<int_array  len="138"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 1, 4, -1, 2, 2, 0, 5, 2, 0, 1, 0, 7, 6, -1, 26, 2, 0, 8, 3, 9, 4, 10, 4, 11, 5, 12, 6, 13, 7, 14, 0, 15, 0, 16, 0, 17, 0, 18, 5, 19, 3, 20, 8, 21, 8, 22, 4, 23, 5, 24, 5, 25, 5, 26, 9, 27, 10, 28, 5, 29, 5, 30, 11, 31, 12, 32, 13, 0, 1, 0, 34, 33, -1, 25, 2, 0, 8, 3, 9, 4, 10, 4, 11, 5, 35, 14, 12, 15, 13, 7, 14, 0, 15, 0, 16, 0, 17, 0, 18, 5, 19, 3, 20, 8, 21, 8, 22, 4, 23, 5, 24, 5, 25, 5, 26, 16, 27, 10, 28, 5, 29, 5, 30, 17, 0 </int_array>
 			<string> "conns" </string>
-			<int_array  len="0"> 				 </int_array>
+			<int_array  len="12"> 				2, 2, 37, 36, 2, 0, 3, 0, 39, 38, 2, 0 </int_array>
 		</dictionary>
 
 	</main_resource>

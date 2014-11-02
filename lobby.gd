@@ -2,13 +2,15 @@ extends Node
 
 var server
 var peer
-export (String) var host
+var host
 var port
 
 var peers
 var netopt
 var netstart
 var is_server
+
+const ERR = 1
 
 
 func _ready():
@@ -42,16 +44,21 @@ func _on_selected_item(id):
 
 func _on_netmode_start( ):
 	if is_server:
-		print("server netmode init!")
+		print("[SERVER] init!")
 		peers = []
 		server.listen(port)
 	else:
-		print("peer netmode init!")
-		peer.connect(host, port)
+		print("[PEER] init!")
+		if peer.connect(host, port) == ERR:
+			print("[PEER] connection to ", host, ":", port, "... FAIL!")
+		else:
+			print("[PEER] connection to ", host, ":", port, "... SUCCESS!")
 		server.stop()
 
 func _process(delta):
 	if is_server:
 		if server.is_connection_available():
-			peers.append(server.take_connection())
+			var newpeer = server.take_connection()
+			print("[SERVER] new peer, ", newpeer)
+			peers.append(newpeer)
 
