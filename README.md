@@ -16,4 +16,15 @@ Issues
 https://github.com/okamstudio/godot/wiki/tutorial_shadow_mapping
 
 
+**Networking Doc**
+
+TCP\_Server:
+	+ listen for incoming cxs
+	+ accepts cxs and return StreamPeerTCP on taking a cx
+
+StreamPeerTCP:
+	+ inherits from StreamPeer that has [put|get]_(partial_)?data
+	+ connects to a server
+
+
 
