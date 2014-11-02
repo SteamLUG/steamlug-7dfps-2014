@@ -2,8 +2,8 @@ extends Node
 
 var server
 var peer
-var host
-var port
+export (String) var host = "127.0.0.1"
+export (int) var port = 9999
 
 var peers
 var netopt
@@ -12,11 +12,7 @@ var is_server
 
 const ERR = 1
 
-
 func _ready():
-
-	host = "127.0.0.1"
-	port = 9999
 
 	# create peer
 	peer = StreamPeerTCP.new()

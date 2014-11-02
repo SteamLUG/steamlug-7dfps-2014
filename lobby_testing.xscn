@@ -4,13 +4,15 @@
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="40">
+			<string_array  len="42">
 				<string> "World" </string>
 				<string> "Node" </string>
 				<string> "_import_path" </string>
 				<string> "__meta__" </string>
 				<string> "Lobby" </string>
 				<string> "script/script" </string>
+				<string> "host" </string>
+				<string> "port" </string>
 				<string> "NetOption" </string>
 				<string> "OptionButton" </string>
 				<string> "visibility/visible" </string>
@@ -53,7 +55,7 @@
 			<string> "node_count" </string>
 			<int> 4 </int>
 			<string> "variants" </string>
-			<array  len="18" shared="false">
+			<array  len="20" shared="false">
 				<node_path> "" </node_path>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
@@ -188,6 +190,8 @@
 					<string> "Script" </string>
 				</dictionary>
 				<resource  resource_type="Script" path="res://lobby.gd">  </resource>
+				<string> "127.0.0.1" </string>
+				<int> 9999 </int>
 				<bool> True </bool>
 				<real> 1 </real>
 				<bool> False </bool>
@@ -205,9 +209,9 @@
 				<int> 1 </int>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="138"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 1, 4, -1, 2, 2, 0, 5, 2, 0, 1, 0, 7, 6, -1, 26, 2, 0, 8, 3, 9, 4, 10, 4, 11, 5, 12, 6, 13, 7, 14, 0, 15, 0, 16, 0, 17, 0, 18, 5, 19, 3, 20, 8, 21, 8, 22, 4, 23, 5, 24, 5, 25, 5, 26, 9, 27, 10, 28, 5, 29, 5, 30, 11, 31, 12, 32, 13, 0, 1, 0, 34, 33, -1, 25, 2, 0, 8, 3, 9, 4, 10, 4, 11, 5, 35, 14, 12, 15, 13, 7, 14, 0, 15, 0, 16, 0, 17, 0, 18, 5, 19, 3, 20, 8, 21, 8, 22, 4, 23, 5, 24, 5, 25, 5, 26, 16, 27, 10, 28, 5, 29, 5, 30, 17, 0 </int_array>
+			<int_array  len="142"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 1, 4, -1, 4, 2, 0, 5, 2, 6, 3, 7, 4, 0, 1, 0, 9, 8, -1, 26, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 8, 15, 9, 16, 0, 17, 0, 18, 0, 19, 0, 20, 7, 21, 5, 22, 10, 23, 10, 24, 6, 25, 7, 26, 7, 27, 7, 28, 11, 29, 12, 30, 7, 31, 7, 32, 13, 33, 14, 34, 15, 0, 1, 0, 36, 35, -1, 25, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 37, 16, 14, 17, 15, 9, 16, 0, 17, 0, 18, 0, 19, 0, 20, 7, 21, 5, 22, 10, 23, 10, 24, 6, 25, 7, 26, 7, 27, 7, 28, 18, 29, 12, 30, 7, 31, 7, 32, 19, 0 </int_array>
 			<string> "conns" </string>
-			<int_array  len="12"> 				2, 2, 37, 36, 2, 0, 3, 0, 39, 38, 2, 0 </int_array>
+			<int_array  len="12"> 				2, 2, 39, 38, 2, 0, 3, 0, 41, 40, 2, 0 </int_array>
 		</dictionary>
 
 	</main_resource>
