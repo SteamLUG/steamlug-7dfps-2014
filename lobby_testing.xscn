@@ -1,30 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="2" version="1.0" version_name="Godot Engine v1.0.3917-beta1">
-	<ext_resource path="res://server.gd" type="Script"></ext_resource>
+	<ext_resource path="res://lobby_server.gd" type="Script"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="21">
+			<string_array  len="6">
 				<string> "World" </string>
 				<string> "Node" </string>
 				<string> "_import_path" </string>
 				<string> "__meta__" </string>
-				<string> "TestCube" </string>
-				<string> "_import_transform" </string>
-				<string> "visibility/visible" </string>
-				<string> "layers" </string>
-				<string> "geometry/visible" </string>
-				<string> "geometry/material_override" </string>
-				<string> "geometry/cast_shadow" </string>
-				<string> "geometry/receive_shadows" </string>
-				<string> "geometry/range_begin" </string>
-				<string> "geometry/range_end" </string>
-				<string> "geometry/billboard" </string>
-				<string> "geometry/billboard_y" </string>
-				<string> "geometry/depth_scale" </string>
-				<string> "geometry/visible_in_all_rooms" </string>
-				<string> "geometry/use_baked_light" </string>
-				<string> "geometry/baked_light_tex_id" </string>
+				<string> "LobbyServer" </string>
 				<string> "script/script" </string>
 			</string_array>
 			<string> "version" </string>
@@ -34,7 +19,7 @@
 			<string> "node_count" </string>
 			<int> 2 </int>
 			<string> "variants" </string>
-			<array  len="10" shared="false">
+			<array  len="3" shared="false">
 				<node_path> "" </node_path>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
@@ -44,8 +29,7 @@
 							<string> "current" </string>
 							<int> 0 </int>
 							<string> "sources" </string>
-							<array  len="3" shared="false">
-								<string> "res://server.gd" </string>
+							<array  len="2" shared="false">
 								<string> "res://lantern.gd" </string>
 								<string> "res://player.gd" </string>
 							</array>
@@ -166,16 +150,10 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "Script" </string>
 				</dictionary>
-				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
-				<bool> True </bool>
-				<int> 1 </int>
-				<resource name=""></resource>				<real> 0 </real>
-				<bool> False </bool>
-				<int> 0 </int>
-				<resource  resource_type="Script" path="res://server.gd">  </resource>
+				<resource  resource_type="Script" path="res://lobby_server.gd">  </resource>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="52"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 4, 4, -1, 17, 2, 0, 5, 2, 6, 3, 7, 4, 8, 3, 9, 5, 10, 3, 11, 3, 12, 6, 13, 6, 14, 7, 15, 7, 16, 7, 17, 7, 18, 7, 19, 8, 20, 9, 0 </int_array>
+			<int_array  len="22"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 1, 4, -1, 2, 2, 0, 5, 2, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>
