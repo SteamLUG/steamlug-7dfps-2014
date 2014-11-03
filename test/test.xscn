@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="6" version="1.0" version_name="Godot Engine v1.0.3917-beta1">
-	<ext_resource path="res://uv_test.png" type="Texture"></ext_resource>
-	<ext_resource path="res://player.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://test/uv_test.png" type="Texture"></ext_resource>
+	<ext_resource path="res://player/player.xscn" type="PackedScene"></ext_resource>
 	<resource type="PlaneShape" path="local://1">
 		<plane name="plane"> 0, 1, 0, 0 </plane>
 
@@ -33,7 +33,7 @@
 		<int name="params/glow"> 0 </int>
 		<real name="params/point_size"> 1 </real>
 		<transform name="uv_xform"> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
-		<resource name="textures/diffuse" resource_type="Texture" path="res://uv_test.png">  </resource>
+		<resource name="textures/diffuse" resource_type="Texture" path="res://test/uv_test.png">  </resource>
 		<int name="textures/diffuse_tc"> 0 </int>
 		<resource name="textures/detail"></resource>		<int name="textures/detail_tc"> 0 </int>
 		<resource name="textures/specular"></resource>		<int name="textures/specular_tc"> 0 </int>
@@ -299,7 +299,7 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
 				</dictionary>
-				<resource  resource_type="PackedScene" path="res://player.xscn">  </resource>
+				<resource  resource_type="PackedScene" path="res://player/player.xscn">  </resource>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<transform> -0.577481, 0.293184, -0.761945, 0.0175251, 0.93753, 0.347464, 0.816216, 0.1873, -0.546543, -14.6266, 20.8372, -15.7398 </transform>
 				<bool> True </bool>
