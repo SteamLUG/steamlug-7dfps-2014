@@ -23,15 +23,6 @@ func _ready():
 	server = TCP_Server.new()
 	is_server = true
 
-	# init netmode option
-	netopt = get_node("NetOption")
-	netopt.connect("item_selected", self, "_on_selected_item")
-	netopt.add_item("server", 0)
-	netopt.add_item("peer", 1)
-
-	# init netmode start button
-	netstart = get_node("StartButton")
-	netstart.connect("pressed", self, "_on_netmode_start")
 
 	set_process(true)
 
