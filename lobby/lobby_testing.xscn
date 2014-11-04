@@ -4,7 +4,7 @@
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="48">
+			<string_array  len="62">
 				<string> "World" </string>
 				<string> "Node" </string>
 				<string> "_import_path" </string>
@@ -13,8 +13,8 @@
 				<string> "script/script" </string>
 				<string> "host" </string>
 				<string> "port" </string>
-				<string> "Lobby_Host_Button" </string>
-				<string> "Button" </string>
+				<string> "Lobby_Host_Area" </string>
+				<string> "Panel" </string>
 				<string> "visibility/visible" </string>
 				<string> "visibility/opacity" </string>
 				<string> "visibility/self_opacity" </string>
@@ -32,6 +32,8 @@
 				<string> "size_flags/horizontal" </string>
 				<string> "size_flags/vertical" </string>
 				<string> "size_flags/stretch_ratio" </string>
+				<string> "Lobby_Host_Button" </string>
+				<string> "Button" </string>
 				<string> "disabled" </string>
 				<string> "toggle_mode" </string>
 				<string> "click_on_press" </string>
@@ -47,10 +49,22 @@
 				<string> "max_length" </string>
 				<string> "editable" </string>
 				<string> "secret" </string>
+				<string> "Lobby_Stop_Server_Button" </string>
+				<string> "Lobby_Join_Area" </string>
 				<string> "Lobby_Join_Button" </string>
 				<string> "Lobby_Join_IP_text" </string>
 				<string> "Lobby_Join_IP" </string>
 				<string> "Lobby_Join_Port" </string>
+				<string> "Lobby_Disconnect_Button" </string>
+				<string> "Lobby_Chat_Area" </string>
+				<string> "Lobby_Chat" </string>
+				<string> "Lobby_Enter_Chat" </string>
+				<string> "Lobby_Player_List" </string>
+				<string> "custom_constants/line_separation" </string>
+				<string> "VSeparator" </string>
+				<string> "Lobby_Name_Area" </string>
+				<string> "Lobby_Player_Name" </string>
+				<string> "Lobby_Name_Text" </string>
 				<string> "_on_netmode_start" </string>
 				<string> "pressed" </string>
 			</string_array>
@@ -59,9 +73,9 @@
 			<string> "conn_count" </string>
 			<int> 1 </int>
 			<string> "node_count" </string>
-			<int> 9 </int>
+			<int> 21 </int>
 			<string> "variants" </string>
-			<array  len="30" shared="false">
+			<array  len="50" shared="false">
 				<node_path> "" </node_path>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
@@ -69,12 +83,9 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 3 </int>
+							<int> 0 </int>
 							<string> "sources" </string>
-							<array  len="4" shared="false">
-								<string> "res://player/lantern.gd" </string>
-								<string> "res://player/player.gd" </string>
-								<string> "res://lobby/lobby_server.gd" </string>
+							<array  len="1" shared="false">
 								<string> "res://lobby/lobby.gd" </string>
 							</array>
 						</dictionary>
@@ -83,11 +94,11 @@
 							<string> "pixel_snap" </string>
 							<bool> False </bool>
 							<string> "zoom" </string>
-							<real> 2.517532 </real>
+							<real> 0.814506 </real>
 							<string> "use_snap" </string>
-							<bool> False </bool>
+							<bool> True </bool>
 							<string> "ofs" </string>
-							<vector2> 126.379, -100.464 </vector2>
+							<vector2> -69.3706, 16.7768 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -192,7 +203,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "Script" </string>
 				</dictionary>
 				<resource  resource_type="Script" path="res://lobby/lobby.gd">  </resource>
 				<string> "127.0.0.1" </string>
@@ -200,32 +211,52 @@
 				<bool> True </bool>
 				<real> 1 </real>
 				<bool> False </bool>
-				<real> 99 </real>
-				<real> 181 </real>
-				<real> 21 </real>
+				<real> 290 </real>
+				<real> 10 </real>
+				<real> 760 </real>
+				<real> 30 </real>
 				<int> 2 </int>
+				<real> 82 </real>
+				<real> 20 </real>
 				<string> "Host Lobby" </string>
 				<resource name=""></resource>				<int> 1 </int>
-				<real> 86 </real>
+				<real> 91 </real>
 				<real> 2 </real>
-				<real> 200 </real>
-				<real> 19 </real>
-				<real> 203 </real>
-				<real> 364 </real>
+				<real> 191 </real>
+				<real> 22 </real>
+				<real> 201 </real>
+				<real> 371 </real>
+				<real> 21 </real>
 				<string> "" </string>
 				<int> 0 </int>
-				<real> 23 </real>
-				<real> 43 </real>
+				<real> 380 </real>
+				<real> 470 </real>
+				<string> "Stop Server" </string>
+				<real> 50 </real>
 				<string> "Join Lobby" </string>
-				<real> -1 </real>
-				<real> 309 </real>
-				<real> 20 </real>
+				<real> 90 </real>
+				<real> 3 </real>
+				<real> 190 </real>
+				<real> 23 </real>
+				<real> 200 </real>
 				<real> 310 </real>
+				<real> 311 </real>
+				<string> "Disconnect" </string>
+				<real> 60 </real>
+				<real> 430 </real>
+				<real> 750 </real>
+				<real> 350 </real>
+				<real> 80 </real>
+				<real> 100 </real>
+				<real> 280 </real>
+				<real> 180 </real>
+				<real> 41 </real>
+				<real> -17 </real>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="381"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 1, 4, -1, 4, 2, 0, 5, 2, 6, 3, 7, 4, 0, 1, 0, 9, 8, -1, 26, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 8, 15, 6, 16, 9, 17, 10, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 11, 25, 11, 26, 6, 27, 7, 28, 7, 29, 7, 30, 12, 31, 13, 32, 7, 33, 7, 34, 14, 0, 2, 0, 36, 35, -1, 18, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 15, 15, 16, 16, 17, 17, 18, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 11, 25, 11, 26, 6, 0, 2, 0, 38, 37, -1, 21, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 19, 16, 20, 17, 10, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 11, 25, 11, 26, 6, 30, 21, 39, 22, 40, 5, 41, 7, 0, 1, 0, 9, 42, -1, 26, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 8, 15, 23, 16, 9, 17, 24, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 11, 25, 11, 26, 6, 27, 7, 28, 7, 29, 7, 30, 25, 31, 13, 32, 7, 33, 7, 34, 14, 0, 5, 0, 36, 43, -1, 18, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 15, 15, 6, 16, 17, 17, 18, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 11, 25, 11, 26, 6, 0, 5, 0, 38, 44, -1, 22, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 19, 15, 26, 16, 27, 17, 28, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 11, 25, 11, 26, 6, 30, 21, 39, 22, 40, 5, 41, 7, 0, 5, 0, 38, 45, -1, 22, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 29, 15, 26, 16, 20, 17, 28, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 11, 25, 11, 26, 6, 30, 21, 39, 22, 40, 5, 41, 7, 0 </int_array>
+			<int_array  len="919"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 1, 4, -1, 4, 2, 0, 5, 2, 6, 3, 7, 4, 0, 1, 0, 9, 8, -1, 18, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 8, 15, 9, 16, 10, 17, 11, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 0, 2, 0, 28, 27, -1, 24, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 16, 13, 17, 14, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 29, 7, 30, 7, 31, 7, 32, 15, 33, 16, 34, 7, 35, 7, 36, 17, 0, 3, 0, 38, 37, -1, 18, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 18, 15, 19, 16, 20, 17, 21, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 0, 3, 0, 40, 39, -1, 21, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 22, 16, 23, 17, 24, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 32, 25, 41, 26, 42, 5, 43, 7, 0, 2, 0, 28, 44, -1, 25, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 27, 16, 28, 17, 14, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 29, 7, 30, 7, 31, 7, 32, 29, 33, 16, 34, 7, 35, 7, 36, 17, 0, 1, 0, 9, 45, -1, 18, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 8, 15, 11, 16, 10, 17, 30, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 0, 7, 0, 28, 46, -1, 24, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 16, 13, 17, 14, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 29, 7, 30, 7, 31, 7, 32, 31, 33, 16, 34, 7, 35, 7, 36, 17, 0, 8, 0, 38, 47, -1, 18, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 32, 15, 33, 16, 34, 17, 35, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 0, 8, 0, 40, 48, -1, 21, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 36, 16, 37, 17, 24, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 32, 25, 41, 26, 42, 5, 43, 7, 0, 8, 0, 40, 49, -1, 21, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 38, 16, 23, 17, 24, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 32, 25, 41, 26, 42, 5, 43, 7, 0, 7, 0, 28, 50, -1, 25, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 27, 16, 28, 17, 14, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 29, 7, 30, 7, 31, 7, 32, 39, 33, 16, 34, 7, 35, 7, 36, 17, 0, 1, 0, 9, 51, -1, 18, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 9, 15, 40, 16, 10, 17, 41, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 0, 13, 0, 38, 52, -1, 17, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 32, 16, 42, 17, 43, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 0, 13, 0, 40, 53, -1, 22, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 32, 15, 43, 16, 42, 17, 23, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 32, 25, 41, 26, 42, 5, 43, 7, 0, 13, 0, 38, 54, -1, 17, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 16, 44, 17, 43, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 55, 26, 0, 13, 0, 56, 56, -1, 17, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 44, 16, 45, 17, 43, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 0, 1, 0, 9, 57, -1, 18, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 14, 45, 15, 9, 16, 46, 17, 30, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 0, 18, 0, 40, 58, -1, 21, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 15, 14, 16, 47, 17, 48, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 32, 25, 41, 26, 42, 5, 43, 7, 0, 19, 0, 38, 59, -1, 17, 2, 0, 10, 5, 11, 6, 12, 6, 13, 7, 15, 49, 16, 47, 17, 33, 18, 0, 19, 0, 20, 0, 21, 0, 22, 7, 23, 5, 24, 12, 25, 12, 26, 6, 0 </int_array>
 			<string> "conns" </string>
-			<int_array  len="6"> 				2, 0, 47, 46, 2, 0 </int_array>
+			<int_array  len="6"> 				3, 0, 61, 60, 2, 0 </int_array>
 		</dictionary>
 
 	</main_resource>
