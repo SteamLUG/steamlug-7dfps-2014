@@ -8,7 +8,7 @@ var exit_game = false
 # Movement
 var walk_speed = 1
 var jump_force = 10
-var max_speed = 6
+var max_speed = 10
 
 # Camera
 var camera
