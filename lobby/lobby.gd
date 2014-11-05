@@ -11,6 +11,7 @@ const NET_CHAT = 2
 
 var peers         #array of StreamPeerTCP objects
 var peernames     #array of player names
+var current_time
 
 var PlayerName
 var HostButton
@@ -30,7 +31,8 @@ func _ready():
 
 	# create server
 	server = TCP_Server.new()
-	
+
+	current_time = ""
 
 	# init text and buttons
 	
@@ -74,7 +76,8 @@ func _ready():
 
 
 func _chat ( text ):
-	LobbyChat.add_text(text)
+	current_time = str(OS.get_time().hour) + ":" + str(OS.get_time().minute)
+	LobbyChat.add_text(current_time + " " + text)
 	LobbyChat.newline()
 
 func _on_enter_chat( text ):
