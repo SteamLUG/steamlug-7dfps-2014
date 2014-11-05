@@ -13,7 +13,7 @@ var max_speed = 10
 # Camera
 var camera
 var rotation = Vector2(0,0)
-var max_pitch = deg2rad(50)
+var max_pitch = deg2rad(80)
 
 # Lantern
 var lantern
