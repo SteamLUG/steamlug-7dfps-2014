@@ -7,13 +7,18 @@ export (int) var port = 9999
 
 const NET_NAME = 1
 const NET_CHAT = 2
+const NET_JOIN = 3
+const NET_PART = 4
 
+const PROTOCOL="H2" #haunt protocol version 2
 
 var peers         #array of StreamPeerTCP objects
-var peernames     #array of player names
+var peernames = []    #array of player names
 var current_time
-
 var PlayerName
+
+#widgets
+var DebugButton
 var HostButton
 var JoinButton
 var StopServerButton
@@ -35,6 +40,8 @@ func _ready():
 	current_time = ""
 
 	# init text and buttons
+	DebugButton = get_node("Debug")
+	DebugButton.connect("pressed", self, "_debug")
 	
 	PlayerName = get_node("Lobby_Name_Area/Lobby_Player_Name")
 	PlayerName.get_node("Lobby_Name_Text").add_text("Name:")
@@ -74,6 +81,10 @@ func _ready():
 #func _on_selected_item(id):
 #	is_server = id == 0
 
+func _debug():
+	_chat("peer names:")
+	for i in range(0,peernames.size()):
+		_chat(peernames[i])
 
 func _chat ( text ):
 	current_time = str(OS.get_time().hour) + ":" + str(OS.get_time().minute)
@@ -113,7 +124,6 @@ func _on_lobby_host_start( ):
 	DisconnectButton.set_disabled(false)
 	_chat("[SERVER] init!")
 	peers = []
-	peernames = []
 	is_server = true
 	port=HostButton.get_node("Lobby_Host_Port").get_text()
 	PlayerList.add_text(PlayerName.get_text())
@@ -149,66 +159,111 @@ func _on_lobby_join_start( ):
 		peer.disconnect()
 		JoinButton.set_disabled(false)
 
-func _net_format_data(type, string):
-	var len = string.length()
-	var raw = RawArray()
-	var i=0
-	raw.push_back(str(type))
-	raw.push_back(0)
-	while(i<len):
-		raw.push_back( string.ord_at(i) )
-		i=i+1
-	return raw
-	
-func _net_tcp_send( apeer, type, text):
-	if(type == NET_NAME or type == NET_CHAT):
-		var rawdata = _net_format_data(type, text)
-		apeer.put_data(rawdata)
+func _add_player_name(name):
+	peernames.append(name)
+	PlayerList.add_text(name)
+	PlayerList.newline()
+	_chat(str(name, " joined lobby."))
 
+func _net_tcp_send( apeer, type, text):
+	var rawdata = RawArray()
+	var len = text.length()
+	var i=0
+	if(len>254):
+		len=254  #no data over 254 bytes
+	rawdata.push_back(PROTOCOL.ord_at(0))
+	rawdata.push_back(PROTOCOL.ord_at(1))
+	rawdata.push_back((len+1))
+	rawdata.push_back(str(type))
+	while(i<len):
+		rawdata.push_back( text.ord_at(i) )
+		i=i+1
+	rawdata.push_back(0)
+	apeer.put_data(rawdata)
 
 func _net_peer_recv():
+	var len=0
+	var type
 	var raw_packet=RawArray()
 	var raw_err=RawArray()
 	var raw_data=RawArray()
-	raw_packet=peer.get_partial_data(1024)
+	var Protocol=RawArray()
+	raw_packet=peer.get_partial_data(4)
 	raw_err=raw_packet[0]
 	raw_data=raw_packet[1]
 	if(raw_err !=0 or raw_data.size() < 4):
+		#error or no data this frame
 		return
-	if(raw_data[0]==NET_CHAT):
+	Protocol.push_back(raw_data[0])
+	Protocol.push_back(raw_data[1])
+	if(Protocol.get_string_from_utf8() != PROTOCOL):
+		_chat(str("[ERR] version missmatch ", Protocol.get_string_from_utf8()))
+		peer.disconnect()
+		return
+	len=raw_data[2]
+	type=raw_data[3]
+	if(len<1):
+		return
+	raw_packet=peer.get_data(len)
+	raw_err=raw_packet[0]
+	raw_data=raw_packet[1]
+	if(type==NET_CHAT):
 		var rawtext=RawArray()
-		for i in range(2,raw_data.size()):
+		for i in range(0,raw_data.size()):
 			rawtext.push_back( raw_data[i] )
 		_chat(str(rawtext.get_string_from_utf8()))
-		
+	if(type==NET_JOIN):
+		var rawtext=RawArray()
+		for i in range(0,raw_data.size()):
+			rawtext.push_back( raw_data[i] )
+		_add_player_name(rawtext.get_string_from_utf8())
+
 
 func _net_server_recv( index, apeer ):
+	var len=0
+	var type
 	var raw_packet=RawArray()
 	var raw_err=RawArray()
 	var raw_data=RawArray()
-	raw_packet=apeer.get_partial_data(1024)
+	var Protocol=RawArray()
+	raw_packet=apeer.get_partial_data(4)
 	raw_err=raw_packet[0]
 	raw_data=raw_packet[1]
 	if(raw_err !=0 or raw_data.size() < 4):
+		#error or no data this frame
 		return
-	if(raw_data[0]==NET_NAME):
+	Protocol.push_back(raw_data[0])
+	Protocol.push_back(raw_data[1])
+	if(Protocol.get_string_from_utf8() != PROTOCOL):
+		_chat(str("[ERR] version missmatch ", Protocol.get_string_from_utf8()))
+		apeer.disconnect()
+		return
+	len=raw_data[2]
+	type=raw_data[3]
+	if(len<1):
+		return
+	raw_packet=apeer.get_data(len)
+	raw_err=raw_packet[0]
+	raw_data=raw_packet[1]
+	if(type==NET_NAME):
 		var name=RawArray()
-		for i in range(2,raw_data.size()):
+		for i in range(0,raw_data.size()):
 			name.push_back( raw_data[i] )
-		peernames.append(name.get_string_from_utf8())
-		PlayerList.add_text(name.get_string_from_utf8())
-		PlayerList.newline()
-		_chat(str(name.get_string_from_utf8(), " joined lobby."))
-		#send player join to peers
-	if(raw_data[0]==NET_CHAT):
+		var newname=name.get_string_from_utf8()
+		_add_player_name(newname)
+		#send player join to all peers
+		for ipeer in peers:
+			_net_tcp_send(ipeer, NET_JOIN, newname)
+	if(type==NET_CHAT):
 		var rawtext=RawArray()
 		var text
-		for i in range(2,raw_data.size()):
+		for i in range(0,raw_data.size()):
 			rawtext.push_back( raw_data[i] )
 		text=str("<",peernames[index],"> ",rawtext.get_string_from_utf8())
 		_chat(text)
-		for apeer in peers:
-			_net_tcp_send(apeer, NET_CHAT, text)
+		#send chat message to all peers
+		for ipeer in peers:
+			_net_tcp_send(ipeer, NET_CHAT, text)
 
 
 func _process(delta):
@@ -217,11 +272,18 @@ func _process(delta):
 			var newpeer = server.take_connection()
 			_chat(str("[SERVER] new peer, ", newpeer.get_connected_host(), ":", newpeer.get_connected_port()))
 			peers.append(newpeer)
+			#send server player name to new peer
+			_net_tcp_send(newpeer, NET_JOIN, PlayerName.get_text())
+			#send other player names to new peer
+			for i in range (0, peernames.size()):
+				_net_tcp_send(newpeer, NET_JOIN, peernames[i])
+		#process new data from peers
 		var i=0
 		for apeer in peers:
 			_net_server_recv(i, apeer)
-		i=i+1
+			i=i+1
 	else:
+		#process new data from server
 		if(peer.is_connected()):
 			_net_peer_recv()
 
