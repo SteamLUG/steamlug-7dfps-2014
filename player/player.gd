@@ -21,6 +21,11 @@ var lantern_now = false
 var lantern_then = false
 
 func _ready():
+
+	var rot = get_rotation()
+	rotation.x = rot.y
+	rot.y = 0
+	set_rotation(rot)
 	camera = get_node("Cam")
 	lantern = get_node("Cam/Lantern")
 	win_hsize = OS.get_video_mode_size()/2
