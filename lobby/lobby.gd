@@ -3,7 +3,7 @@ extends Node
 var server
 var peer
 export (String) var host = "127.0.0.1"
-export (int) var port = 9999
+export (int) var port = 9998
 
 const NET_NAME = 1
 const NET_CHAT = 2
