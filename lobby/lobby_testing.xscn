@@ -208,7 +208,7 @@
 				</dictionary>
 				<resource  resource_type="Script" path="res://lobby/lobby.gd">  </resource>
 				<string> "127.0.0.1" </string>
-				<int> 9999 </int>
+				<int> 9998 </int>
 				<bool> True </bool>
 				<real> 1 </real>
 				<bool> False </bool>

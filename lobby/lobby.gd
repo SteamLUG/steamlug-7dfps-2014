@@ -3,7 +3,7 @@ extends Node
 var server
 var peer
 export (String) var host = "127.0.0.1"
-export (int) var port = 9998
+export (int) var port     #Set the port in the Godot inspector
 
 const NET_NAME = 1  # player name
 const NET_CHAT = 2  # chat message
