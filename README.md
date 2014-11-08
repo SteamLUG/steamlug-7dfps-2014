@@ -14,6 +14,13 @@ https://github.com/SteamLUG/steamlug-7dfps-2014-asset-sources
 * Shadow casting seems not to be working very well for spotlights
 https://github.com/okamstudio/godot/wiki/tutorial_shadow_mapping
 
+# Lantern
+
+* Raycasts should be tested when we have a (somehow) real scenario.
+* We can change raycasts' orientation and position according to our needs.
+* To add more raycasts, just do it on the player.xscn scene. Then
+change the lantern script to add them in \_ready() with append\_rc()
+function.
 
 # Networking
 
