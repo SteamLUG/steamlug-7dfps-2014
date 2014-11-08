@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="5" version="1.0" version_name="Godot Engine v1.0.3917-beta1">
+	<ext_resource path="res://v_lantern/v_lantern.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://player/lantern.gd" type="Script"></ext_resource>
 	<ext_resource path="res://player/player.gd" type="Script"></ext_resource>
-	<ext_resource path="res://v_lantern/v_lantern.xscn" type="PackedScene"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
 		<real name="radius"> 1 </real>
 		<real name="height"> 1 </real>
@@ -11,7 +11,7 @@
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="66">
+			<string_array  len="78">
 				<string> "Player" </string>
 				<string> "RigidBody" </string>
 				<string> "_import_path" </string>
@@ -43,6 +43,8 @@
 				<string> "velocity/angular" </string>
 				<string> "script/script" </string>
 				<string> "__meta__" </string>
+				<string> "walk_speed" </string>
+				<string> "jump_force" </string>
 				<string> "CollisionShape" </string>
 				<string> "shape" </string>
 				<string> "trigger" </string>
@@ -76,6 +78,16 @@
 				<string> "params/attenuation" </string>
 				<string> "params/spot_angle" </string>
 				<string> "params/spot_attenuation" </string>
+				<string> "effective_distance" </string>
+				<string> "oil" </string>
+				<string> "RCMid" </string>
+				<string> "RayCast" </string>
+				<string> "enabled" </string>
+				<string> "cast_to" </string>
+				<string> "RCBot" </string>
+				<string> "RCTop" </string>
+				<string> "RCLeft" </string>
+				<string> "RCRight" </string>
 				<string> "Spatial" </string>
 				<string> "CollisionShape 2" </string>
 			</string_array>
@@ -84,9 +96,9 @@
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 6 </int>
+			<int> 11 </int>
 			<string> "variants" </string>
-			<array  len="37" shared="false">
+			<array  len="45" shared="false">
 				<node_path> "" </node_path>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.6676, 0 </transform>
@@ -140,11 +152,11 @@
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
 									<string> "distance" </string>
-									<real> 13.703766 </real>
+									<real> 25.364716 </real>
 									<string> "x_rot" </string>
-									<real> 0.079205 </real>
+									<real> 0.158296 </real>
 									<string> "y_rot" </string>
-									<real> 2.162515 </real>
+									<real> 6.1625 </real>
 									<string> "listener" </string>
 									<bool> True </bool>
 									<string> "use_environment" </string>
@@ -152,7 +164,7 @@
 									<string> "use_orthogonal" </string>
 									<bool> False </bool>
 									<string> "pos" </string>
-									<vector3> 4.01829, 12.0827, 2.01064 </vector3>
+									<vector3> -2.28509, 10.7391, -16.2814 </vector3>
 								</dictionary>
 								<dictionary  shared="false">
 									<string> "distance" </string>
@@ -182,7 +194,7 @@
 									<string> "use_environment" </string>
 									<bool> False </bool>
 									<string> "use_orthogonal" </string>
-									<bool> False </bool>
+									<bool> True </bool>
 									<string> "pos" </string>
 									<vector3> 1.36785, 16.0913, 1.22117 </vector3>
 								</dictionary>
@@ -231,6 +243,7 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "3D" </string>
 				</dictionary>
+				<int> 10 </int>
 				<real> 76.445801 </real>
 				<real> 0.1 </real>
 				<real> 9000 </real>
@@ -246,6 +259,13 @@
 				<real> 1 </real>
 				<real> 30 </real>
 				<resource  resource_type="Script" path="res://player/lantern.gd">  </resource>
+				<int> 100 </int>
+				<transform> 1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0.232247, 0, -3.24734 </transform>
+				<vector3> 0, 0, -10 </vector3>
+				<transform> 0.999646, 0.0261505, 0.00495327, -0.0261504, 0.930388, 0.365643, 0.00495327, -0.365643, 0.930742, 0.232247, -0.967317, -3.24734 </transform>
+				<transform> 0.999566, -0.0288523, 0.00607952, 0.0288523, 0.91456, -0.403421, 0.00607952, 0.403421, 0.914995, 0.232247, 1.0884, -3.24734 </transform>
+				<transform> 0.898447, 0, -0.439082, 0, 1, 0, 0.439082, 0, 0.898447, 0.232247, 0, -3.24734 </transform>
+				<transform> 0.895981, 0, 0.444092, 0, 1, 0, -0.444092, 0, 0.895981, 0.232247, 0, -3.24734 </transform>
 				<resource  resource_type="PackedScene" path="res://v_lantern/v_lantern.xscn">  </resource>
 				<node_path> "." </node_path>
 				<transform> -0.1, -8.74228e-09, 0, -8.74228e-09, 0.1, -8.74228e-09, 7.64274e-16, -8.74228e-09, -0.1, 0, -5.93414, 0 </transform>
@@ -267,6 +287,12 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -334,28 +360,22 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -370,7 +390,7 @@
 				</dictionary>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="202"> 				-1, -1, 1, 0, -1, 29, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 4, 12, 6, 13, 8, 14, 4, 15, 9, 16, 5, 17, 10, 18, 11, 19, 12, 20, 4, 21, 4, 22, 9, 23, 4, 24, 4, 25, 4, 26, 13, 27, 14, 28, 14, 29, 15, 30, 16, 0, 0, 0, 31, 31, -1, 6, 2, 0, 3, 1, 4, 7, 5, 3, 32, 6, 33, 4, 0, 0, 0, 35, 34, -1, 11, 2, 0, 3, 1, 5, 3, 36, 13, 37, 17, 38, 18, 39, 19, 40, 9, 41, 3, 42, 20, 43, 21, 0, 2, 0, 45, 44, -1, 24, 2, 0, 3, 1, 4, 22, 5, 3, 15, 9, 46, 3, 47, 4, 48, 13, 49, 23, 50, 24, 51, 25, 52, 3, 53, 12, 54, 26, 55, 12, 56, 27, 57, 28, 58, 21, 59, 13, 60, 29, 61, 30, 62, 31, 63, 30, 29, 32, 0, 2, 0, 64, 64, 33, 4, 2, 34, 3, 1, 4, 35, 30, 36, 0, 0, 0, 31, 65, -1, 6, 2, 0, 3, 1, 4, 8, 5, 3, 32, 6, 33, 4, 0 </int_array>
+			<int_array  len="305"> 				-1, -1, 1, 0, -1, 31, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 4, 12, 6, 13, 8, 14, 4, 15, 9, 16, 5, 17, 10, 18, 11, 19, 12, 20, 4, 21, 4, 22, 9, 23, 4, 24, 4, 25, 4, 26, 13, 27, 14, 28, 14, 29, 15, 30, 16, 31, 17, 32, 17, 0, 0, 0, 33, 33, -1, 6, 2, 0, 3, 1, 4, 7, 5, 3, 34, 6, 35, 4, 0, 0, 0, 37, 36, -1, 11, 2, 0, 3, 1, 5, 3, 38, 13, 39, 18, 40, 19, 41, 20, 42, 9, 43, 3, 44, 21, 45, 22, 0, 2, 0, 47, 46, -1, 26, 2, 0, 3, 1, 4, 23, 5, 3, 15, 9, 48, 3, 49, 4, 50, 13, 51, 24, 52, 25, 53, 26, 54, 3, 55, 12, 56, 27, 57, 12, 58, 28, 59, 29, 60, 22, 61, 13, 62, 30, 63, 31, 64, 32, 65, 31, 29, 33, 66, 17, 67, 34, 0, 3, 0, 69, 68, -1, 6, 2, 0, 3, 1, 4, 35, 5, 3, 70, 3, 71, 36, 0, 3, 0, 69, 72, -1, 6, 2, 0, 3, 1, 4, 37, 5, 3, 70, 3, 71, 36, 0, 3, 0, 69, 73, -1, 6, 2, 0, 3, 1, 4, 38, 5, 3, 70, 3, 71, 36, 0, 3, 0, 69, 74, -1, 6, 2, 0, 3, 1, 4, 39, 5, 3, 70, 3, 71, 36, 0, 3, 0, 69, 75, -1, 6, 2, 0, 3, 1, 4, 40, 5, 3, 70, 3, 71, 36, 0, 2, 0, 76, 76, 41, 4, 2, 42, 3, 1, 4, 43, 30, 44, 0, 0, 0, 33, 77, -1, 6, 2, 0, 3, 1, 4, 8, 5, 3, 34, 6, 35, 4, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

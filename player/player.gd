@@ -30,6 +30,7 @@ func _ready():
 	win_hsize = OS.get_video_mode_size()/2
 	set_process_input(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
 	pass
 
 
