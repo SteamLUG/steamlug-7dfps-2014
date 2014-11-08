@@ -6,9 +6,8 @@ var win_hsize
 var exit_game = false
 
 # Movement
-var walk_speed = 1
-var jump_force = 10
-var max_speed = 10
+export var walk_speed = 10
+export var jump_force = 10
 
 # Camera
 var camera
@@ -70,18 +69,18 @@ func _integrate_forces(state):
 	# Handle movement
 	var lv = state.get_linear_velocity()
 	if Input.is_action_pressed("player_forward"):
-		lv -= forward * walk_speed
+		lv -= forward
 	elif Input.is_action_pressed("player_backwards"):
-		lv += forward * walk_speed
+		lv += forward
 	if Input.is_action_pressed("player_left"):
-		lv -= strafe * walk_speed
+		lv -= strafe
 	elif Input.is_action_pressed("player_right"):
-		lv += strafe * walk_speed
+		lv += strafe
 
 	# Clamp speed
 	var tmp = Vector3( lv.x, 0, lv.z )
-	if tmp.length() > max_speed:
-		tmp = tmp.normalized() * max_speed
+	if tmp.length() > walk_speed:
+		tmp = tmp.normalized() * walk_speed
 		lv.x = tmp.x
 		lv.z = tmp.z
 
