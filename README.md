@@ -23,11 +23,32 @@ change the lantern script to add them in \_ready() with append\_rc()
 function.
 
 # Shaders
+## Ghost
 
-* The ghost will have a shader that changes rendering for it, depending
+
+The ghost will have a shader that changes rendering for it, depending
 on light influence, like **distance** or **number** of raycasts hit. If no
-light affects, the ghost will be invisible.
-* For post-effects, check *2D in 3D* demo, will need time to get that working.
+light affects, the ghost will be invisible for players.
+
+Relevant docs:
+
+* https://github.com/okamstudio/godot/wiki/tutorial_materials
+* https://github.com/okamstudio/godot/wiki/tutorial_fixed_materials
+* https://github.com/okamstudio/godot/wiki/tutorial_shader_materials
+* https://github.com/okamstudio/godot/wiki/shader
+
+*(assigned to raz)*
+
+## Post-effects
+
+Relevant docs:
+
+* https://github.com/okamstudio/godot/wiki/tutorial_viewports
+* https://github.com/okamstudio/godot/wiki/tutorial_multires
+* https://github.com/okamstudio/godot/wiki/tutorial_canvas_layers
+* Check *2D in 3D* demo.
+
+*(assigned to raz)*
 
 # Networking
 
