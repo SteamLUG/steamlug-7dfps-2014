@@ -5,10 +5,11 @@ var peer
 export (String) var host = "127.0.0.1"
 export (int) var port = 9998
 
-const NET_NAME = 1
-const NET_CHAT = 2
-const NET_JOIN = 3
-const NET_PART = 4
+const NET_NAME = 1  # player name
+const NET_CHAT = 2  # chat message
+const NET_JOIN = 3  # new player joined
+const NET_PART = 4  # player left
+const NET_STOP = 5  # server stopped
 
 const PROTOCOL="H2" #haunt protocol version 2
 
@@ -72,8 +73,6 @@ func _ready():
 	EnterChat.connect("text_entered", self, "_on_enter_chat")
 	
 	PlayerList = get_node("Lobby_Chat_Area/Lobby_Player_List")
-	PlayerList.add_text("Players:")
-	PlayerList.newline()
 	
 	set_process(true)
 
@@ -102,32 +101,36 @@ func _on_enter_chat( text ):
 	EnterChat.clear()
 
 func _on_lobby_stop_server( ):
+	for apeer in peers:
+		_net_tcp_send(apeer, NET_STOP, "bye")
+	server.stop()
+	peernames.clear()
+	_update_player_list()
+	_chat("[SERVER] stopped.")
 	HostButton.set_disabled(false)
 	JoinButton.set_disabled(false)
 	StopServerButton.set_disabled(true)
-	DisconnectButton.set_disabled(true)
 	PlayerName.set_editable(true)
-	server.stop()
-	_chat("[SERVER] stopped.")
 
 func _on_lobby_disconnect( ):
+	_net_tcp_send(peer, NET_PART, "bye")
+	peernames.clear()
+	peer.disconnect()
+	_update_player_list()
+	_chat("[PEER] disconnected.")
 	JoinButton.set_disabled(false)
 	DisconnectButton.set_disabled(true)
 	PlayerName.set_editable(true)
-	peer.disconnect()
-	_chat("[PEER] disconnected.")
 
 func _on_lobby_host_start( ):
 	HostButton.set_disabled(true)
 	JoinButton.set_disabled(true)
 	StopServerButton.set_disabled(false)
-	DisconnectButton.set_disabled(false)
 	_chat("[SERVER] init!")
 	peers = []
 	is_server = true
 	port=HostButton.get_node("Lobby_Host_Port").get_text()
-	PlayerList.add_text(PlayerName.get_text())
-	PlayerList.newline()
+	_update_player_list()
 	server.listen(port)
 
 
@@ -159,13 +162,18 @@ func _on_lobby_join_start( ):
 		peer.disconnect()
 		JoinButton.set_disabled(false)
 
-func _add_player_name(name):
-	peernames.append(name)
-	PlayerList.add_text(name)
+func _update_player_list():
+	PlayerList.clear()
+	PlayerList.add_text("Players:")
 	PlayerList.newline()
-	_chat(str(name, " joined lobby."))
+	if is_server:
+		PlayerList.add_text(PlayerName.get_text())
+		PlayerList.newline()
+	for i in range(0,peernames.size()):
+		PlayerList.add_text(peernames[i])
+		PlayerList.newline()
 
-func _net_tcp_send( apeer, type, text):
+func _net_tcp_send(apeer, type, text):
 	var rawdata = RawArray()
 	var len = text.length()
 	var i=0
@@ -216,7 +224,26 @@ func _net_peer_recv():
 		var rawtext=RawArray()
 		for i in range(0,raw_data.size()):
 			rawtext.push_back( raw_data[i] )
-		_add_player_name(rawtext.get_string_from_utf8())
+		var name=rawtext.get_string_from_utf8()
+		peernames.append(name)
+		_chat(str(name, " joined lobby."))
+		_update_player_list()
+	if(type==NET_PART):
+		var rawtext=RawArray()
+		for i in range(0,raw_data.size()):
+			rawtext.push_back( raw_data[i] )
+		var index=rawtext.get_string_from_utf8()
+		_chat(str(peernames[index.to_int()]," disconnected."))
+		peernames.remove(index.to_int())
+		_update_player_list()
+	if(type==NET_STOP):
+		peer.disconnect()
+		_chat("Disconnected: Server stopped.")
+		peernames.clear()
+		_update_player_list()
+		JoinButton.set_disabled(false)
+		DisconnectButton.set_disabled(true)
+		PlayerName.set_editable(true)
 
 
 func _net_server_recv( index, apeer ):
@@ -250,7 +277,9 @@ func _net_server_recv( index, apeer ):
 		for i in range(0,raw_data.size()):
 			name.push_back( raw_data[i] )
 		var newname=name.get_string_from_utf8()
-		_add_player_name(newname)
+		peernames.append(newname)
+		_chat(str(newname, " joined lobby."))
+		_update_player_list()
 		#send player join to all peers
 		for ipeer in peers:
 			_net_tcp_send(ipeer, NET_JOIN, newname)
@@ -264,6 +293,15 @@ func _net_server_recv( index, apeer ):
 		#send chat message to all peers
 		for ipeer in peers:
 			_net_tcp_send(ipeer, NET_CHAT, text)
+	if(type==NET_PART):
+		_chat(str(peernames[index]," disconnected."))
+		peernames.remove(index)
+		_update_player_list()
+		apeer.disconnect()
+		peers.remove(index)
+		#tell everyone else which player left
+		for ipeer in peers:
+			_net_tcp_send(ipeer, NET_PART, str(index+1))
 
 
 func _process(delta):
