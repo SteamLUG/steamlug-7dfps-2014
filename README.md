@@ -22,6 +22,13 @@ https://github.com/okamstudio/godot/wiki/tutorial_shadow_mapping
 change the lantern script to add them in \_ready() with append\_rc()
 function.
 
+# Shaders
+
+* The ghost will have a shader that changes rendering for it, depending
+on light influence, like **distance** or **number** of raycasts hit. If no
+light affects, the ghost will be invisible.
+* For post-effects, check *2D in 3D* demo, will need time to get that working.
+
 # Networking
 
 Maybe use peer in server to receive sync data (ie. positions) from client peers,
