@@ -2,15 +2,20 @@
 
 extends SpotLight
 
+# member variables here:
+
 var raycasts = []
 export (int) var effective_distance = 10
 
-# member variables here, example:
-# var a=2
-# var b="textvar"
-## Begin work on oil status
 export(int, 0, 100) var oil = 100			# Start with full oil
+export(int, 0, 5) var oil_decay = 1			# Allow for different types of lamps in the future
+var rate_of_decay = oil_decay
 
+func lantern_off():
+	rate_of_decay = 0
+	
+func lantern_on():
+	rate_of_decay = oil_decay
 
 func append_rc(rc):
 	rc.set_cast_to(rc.get_cast_to() * effective_distance)
@@ -29,11 +34,9 @@ func _ready():
 
 func _process(dt):
 	# TODO: Add code to set brightness levels based on oil level
-	# TODO: Setup setter/getters and/or functions to change oil level based on usage
-	# TODO: or movement
 	# TODO: Check Godot documentation since it seems _process only gets delta of time
 	# TODO: since last frame
-
+	
 	# Rays don't collide with the floor since it's been set up as not ray pickable
 	for rc in raycasts:
 		if rc.is_colliding():
@@ -41,5 +44,16 @@ func _process(dt):
 		else:
 			print( rc.get_name(), ": no hit" )
 	print("\n")
-	pass
 	
+	# Reduce oil by decay amount
+	if (oil - rate_of_decay > 0):
+		oil -= rate_of_decay
+	else:
+		oil = 0
+		lantern_off()
+		self.hide()
+	
+	# Print value of oil - for debugging
+	print( str(oil) + "\n" )
+	
+	pass
