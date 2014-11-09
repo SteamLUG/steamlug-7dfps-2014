@@ -13,3 +13,9 @@ func goto_scene(scene):
 	current_scene.queue_free();
 	current_scene = new_scene.instance();
 	root.add_child(current_scene)
+
+func net_goto_scene(PlayerName, is_server, peers, peernames, scene):
+	# Switch to scene while passing along important info from lobby to
+	# a networking script, which isn't set up yet.
+	#goto_scene(scene)
+
