@@ -44,14 +44,14 @@ func _process(dt):
 	print("\n")
 	
 	# Reduce oil by decay amount
-	if (oil - rate_of_decay > 0):
-		oil -= rate_of_decay
-	else:
-		oil = 0
-		lantern_off()
-		self.hide()
+	# if (oil - rate_of_decay > 0):
+# 		oil -= rate_of_decay
+# 	else:
+# 		oil = 0
+# 		lantern_off()
+# 		self.hide()
 	
 	# Print value of oil - for debugging
-	print( str(oil) + "\n" )
+# 	print( str(oil) + "\n" )
 	
 	pass
