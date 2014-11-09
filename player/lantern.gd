@@ -7,8 +7,8 @@ extends SpotLight
 var raycasts = []
 export (int) var effective_distance = 10
 
-export(int, 0, 100) var oil = 100			# Start with full oil
-export(int, 0, 5) var oil_decay = 1			# Allow for different types of lamps in the future
+export(int) var oil = 100			# Start with full oil
+export(int) var oil_decay = 1			# Allow for different types of lamps in the future
 var rate_of_decay = oil_decay
 
 func lantern_off():
