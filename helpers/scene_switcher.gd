@@ -15,7 +15,5 @@ func goto_scene(scene):
 	root.add_child(current_scene)
 
 func net_goto_scene(PlayerName, is_server, peers, peernames, scene):
-	# Switch to scene while passing along important info from lobby to
-	# a networking script, which isn't set up yet.
-	#goto_scene(scene)
-	pass
+	get_node("/root/net_handler").set_from_lobby(PlayerName, is_server, peers, peernames)
+	goto_scene(scene)
