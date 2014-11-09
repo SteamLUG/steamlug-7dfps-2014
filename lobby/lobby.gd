@@ -35,6 +35,7 @@ var PlayerList
 
 var is_server = false
 var ready = false
+var launched = false
 
 func _ready():
 
@@ -101,7 +102,11 @@ func _debug():
 		_chat(peernames[i])
 
 func _on_lobby_launch():
-	_chat("GOOOOooo")
+	_chat("Launching map..")
+	for apeer in peers:
+			_net_tcp_send(apeer, NET_OKGO, "go!")
+	launched=true
+	#switch scene here
 
 func _on_lobby_ready():
 	var text
@@ -286,6 +291,9 @@ func _net_peer_recv():
 		JoinButton.set_disabled(false)
 		DisconnectButton.set_disabled(true)
 		PlayerName.set_editable(true)
+	if(type==NET_OKGO):
+		_chat("Launching map..")
+		#switch scene
 
 
 func _net_server_recv( index, apeer ):
@@ -368,7 +376,7 @@ func _net_server_recv( index, apeer ):
 
 func _process(delta):
 	if is_server:
-		if server.is_connection_available():
+		if(launched==false && server.is_connection_available()):
 			var newpeer = server.take_connection()
 			_chat(str("[SERVER] new peer, ", newpeer.get_connected_host(), ":", newpeer.get_connected_port()))
 			peers.append(newpeer)
