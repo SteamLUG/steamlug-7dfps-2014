@@ -34,8 +34,6 @@ func _ready():
 
 func _process(dt):
 	# TODO: Add code to set brightness levels based on oil level
-	# TODO: Check Godot documentation since it seems _process only gets delta of time
-	# TODO: since last frame
 	
 	# Rays don't collide with the floor since it's been set up as not ray pickable
 	for rc in raycasts:
