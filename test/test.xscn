@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="7" version="1.0" version_name="Godot Engine v1.0.3917-beta1">
+<resource_file type="PackedScene" subresource_count="8" version="1.0" version_name="Godot Engine v1.0.3917-beta1">
 	<ext_resource path="res://test/concept.png" type="Texture"></ext_resource>
 	<ext_resource path="res://player/player.xscn" type="PackedScene"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
@@ -53,10 +53,53 @@
 		<vector3 name="extents"> 1, 1, 1 </vector3>
 
 	</resource>
+	<resource type="Environment" path="local://5">
+		<bool name="ambient_light/enabled"> False </bool>
+		<color name="ambient_light/color"> 0, 0, 0, 1 </color>
+		<real name="ambient_light/energy"> 1 </real>
+		<bool name="fxaa/enabled"> False </bool>
+		<int name="background/mode"> 2 </int>
+		<color name="background/color"> 0, 0, 1, 1 </color>
+		<resource name="background/texture"></resource>		<resource name="background/cubemap"></resource>		<real name="background/energy"> 1 </real>
+		<real name="background/scale"> 1 </real>
+		<real name="background/glow"> 0 </real>
+		<bool name="glow/enabled"> False </bool>
+		<int name="glow/blur_passes"> 1 </int>
+		<int name="glow/blur_scale"> 1 </int>
+		<int name="glow/blur_strength"> 1 </int>
+		<nil name="glow/blur_blend_mode">  </nil>
+		<real name="glow/bloom"> 0 </real>
+		<real name="glow/bloom_treshold"> 0.5 </real>
+		<bool name="dof_blur/enabled"> False </bool>
+		<int name="dof_blur/blur_passes"> 1 </int>
+		<real name="dof_blur/begin"> 100 </real>
+		<real name="dof_blur/range"> 10 </real>
+		<bool name="hdr/enabled"> False </bool>
+		<int name="hdr/tonemapper"> 0 </int>
+		<real name="hdr/exposure"> 0.4 </real>
+		<real name="hdr/white"> 1 </real>
+		<real name="hdr/glow_treshold"> 0.95 </real>
+		<real name="hdr/glow_scale"> 0.2 </real>
+		<real name="hdr/min_luminance"> 0.4 </real>
+		<real name="hdr/max_luminance"> 8 </real>
+		<real name="hdr/exposure_adj_speed"> 0.5 </real>
+		<bool name="fog/enabled"> True </bool>
+		<real name="fog/begin"> 100 </real>
+		<color name="fog/begin_color"> 1, 0, 0, 1 </color>
+		<color name="fog/end_color"> 0, 0, 0, 1 </color>
+		<real name="fog/attenuation"> 2 </real>
+		<bool name="fog/bg"> True </bool>
+		<bool name="bcs/enabled"> False </bool>
+		<real name="bcs/brightness"> 1 </real>
+		<real name="bcs/contrast"> 1 </real>
+		<real name="bcs/saturation"> 1 </real>
+		<bool name="srgb/enabled"> False </bool>
+
+	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="112">
+			<string_array  len="114">
 				<string> "World" </string>
 				<string> "Node" </string>
 				<string> "_import_path" </string>
@@ -169,15 +212,17 @@
 				<string> "Crate 3" </string>
 				<string> "Crate 4" </string>
 				<string> "Crate 5" </string>
+				<string> "WorldEnvironment" </string>
+				<string> "environment" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 23 </int>
+			<int> 24 </int>
 			<string> "variants" </string>
-			<array  len="51" shared="false">
+			<array  len="52" shared="false">
 				<node_path> "" </node_path>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
@@ -307,7 +352,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "Script" </string>
+					<string> "3D" </string>
 				</dictionary>
 				<resource  resource_type="PackedScene" path="res://player/player.xscn">  </resource>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
@@ -343,10 +388,12 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
 							<string> "zfar" </string>
 							<real> 500 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -414,24 +461,22 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_show_subtree" </string>
@@ -501,9 +546,10 @@
 					<string> "_editor_collapsed" </string>
 					<bool> True </bool>
 				</dictionary>
+				<resource  resource_type="Environment" path="local://5">  </resource>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="877"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 5, 4, 2, 11, 2, 0, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 5, 12, 8, 13, 7, 3, 9, 14, 10, 0, 0, 0, 16, 15, -1, 23, 2, 0, 6, 3, 17, 11, 18, 12, 19, 13, 20, 12, 21, 7, 22, 14, 23, 15, 24, 16, 25, 17, 26, 12, 27, 18, 28, 19, 29, 18, 30, 20, 31, 21, 32, 22, 33, 14, 34, 14, 35, 23, 36, 24, 37, 25, 0, 0, 0, 16, 38, -1, 23, 2, 0, 6, 3, 17, 26, 18, 12, 19, 13, 20, 12, 21, 7, 22, 14, 23, 15, 24, 27, 25, 28, 26, 7, 27, 18, 28, 19, 29, 18, 30, 20, 31, 15, 32, 22, 33, 14, 34, 14, 35, 18, 36, 24, 37, 25, 0, 0, 0, 40, 39, -1, 14, 2, 0, 6, 3, 18, 12, 41, 7, 42, 7, 7, 13, 8, 29, 9, 30, 10, 7, 19, 4, 43, 15, 44, 18, 45, 31, 46, 31, 0, 4, 0, 48, 47, -1, 6, 2, 0, 6, 3, 17, 30, 18, 12, 49, 29, 50, 7, 0, 4, 0, 51, 51, -1, 21, 2, 0, 6, 3, 17, 32, 18, 12, 19, 13, 52, 12, 53, 33, 54, 7, 55, 12, 56, 18, 57, 18, 58, 7, 59, 7, 60, 7, 61, 7, 62, 7, 63, 14, 64, 4, 65, 34, 66, 35, 67, 12, 0, 0, 0, 68, 68, -1, 28, 2, 0, 18, 12, 69, 15, 70, 15, 71, 7, 72, 36, 73, 37, 74, 0, 75, 0, 76, 0, 77, 0, 78, 12, 79, 12, 80, 4, 81, 15, 82, 18, 83, 15, 84, 15, 85, 15, 86, 18, 87, 7, 88, 7, 89, 38, 90, 14, 91, 14, 92, 7, 93, 7, 94, 39, 0, 0, 0, 5, 95, -1, 25, 2, 0, 6, 3, 17, 40, 18, 7, 41, 12, 42, 7, 7, 13, 8, 41, 9, 3, 10, 7, 19, 13, 96, 14, 97, 15, 43, 15, 44, 18, 98, 7, 99, 7, 100, 14, 101, 7, 102, 7, 103, 12, 104, 14, 105, 31, 106, 31, 3, 42, 0, 8, 0, 48, 48, -1, 5, 2, 0, 6, 3, 18, 12, 49, 41, 50, 7, 0, 8, 0, 107, 107, -1, 16, 2, 0, 6, 3, 18, 12, 19, 13, 52, 12, 53, 22, 54, 12, 55, 12, 56, 18, 57, 18, 58, 7, 59, 7, 60, 7, 61, 7, 62, 12, 63, 14, 0, 0, 0, 5, 108, -1, 25, 2, 0, 6, 3, 17, 43, 18, 7, 41, 12, 42, 7, 7, 13, 8, 41, 9, 3, 10, 7, 19, 13, 96, 14, 97, 15, 43, 15, 44, 18, 98, 7, 99, 7, 100, 14, 101, 7, 102, 7, 103, 12, 104, 14, 105, 31, 106, 31, 3, 44, 0, 11, 0, 48, 48, -1, 5, 2, 0, 6, 3, 18, 12, 49, 41, 50, 7, 0, 11, 0, 107, 107, -1, 16, 2, 0, 6, 3, 18, 12, 19, 13, 52, 12, 53, 22, 54, 12, 55, 12, 56, 18, 57, 18, 58, 7, 59, 7, 60, 7, 61, 7, 62, 12, 63, 14, 0, 0, 0, 5, 109, -1, 25, 2, 0, 6, 3, 17, 45, 18, 7, 41, 12, 42, 7, 7, 13, 8, 41, 9, 3, 10, 7, 19, 13, 96, 14, 97, 15, 43, 15, 44, 18, 98, 7, 99, 7, 100, 14, 101, 7, 102, 7, 103, 12, 104, 14, 105, 31, 106, 31, 3, 46, 0, 14, 0, 48, 48, -1, 5, 2, 0, 6, 3, 18, 12, 49, 41, 50, 7, 0, 14, 0, 107, 107, -1, 16, 2, 0, 6, 3, 18, 12, 19, 13, 52, 12, 53, 22, 54, 12, 55, 12, 56, 18, 57, 18, 58, 7, 59, 7, 60, 7, 61, 7, 62, 12, 63, 14, 0, 0, 0, 5, 110, -1, 25, 2, 0, 6, 3, 17, 47, 18, 7, 41, 12, 42, 7, 7, 13, 8, 41, 9, 3, 10, 7, 19, 13, 96, 14, 97, 15, 43, 15, 44, 18, 98, 7, 99, 7, 100, 14, 101, 7, 102, 7, 103, 12, 104, 14, 105, 31, 106, 31, 3, 48, 0, 17, 0, 48, 48, -1, 5, 2, 0, 6, 3, 18, 12, 49, 41, 50, 7, 0, 17, 0, 107, 107, -1, 16, 2, 0, 6, 3, 18, 12, 19, 13, 52, 12, 53, 22, 54, 12, 55, 12, 56, 18, 57, 18, 58, 7, 59, 7, 60, 7, 61, 7, 62, 12, 63, 14, 0, 0, 0, 5, 111, -1, 25, 2, 0, 6, 3, 17, 49, 18, 12, 41, 12, 42, 7, 7, 13, 8, 41, 9, 3, 10, 7, 19, 13, 96, 14, 97, 15, 43, 15, 44, 18, 98, 7, 99, 7, 100, 14, 101, 7, 102, 7, 103, 12, 104, 14, 105, 31, 106, 31, 3, 50, 0, 20, 0, 48, 48, -1, 5, 2, 0, 6, 3, 18, 12, 49, 41, 50, 7, 0, 20, 0, 107, 107, -1, 16, 2, 0, 6, 3, 18, 12, 19, 13, 52, 12, 53, 22, 54, 12, 55, 12, 56, 18, 57, 18, 58, 7, 59, 7, 60, 7, 61, 7, 62, 12, 63, 14, 0 </int_array>
+			<int_array  len="892"> 				-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 0, 0, 5, 4, 2, 11, 2, 0, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 5, 12, 8, 13, 7, 3, 9, 14, 10, 0, 0, 0, 16, 15, -1, 23, 2, 0, 6, 3, 17, 11, 18, 12, 19, 13, 20, 12, 21, 7, 22, 14, 23, 15, 24, 16, 25, 17, 26, 12, 27, 18, 28, 19, 29, 18, 30, 20, 31, 21, 32, 22, 33, 14, 34, 14, 35, 23, 36, 24, 37, 25, 0, 0, 0, 16, 38, -1, 23, 2, 0, 6, 3, 17, 26, 18, 12, 19, 13, 20, 12, 21, 7, 22, 14, 23, 15, 24, 27, 25, 28, 26, 7, 27, 18, 28, 19, 29, 18, 30, 20, 31, 15, 32, 22, 33, 14, 34, 14, 35, 18, 36, 24, 37, 25, 0, 0, 0, 40, 39, -1, 14, 2, 0, 6, 3, 18, 12, 41, 7, 42, 7, 7, 13, 8, 29, 9, 30, 10, 7, 19, 4, 43, 15, 44, 18, 45, 31, 46, 31, 0, 4, 0, 48, 47, -1, 6, 2, 0, 6, 3, 17, 30, 18, 12, 49, 29, 50, 7, 0, 4, 0, 51, 51, -1, 21, 2, 0, 6, 3, 17, 32, 18, 12, 19, 13, 52, 12, 53, 33, 54, 7, 55, 12, 56, 18, 57, 18, 58, 7, 59, 7, 60, 7, 61, 7, 62, 7, 63, 14, 64, 4, 65, 34, 66, 35, 67, 12, 0, 0, 0, 68, 68, -1, 28, 2, 0, 18, 12, 69, 15, 70, 15, 71, 7, 72, 36, 73, 37, 74, 0, 75, 0, 76, 0, 77, 0, 78, 12, 79, 12, 80, 4, 81, 15, 82, 18, 83, 15, 84, 15, 85, 15, 86, 18, 87, 7, 88, 7, 89, 38, 90, 14, 91, 14, 92, 7, 93, 7, 94, 39, 0, 0, 0, 5, 95, -1, 25, 2, 0, 6, 3, 17, 40, 18, 7, 41, 12, 42, 7, 7, 13, 8, 41, 9, 3, 10, 7, 19, 13, 96, 14, 97, 15, 43, 15, 44, 18, 98, 7, 99, 7, 100, 14, 101, 7, 102, 7, 103, 12, 104, 14, 105, 31, 106, 31, 3, 42, 0, 8, 0, 48, 48, -1, 5, 2, 0, 6, 3, 18, 12, 49, 41, 50, 7, 0, 8, 0, 107, 107, -1, 16, 2, 0, 6, 3, 18, 12, 19, 13, 52, 12, 53, 22, 54, 12, 55, 12, 56, 18, 57, 18, 58, 7, 59, 7, 60, 7, 61, 7, 62, 12, 63, 14, 0, 0, 0, 5, 108, -1, 25, 2, 0, 6, 3, 17, 43, 18, 7, 41, 12, 42, 7, 7, 13, 8, 41, 9, 3, 10, 7, 19, 13, 96, 14, 97, 15, 43, 15, 44, 18, 98, 7, 99, 7, 100, 14, 101, 7, 102, 7, 103, 12, 104, 14, 105, 31, 106, 31, 3, 44, 0, 11, 0, 48, 48, -1, 5, 2, 0, 6, 3, 18, 12, 49, 41, 50, 7, 0, 11, 0, 107, 107, -1, 16, 2, 0, 6, 3, 18, 12, 19, 13, 52, 12, 53, 22, 54, 12, 55, 12, 56, 18, 57, 18, 58, 7, 59, 7, 60, 7, 61, 7, 62, 12, 63, 14, 0, 0, 0, 5, 109, -1, 25, 2, 0, 6, 3, 17, 45, 18, 7, 41, 12, 42, 7, 7, 13, 8, 41, 9, 3, 10, 7, 19, 13, 96, 14, 97, 15, 43, 15, 44, 18, 98, 7, 99, 7, 100, 14, 101, 7, 102, 7, 103, 12, 104, 14, 105, 31, 106, 31, 3, 46, 0, 14, 0, 48, 48, -1, 5, 2, 0, 6, 3, 18, 12, 49, 41, 50, 7, 0, 14, 0, 107, 107, -1, 16, 2, 0, 6, 3, 18, 12, 19, 13, 52, 12, 53, 22, 54, 12, 55, 12, 56, 18, 57, 18, 58, 7, 59, 7, 60, 7, 61, 7, 62, 12, 63, 14, 0, 0, 0, 5, 110, -1, 25, 2, 0, 6, 3, 17, 47, 18, 7, 41, 12, 42, 7, 7, 13, 8, 41, 9, 3, 10, 7, 19, 13, 96, 14, 97, 15, 43, 15, 44, 18, 98, 7, 99, 7, 100, 14, 101, 7, 102, 7, 103, 12, 104, 14, 105, 31, 106, 31, 3, 48, 0, 17, 0, 48, 48, -1, 5, 2, 0, 6, 3, 18, 12, 49, 41, 50, 7, 0, 17, 0, 107, 107, -1, 16, 2, 0, 6, 3, 18, 12, 19, 13, 52, 12, 53, 22, 54, 12, 55, 12, 56, 18, 57, 18, 58, 7, 59, 7, 60, 7, 61, 7, 62, 12, 63, 14, 0, 0, 0, 5, 111, -1, 25, 2, 0, 6, 3, 17, 49, 18, 12, 41, 12, 42, 7, 7, 13, 8, 41, 9, 3, 10, 7, 19, 13, 96, 14, 97, 15, 43, 15, 44, 18, 98, 7, 99, 7, 100, 14, 101, 7, 102, 7, 103, 12, 104, 14, 105, 31, 106, 31, 3, 50, 0, 20, 0, 48, 48, -1, 5, 2, 0, 6, 3, 18, 12, 49, 41, 50, 7, 0, 20, 0, 107, 107, -1, 16, 2, 0, 6, 3, 18, 12, 19, 13, 52, 12, 53, 22, 54, 12, 55, 12, 56, 18, 57, 18, 58, 7, 59, 7, 60, 7, 61, 7, 62, 12, 63, 14, 0, 0, 0, 112, 112, -1, 4, 2, 0, 6, 3, 18, 12, 113, 51, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>
