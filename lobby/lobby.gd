@@ -10,11 +10,14 @@ const NET_CHAT = 2  # chat message
 const NET_JOIN = 3  # new player joined
 const NET_PART = 4  # player left
 const NET_STOP = 5  # server stopped
+const NET_REDY = 6  # peer toggled ready status
+const NET_OKGO = 7  # launch map
 
 const PROTOCOL="H2" #haunt protocol version 2
 
 var peers         #array of StreamPeerTCP objects
 var peernames = []    #array of player names
+var peerready = []    #array of player ready status
 var current_time
 var PlayerName
 
@@ -24,11 +27,14 @@ var HostButton
 var JoinButton
 var StopServerButton
 var DisconnectButton
+var ReadyButton
+var LaunchButton
 var LobbyChat
 var EnterChat
 var PlayerList
 
-var is_server
+var is_server = false
+var ready = false
 
 func _ready():
 
@@ -63,9 +69,18 @@ func _ready():
 	StopServerButton.connect("pressed", self, "_on_lobby_stop_server")
 	StopServerButton.set_disabled(true)
 	
+	LaunchButton = get_node("Lobby_Host_Area/Lobby_Launch_Button")
+	LaunchButton.connect("pressed", self, "_on_lobby_launch")
+	LaunchButton.set_disabled(true)
+	
 	DisconnectButton = get_node("Lobby_Join_Area/Lobby_Disconnect_Button")
 	DisconnectButton.connect("pressed", self, "_on_lobby_disconnect")
 	DisconnectButton.set_disabled(true)
+	
+	ReadyButton = get_node("Lobby_Chat_Area/Lobby_Ready_Button")
+	ReadyButton.connect("pressed", self, "_on_lobby_ready")
+	ReadyButton.get_node("Lobby_Ready_Text").add_text("NO")
+	ReadyButton.set_disabled(true)
 	
 	LobbyChat = get_node("Lobby_Chat_Area/Lobby_Chat")
 	
@@ -84,6 +99,29 @@ func _debug():
 	_chat("peer names:")
 	for i in range(0,peernames.size()):
 		_chat(peernames[i])
+
+func _on_lobby_launch():
+	_chat("GOOOOooo")
+
+func _on_lobby_ready():
+	var text
+	if is_server:
+		if ready:
+			text=(str("<",PlayerName.get_text(),"> is NOT ready."))
+		else:
+			text=(str("<",PlayerName.get_text(),"> is ready!"))
+		_chat(text)
+		for apeer in peers:
+			_net_tcp_send(apeer, NET_CHAT, text)
+	else:
+		_net_tcp_send(peer, NET_REDY, "rdy")
+	ReadyButton.get_node("Lobby_Ready_Text").clear()
+	if ready:
+		ready=false
+		ReadyButton.get_node("Lobby_Ready_Text").add_text("NO")
+	else:
+		ready=true
+		ReadyButton.get_node("Lobby_Ready_Text").add_text("YES")
 
 func _chat ( text ):
 	current_time = str(OS.get_time().hour) + ":" + str(OS.get_time().minute)
@@ -111,6 +149,7 @@ func _on_lobby_stop_server( ):
 	JoinButton.set_disabled(false)
 	StopServerButton.set_disabled(true)
 	PlayerName.set_editable(true)
+	ReadyButton.set_disabled(true)
 
 func _on_lobby_disconnect( ):
 	_net_tcp_send(peer, NET_PART, "bye")
@@ -121,17 +160,19 @@ func _on_lobby_disconnect( ):
 	JoinButton.set_disabled(false)
 	DisconnectButton.set_disabled(true)
 	PlayerName.set_editable(true)
+	ReadyButton.set_disabled(true)
 
 func _on_lobby_host_start( ):
-	HostButton.set_disabled(true)
-	JoinButton.set_disabled(true)
-	StopServerButton.set_disabled(false)
 	_chat("[SERVER] init!")
 	peers = []
 	is_server = true
 	port=HostButton.get_node("Lobby_Host_Port").get_text()
 	_update_player_list()
 	server.listen(port)
+	HostButton.set_disabled(true)
+	JoinButton.set_disabled(true)
+	StopServerButton.set_disabled(false)
+	ReadyButton.set_disabled(false)
 
 
 func _on_lobby_join_start( ):
@@ -141,6 +182,7 @@ func _on_lobby_join_start( ):
 	HostButton.set_disabled(true)
 	JoinButton.set_disabled(true)
 	PlayerName.set_editable(false)
+	ReadyButton.set_disabled(false)
 	_chat("[PEER] init!")
 	host=JoinButton.get_node("Lobby_Join_IP").get_text()
 	port=JoinButton.get_node("Lobby_Join_Port").get_text()
@@ -278,6 +320,7 @@ func _net_server_recv( index, apeer ):
 			name.push_back( raw_data[i] )
 		var newname=name.get_string_from_utf8()
 		peernames.append(newname)
+		peerready.append(0)
 		_chat(str(newname, " joined lobby."))
 		_update_player_list()
 		#send player join to all peers
@@ -296,12 +339,31 @@ func _net_server_recv( index, apeer ):
 	if(type==NET_PART):
 		_chat(str(peernames[index]," disconnected."))
 		peernames.remove(index)
+		peerready.remove(index)
 		_update_player_list()
 		apeer.disconnect()
 		peers.remove(index)
 		#tell everyone else which player left
 		for ipeer in peers:
 			_net_tcp_send(ipeer, NET_PART, str(index+1))
+	if(type==NET_REDY):
+		var text
+		if peerready[index]==0:
+			peerready[index]=1
+			text=(str("<",peernames[index],"> is ready!"))
+			var count=0
+			for i in range(0,peerready.size()):
+				if(peerready[i]==1):
+					count=count+1
+			if count==peerready.size():
+				LaunchButton.set_disabled(false)
+		else:
+			peerready[index]=1
+			text=(str("<",peernames[index],"> is NOT ready."))
+			LaunchButton.set_disabled(true)
+		_chat(text)
+		for apeer in peers:
+			_net_tcp_send(apeer, NET_CHAT, text)
 
 
 func _process(delta):
