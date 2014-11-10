@@ -37,7 +37,8 @@ func _process(delta):
 	# Data probably should not be set every tick, add logic to replace true
 	if true:
 		# Get coords, direction from scene
-		pass
+		var player = get_node("/root/Spacial/Player")
+		print(str(player.get_translation()) +" "+ str(player.get_rotation))
 		if is_server:
 			# Send to clients
 			pass
