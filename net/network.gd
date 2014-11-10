@@ -27,6 +27,9 @@ func set_from_lobby(name, server_bool, peer_stream, peer_names):
 	# Gather some data from above variables, like player count
 	# Store this data in new vars, create arrays (or dictionaries or something)
 	# and add them to player_placement array
+	# Set camera
+	
+	print("Passed to network.gd: "+str(PlayerName)+"/"+str(is_server)+"/"+str(peer_stream)+"/"+str(peer_names))
 	
 	is_set = true
 
