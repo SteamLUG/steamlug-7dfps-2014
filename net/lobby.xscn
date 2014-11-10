@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="2" version="1.0" version_name="Godot Engine v1.0.3917-beta1">
-	<ext_resource path="res://lobby/lobby.gd" type="Script"></ext_resource>
+	<ext_resource path="res://net/lobby.gd" type="Script"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
@@ -90,7 +90,7 @@
 							<int> 0 </int>
 							<string> "sources" </string>
 							<array  len="1" shared="false">
-								<string> "res://lobby/lobby.gd" </string>
+								<string> "res://net/lobby.gd" </string>
 							</array>
 						</dictionary>
 						<string> "2D" </string>
@@ -209,7 +209,7 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "Script" </string>
 				</dictionary>
-				<resource  resource_type="Script" path="res://lobby/lobby.gd">  </resource>
+				<resource  resource_type="Script" path="res://net/lobby.gd">  </resource>
 				<string> "127.0.0.1" </string>
 				<int> 9998 </int>
 				<bool> True </bool>
