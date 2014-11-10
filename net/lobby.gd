@@ -1,3 +1,4 @@
+
 extends Node
 
 var server
@@ -20,6 +21,8 @@ var peernames = []    #array of player names
 var peerready = []    #array of player ready status
 var current_time
 var PlayerName
+
+var map   #scene to launch
 
 #widgets
 var DebugButton
@@ -46,7 +49,9 @@ func _ready():
 	server = TCP_Server.new()
 
 	current_time = ""
-
+	
+	map = "res://map1/map1.xscn"
+	
 	# init text and buttons
 	DebugButton = get_node("Debug")
 	DebugButton.connect("pressed", self, "_debug")
@@ -106,7 +111,9 @@ func _on_lobby_launch():
 	for apeer in peers:
 			_net_tcp_send(apeer, NET_OKGO, "go!")
 	launched=true
-	#switch scene here
+	
+	#Switch scenes while passing info from lobby
+	get_node("/root/scene_switcher").net_goto_map(PlayerName, is_server, peers, peernames, map)
 
 func _on_lobby_ready():
 	var text
