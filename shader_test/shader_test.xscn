@@ -121,11 +121,11 @@
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
 									<string> "distance" </string>
-									<real> 29.585417 </real>
+									<real> 11.748775 </real>
 									<string> "x_rot" </string>
-									<real> 0.445796 </real>
+									<real> 0.758296 </real>
 									<string> "y_rot" </string>
-									<real> 0.037564 </real>
+									<real> 0.075064 </real>
 									<string> "listener" </string>
 									<bool> True </bool>
 									<string> "use_environment" </string>
@@ -210,7 +210,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "3D" </string>
+					<string> "Script" </string>
 				</dictionary>
 				<rect2> 0, 0, 300, 300 </rect2>
 				<bool> False </bool>
