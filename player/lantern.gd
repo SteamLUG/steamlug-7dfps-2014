@@ -5,18 +5,30 @@ extends SpotLight
 var raycasts = []
 export (int) var effective_distance = 10
 
-export(int) var oil = 100			# Start with full oil
-export(int) var oil_decay = 1			# Allow for different types of lamps in the future
+export(float) var oil = 10.0    # Start with full oil
+export(int) var oil_decay = 1   # Allow for different types of lamps in the future
 var rate_of_decay = oil_decay
+var oil_amount = oil
 
 func lantern_off():
 	rate_of_decay = 0
-	
-func lantern_on():
-	rate_of_decay = oil_decay
+	# Turn off raycasts
+	for rc in raycasts:
+			rc.set_enabled(false)
+	hide()
 
-func add_oil():
-	oil += 15
+func lantern_on():
+	if oil == 0:
+		lantern_off()
+		return
+	rate_of_decay = oil_decay
+	# Turn on raycasts
+	for rc in raycasts:
+			rc.set_enabled(true)
+	show()
+
+func add_oil( bottle_holds_how_much ):
+	oil += bottle_holds_how_much
 
 func append_rc(rc):
 	rc.set_cast_to(rc.get_cast_to() * effective_distance)
@@ -32,6 +44,7 @@ func _ready():
 	set_process(true)
 	pass
 
+# If ghost is hit, reveals it.
 func check_raycasts():
 	for rc in raycasts:
 		if rc.is_colliding():
@@ -45,26 +58,13 @@ func check_raycasts():
 	#print("\n")
 
 func _process(dt):
-	# Toggle raycasts on and off with light
-	# There is a better way...
-	if !is_visible():
-		for rc in raycasts:
-			rc.set_enabled(false)
-	else:
-		for rc in raycasts:
-			rc.set_enabled(true)
-	
 	check_raycasts()
 	
 	# Reduce oil by decay amount
-	# if (oil - rate_of_decay > 0):
-# 		oil -= rate_of_decay
-# 	else:
-# 		oil = 0
-# 		lantern_off()
-# 		self.hide()
-	
-	# Print value of oil - for debugging
-# 	print( str(oil) + "\n" )
-	
+	if (oil - rate_of_decay > 0):
+		oil -= rate_of_decay * dt
+	else:
+		oil = 0
+		lantern_off()
+	get_node("../../OilLevel").set_text( "Oil level: " + str(int(oil)) )
 	pass

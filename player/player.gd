@@ -64,10 +64,8 @@ func _integrate_forces(state):
 	if lantern_press:
 		if lantern.is_visible():
 			lantern.lantern_off()
-			lantern.hide()
 		else:
 			lantern.lantern_on()
-			lantern.show()
 
 	# Handle movement
 	var lv = state.get_linear_velocity()
