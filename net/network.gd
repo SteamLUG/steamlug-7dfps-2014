@@ -51,8 +51,8 @@ func set_from_lobby(name, server_bool, peer_streams, peer_names):
 
 func Net_Get_Data(apeer, index):
 	var data
-	if(tcpstreams[index].is_connected()):
-		data=apeer.get_var()
+	if(tcpstreams[index].is_connected() && apeer.get_available_packet_count() > 0):
+		data = apeer.get_var()
 	else:
 		print("lost peer?")
 		return
