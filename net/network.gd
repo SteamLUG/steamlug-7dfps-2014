@@ -6,7 +6,7 @@ var is_server
 var peers
 var peernames
 
-var player_placement
+var player_placement # Array or dictionary to hold player values from network
 
 var is_set # Has recieved values from lobby
 
@@ -47,8 +47,11 @@ func _process(delta):
 			# Send and recieve to/from clients
 			pass
 		else:
-			# Send to server
+			# Send and recieve to/from server
 			pass
 	
 	# Set player coords from updated player_placement
+	#for something in player_placement
+	#	get_node(player_object).set_translation(from_array)
+	#	get_node(player_object).set_rotation(from_array)
 	pass
