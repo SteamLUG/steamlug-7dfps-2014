@@ -82,7 +82,3 @@ Some questions arise
 * Connects to a server (*connect*)
 * Sends and receive data across the network (*[put|get]_(partial_)?data* from **StreamPeer** inheritance)
 
-
-## Asset credits
-* Ghost model 
-   * Alien Parasite used under [CC-BY-3.0](http://creativecommons.org/licenses/by/3.0/) - created by [Rock 76222](http://www.blendswap.com/user/Rock76222)
