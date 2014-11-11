@@ -1,19 +1,22 @@
 
 extends Spatial
 
-# member variables here, example:
-# var a=2
-# var b="textvar"
+var revealed
+var mesh
 
 func _ready():
-	# Initalization here
-	pass
+	revealed = false
+	mesh = get_node("chumpus")
+	mesh.hide()
+	set_process(true)
 
+# Called by lantern when raycast hits ghost.
+func reveal():
+	revealed = true
 
-
-
-func _on_col_body_enter( body ):
-	if body.get_name() == "Player":
-		print ( " ******* GHOST ******** " )
-		# Ideally, call routine in Player object for "possession/fainting/death"
-	pass # replace with function body
+func _process(delta):
+	if revealed:
+		mesh.show()
+		revealed = false
+	else:
+		mesh.hide()
