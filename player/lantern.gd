@@ -55,5 +55,5 @@ func _process(dt):
 		lantern_off()
 		self.hide()
 
-	get_node("/root/Spatial/OilLevel").set_text( "Oil level: " + str(oil) )	
+	get_node("../../OilLevel").set_text( "Oil level: " + str(oil) )	
 	pass
