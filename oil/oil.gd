@@ -1,7 +1,7 @@
 
 extends Spatial
 
-var BOTTLE_AMOUNT = 30
+var BOTTLE_AMOUNT = 10.0
 
 func _ready():
 	# Initalization here

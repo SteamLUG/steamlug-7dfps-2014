@@ -7,7 +7,7 @@ extends SpotLight
 var raycasts = []
 export (int) var effective_distance = 10
 
-export(int) var oil = 350			# Start with full oil
+export(float) var oil = 10.0				# Start with full oil 
 export(int) var oil_decay = 1			# Allow for different types of lamps in the future
 var rate_of_decay = oil_decay
 
@@ -48,12 +48,12 @@ func _process(dt):
 	
 	# Reduce oil by decay amount
 	if (oil - rate_of_decay > 0):
-		oil -= rate_of_decay
+		oil -= rate_of_decay * dt
 		self.show()
 	else:
 		oil = 0
 		lantern_off()
 		self.hide()
 
-	get_node("../../OilLevel").set_text( "Oil level: " + str(oil) )	
+	get_node("../../OilLevel").set_text( "Oil level: " + str(int(oil)) )	
 	pass
