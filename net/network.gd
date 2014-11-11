@@ -54,7 +54,7 @@ func Net_Get_Data(apeer, index):
 	if(tcpstreams[index].is_connected()):
 		data=apeer.get_var()
 	else:
-		pint("lost peer?")
+		print("lost peer?")
 		return
 	if data != null and data.size() > 0:
 		if is_server:
@@ -76,7 +76,7 @@ func Net_Send_Data(apeer, data, index):
 	if(tcpstreams[index].is_connected()):
 		apeer.put_var(data)
 	else:
-		pint("lost peer?")
+		print("lost peer?")
 		return
 
 func _process(delta):
