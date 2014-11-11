@@ -12,6 +12,7 @@ func _ready():
 func _on_col_body_enter(body):
 	if body.get_name() == "Player":
 		get_node("../Player/Cam/Lantern").add_oil()
+		get_node("sound").play("pop")
 		queue_free()
 	pass
 
