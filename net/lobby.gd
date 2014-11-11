@@ -41,13 +41,10 @@ var ready = false
 var launched = false
 
 func _ready():
-
 	# create peer
 	peer = StreamPeerTCP.new()
-
 	# create server
 	server = TCP_Server.new()
-
 	current_time = ""
 	
 	map = "res://map1/map1.xscn"
@@ -196,7 +193,7 @@ func _on_lobby_join_start( ):
 	PlayerName.set_editable(false)
 	ReadyButton.set_disabled(false)
 	_chat("[PEER] init!")
-	host=JoinButton.get_node("Lobby_Join_IP").get_text()
+	host=IP.resolve_hostname(JoinButton.get_node("Lobby_Join_IP").get_text())
 	port=JoinButton.get_node("Lobby_Join_Port").get_text()
 	peer.connect(host, port)
 	status=peer.get_status()
