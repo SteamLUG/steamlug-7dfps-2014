@@ -8,7 +8,7 @@ var peernames
 
 var player_placement
 
-var is_set
+var is_set # Has recieved values from lobby
 
 func _ready():
 	PlayerName = ""
@@ -32,18 +32,23 @@ func set_from_lobby(name, server_bool, peer_stream, peer_names):
 	print("Passed to network.gd: "+str(PlayerName)+"/"+str(is_server)+"/"+str(peer_stream)+"/"+str(peer_names))
 	
 	is_set = true
+	set_process(true)
 
 func _process(delta):
 	# Data probably should not be set every tick, add logic to replace true
 	if true:
 		# Get coords, direction from scene
-		pass
+		var player = get_node("/root/Spatial/Player")
+		var player_coords = player.get_translation()
+		var player_rot = player.get_node("Cam").get_rotation()
+		
+		print(str(player_coords) + str(player_rot))
 		if is_server:
-			# Send to clients
+			# Send and recieve to/from clients
 			pass
 		else:
 			# Send to server
 			pass
 	
 	# Set player coords from updated player_placement
-
+	pass

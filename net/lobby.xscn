@@ -88,12 +88,12 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 0 </int>
+							<int> 2 </int>
 							<string> "sources" </string>
 							<array  len="3" shared="false">
 								<string> "res://net/lobby.gd" </string>
-								<string> "res://net/network.gd" </string>
 								<string> "res://helpers/scene_switcher.gd" </string>
+								<string> "res://net/network.gd" </string>
 							</array>
 						</dictionary>
 						<string> "2D" </string>
