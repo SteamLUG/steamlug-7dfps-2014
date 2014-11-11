@@ -52,48 +52,54 @@ func set_from_lobby(name, server_bool, peer_streams, peer_names):
 func Net_Get_Data(apeer, index):
 	var data
 	if(tcpstreams[index].is_connected() && apeer.get_available_packet_count() > 0):
-		data = apeer.get_var()
+		data = apeer.get_var()[0]
+		print("got data " + str(data[0]))
 	else:
-		print("lost peer?")
+		#print("lost peer? no data?")
 		return
 	if data != null and data.size() > 0:
 		if is_server:
 			if(data[0]==NET_POS):
 				#send recieved position to other players
 				print ("Got position from player: i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," r=", data[5])
-				var i=0
-				for ipeer in peers:
-					data[1] = i
-					ipeer.put_var(data)
-					i=i+1
+				Net_Send_Data_All(peers, [data])
 				#TODO: set player position
 		else:
 			if(data[0]==NET_POS):
-				print ("Got ", peernames[data[1]], "position. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," r=", data[5])
+				print ("Got position. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," r=", data[5])
 				#TODO: set  player position
 
 func Net_Send_Data(apeer, data, index):
 	if(tcpstreams[index].is_connected()):
 		apeer.put_var(data)
 	else:
-		print("lost peer?")
+		#print("lost peer?")
 		return
+
+func Net_Send_Data_All(_peers, data):
+	var i = 0
+	for _peer in _peers:
+		Net_Send_Data(_peer, data, i)
+		i += 1
 
 func _process(delta):
 	# Let's try to receive data ASAP
+
 	if is_server:
-		if is_server:
-			# Recieve from clients
-			var i=0
-			for ipeer in peers:
-				Net_Get_Data(ipeer, i)
-				i=i+1
-		else:
-			# Recieve from server
-				Net_Get_Data(peer, 0)
+		# Recieve from clients
+		var i=0
+		for ipeer in peers:
+			Net_Get_Data(ipeer, i)
+			i=i+1
+	else:
+		# Recieve from server
+			Net_Get_Data(peer, 0)
 
 	# Let's send data less often.
-	if(delta - dt > 500):
+	#print("Send position? " + str(dt))
+	if(dt > 1.0):
+		print("Send position")
+		
 		# Get coords, direction from scene
 		var player = get_node("/root/Spatial/Player")
 		var player_coords = player.get_translation()
@@ -104,14 +110,15 @@ func _process(delta):
 		#print(str(player_coords) + str(player_rot))
 		if is_server:
 			# Send to clients
-			var i=0
-			for ipeer in peers:
-				Net_Send_Data(ipeer, player_data, i)
-				i=i+1
+			print("Server, send position to clients")
+			Net_Send_Data_All(peers, player_data)
 		else:
 			# Send to server
+			print("Player, send position to server")
 			Net_Send_Data(peer, player_data, 0)
-		dt=delta
+		dt = 0
+	else:
+		dt += delta
 
 
 	
