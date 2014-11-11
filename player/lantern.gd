@@ -17,6 +17,9 @@ func lantern_off():
 func lantern_on():
 	rate_of_decay = oil_decay
 
+func add_oil():
+	oil += 15
+
 func append_rc(rc):
 	rc.set_cast_to(rc.get_cast_to() * effective_distance)
 	raycasts.append(rc)

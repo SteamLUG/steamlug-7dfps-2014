@@ -11,6 +11,7 @@ func _ready():
 
 func _on_col_body_enter(body):
 	if body.get_name() == "Player":
-		body.pickup_oil()
+		get_node("../Player/Cam/Lantern").add_oil()
 		queue_free()
 	pass
+
