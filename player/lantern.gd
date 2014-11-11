@@ -14,7 +14,7 @@ func lantern_off():
 	rate_of_decay = 0
 	# Turn off raycasts
 	for rc in raycasts:
-			rc.set_enabled(false)
+		rc.set_enabled(false)
 	hide()
 
 func lantern_on():
@@ -66,5 +66,5 @@ func _process(dt):
 	else:
 		oil = 0
 		lantern_off()
-	get_node("../../OilLevel").set_text( "Oil level: " + str(int(oil)) )
+	get_node("../../HUD/OilLevel").set_text( "Oil level: " + str(int(oil)) )
 	pass

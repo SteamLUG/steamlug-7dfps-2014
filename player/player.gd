@@ -20,7 +20,6 @@ var lantern_now = false
 var lantern_then = false
 
 func _ready():
-
 	var rot = get_rotation()
 	rotation.x = rot.y
 	rot.y = 0
@@ -30,21 +29,21 @@ func _ready():
 	win_hsize = OS.get_video_mode_size()/2
 	set_process_input(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-
+	
 	pass
 
 
 func _integrate_forces(state):
-
+	
 	# Reset mouse
 	Input.warp_mouse_pos(win_hsize)
-
+	
 	# Get directions
 	var forward = camera.get_transform().basis[2]
 	forward = Vector3(forward.x, 0, forward.z).normalized()
 	var strafe = camera.get_transform().basis[0]
 	strafe = Vector3(strafe.x, 0, strafe.z).normalized()
-
+	
 	# Quit game
 	if exit_game:
 		OS.get_main_loop().quit()
@@ -52,7 +51,7 @@ func _integrate_forces(state):
 		print("quit")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		exit_game = true
-
+	
 	# Handle lantern
 	lantern_now = Input.is_action_pressed("player_lantern")
 	var lantern_press = false
@@ -60,13 +59,13 @@ func _integrate_forces(state):
 		if lantern_then == false:
 			lantern_press = true
 	lantern_then = lantern_now
-
+	
 	if lantern_press:
 		if lantern.is_visible():
 			lantern.lantern_off()
 		else:
 			lantern.lantern_on()
-
+	
 	# Handle movement
 	var lv = state.get_linear_velocity()
 	if Input.is_action_pressed("player_forward"):
@@ -77,33 +76,33 @@ func _integrate_forces(state):
 		lv -= strafe
 	elif Input.is_action_pressed("player_right"):
 		lv += strafe
-
+	
 	# Clamp speed
 	var tmp = Vector3( lv.x, 0, lv.z )
 	if tmp.length() > walk_speed:
 		tmp = tmp.normalized() * walk_speed
 		lv.x = tmp.x
 		lv.z = tmp.z
-
+	
 	# Handle jump
 	var onfloor = state.get_contact_count()
 	if onfloor and Input.is_action_pressed("player_jump"):
 		lv.y = jump_force
 		# if we use forces, jump_force should be over 9000
 		#state.add_force(Vector3(0,jump_force,0), Vector3(0,1,0))
-
+	
 	# Apply walk velocity
 	state.set_linear_velocity(lv)
-
+	
 	# Clamp pitch
 	rotation.y = min( max_pitch, abs(rotation.y) ) * sign( rotation.y )
-
+	
 	# Rotate camera by using transform
 	var rot = Matrix3().rotated(Vector3(0,1,0), rotation.x).rotated(Vector3(1,0,0),rotation.y)
 	var transf = camera.get_transform()
 	transf.basis = rot
 	camera.set_transform(transf)
-
+	
 	# Commit!
 	state.integrate_forces()
 

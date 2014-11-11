@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="5" version="1.0" version_name="Godot Engine v1.0.3917-beta1">
-	<ext_resource path="res://player/player.gd" type="Script"></ext_resource>
 	<ext_resource path="res://player/lantern.gd" type="Script"></ext_resource>
+	<ext_resource path="res://player/player.gd" type="Script"></ext_resource>
 	<ext_resource path="res://v_lantern/v_lantern.xscn" type="PackedScene"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
 		<real name="radius"> 1 </real>
@@ -11,7 +11,7 @@
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="113">
+			<string_array  len="116">
 				<string> "Human" </string>
 				<string> "RigidBody" </string>
 				<string> "_import_path" </string>
@@ -47,36 +47,6 @@
 				<string> "jump_force" </string>
 				<string> "player" </string>
 				<string> "human" </string>
-				<string> "OilLevel" </string>
-				<string> "Label" </string>
-				<string> "visibility/opacity" </string>
-				<string> "visibility/self_opacity" </string>
-				<string> "visibility/behind_parent" </string>
-				<string> "margin/left" </string>
-				<string> "margin/top" </string>
-				<string> "margin/right" </string>
-				<string> "margin/bottom" </string>
-				<string> "focus_neighbour/left" </string>
-				<string> "focus_neighbour/top" </string>
-				<string> "focus_neighbour/right" </string>
-				<string> "focus_neighbour/bottom" </string>
-				<string> "focus/ignore_mouse" </string>
-				<string> "focus/stop_mouse" </string>
-				<string> "size_flags/horizontal" </string>
-				<string> "size_flags/stretch_ratio" </string>
-				<string> "range/min" </string>
-				<string> "range/max" </string>
-				<string> "range/step" </string>
-				<string> "range/page" </string>
-				<string> "range/value" </string>
-				<string> "range/exp_edit" </string>
-				<string> "rounded_values" </string>
-				<string> "text" </string>
-				<string> "align" </string>
-				<string> "valign" </string>
-				<string> "autowrap" </string>
-				<string> "uppercase" </string>
-				<string> "percent_visible" </string>
 				<string> "CollisionShape" </string>
 				<string> "shape" </string>
 				<string> "trigger" </string>
@@ -123,6 +93,39 @@
 				<string> "RCRight" </string>
 				<string> "Spatial" </string>
 				<string> "CollisionShape 2" </string>
+				<string> "HUD" </string>
+				<string> "Node" </string>
+				<string> "OilLevel" </string>
+				<string> "Label" </string>
+				<string> "visibility/opacity" </string>
+				<string> "visibility/self_opacity" </string>
+				<string> "visibility/behind_parent" </string>
+				<string> "margin/left" </string>
+				<string> "margin/top" </string>
+				<string> "margin/right" </string>
+				<string> "margin/bottom" </string>
+				<string> "focus_neighbour/left" </string>
+				<string> "focus_neighbour/top" </string>
+				<string> "focus_neighbour/right" </string>
+				<string> "focus_neighbour/bottom" </string>
+				<string> "focus/ignore_mouse" </string>
+				<string> "focus/stop_mouse" </string>
+				<string> "size_flags/horizontal" </string>
+				<string> "size_flags/stretch_ratio" </string>
+				<string> "range/min" </string>
+				<string> "range/max" </string>
+				<string> "range/step" </string>
+				<string> "range/page" </string>
+				<string> "range/value" </string>
+				<string> "range/exp_edit" </string>
+				<string> "rounded_values" </string>
+				<string> "text" </string>
+				<string> "align" </string>
+				<string> "valign" </string>
+				<string> "autowrap" </string>
+				<string> "uppercase" </string>
+				<string> "percent_visible" </string>
+				<string> "Instructions" </string>
 				<string> "_on_visibility_changed" </string>
 				<string> "visibility_changed" </string>
 			</string_array>
@@ -131,9 +134,9 @@
 			<string> "conn_count" </string>
 			<int> 1 </int>
 			<string> "node_count" </string>
-			<int> 12 </int>
+			<int> 14 </int>
 			<string> "variants" </string>
-			<array  len="50" shared="false">
+			<array  len="54" shared="false">
 				<node_path> "" </node_path>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.6676, 0 </transform>
@@ -281,18 +284,15 @@
 					<string> "Script" </string>
 				</dictionary>
 				<int> 10 </int>
-				<real> 1 </real>
-				<real> 671 </real>
-				<real> 3 </real>
-				<real> 796 </real>
-				<real> 24 </real>
-				<string> "" </string>
-				<real> -1 </real>
 				<real> 76.445801 </real>
 				<real> 0.1 </real>
 				<real> 9000 </real>
 				<int> 1048575 </int>
-				<resource name=""></resource>				<transform> 0.997452, 0, 0.0713368, 0, 1, 0, -0.0713368, 0, 0.997452, 0.79449, -0.44837, -2.31207 </transform>
+				<resource name=""></resource>				<dictionary  shared="false">
+					<string> "_editor_collapsed" </string>
+					<bool> True </bool>
+				</dictionary>
+				<transform> 0.997452, 0, 0.0713368, 0, 1, 0, -0.0713368, 0, 0.997452, 0.79449, -0.44837, -2.31207 </transform>
 				<real> 2.93 </real>
 				<color> 0.677705, 0.596215, 0.442629, 1 </color>
 				<color> 0.855534, 0.706557, 0.425876, 1 </color>
@@ -300,6 +300,7 @@
 				<real> 60 </real>
 				<real> 4 </real>
 				<real> 30.435127 </real>
+				<real> 1 </real>
 				<real> 30 </real>
 				<resource  resource_type="Script" path="res://player/lantern.gd">  </resource>
 				<transform> 1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0.232247, 0, -3.24734 </transform>
@@ -329,6 +330,12 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -396,12 +403,6 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
 							<string> "default_light" </string>
 							<bool> True </bool>
 							<string> "viewport_mode" </string>
@@ -430,11 +431,20 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "3D" </string>
 				</dictionary>
+				<real> 671 </real>
+				<real> 3 </real>
+				<real> 796 </real>
+				<real> 24 </real>
+				<string> "" </string>
+				<real> -1 </real>
+				<real> 40 </real>
+				<real> 13 </real>
+				<string> "F: Lantern" </string>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="376"> 				-1, -1, 1, 0, -1, 31, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 4, 12, 6, 13, 8, 14, 4, 15, 9, 16, 5, 17, 10, 18, 11, 19, 12, 20, 4, 21, 4, 22, 9, 23, 4, 24, 4, 25, 4, 26, 13, 27, 14, 28, 14, 29, 15, 30, 16, 31, 17, 32, 17, 2, 33, 34, 0, 0, 36, 35, -1, 30, 2, 0, 5, 3, 37, 18, 38, 18, 39, 4, 40, 19, 41, 20, 42, 21, 43, 22, 44, 0, 45, 0, 46, 0, 47, 0, 48, 3, 49, 3, 50, 5, 51, 18, 52, 12, 53, 18, 54, 18, 55, 18, 56, 12, 57, 4, 58, 4, 59, 23, 60, 13, 61, 13, 62, 4, 63, 4, 64, 24, 0, 0, 0, 65, 65, -1, 6, 2, 0, 3, 1, 4, 7, 5, 3, 66, 6, 67, 4, 0, 0, 0, 69, 68, -1, 11, 2, 0, 3, 1, 5, 3, 70, 13, 71, 25, 72, 26, 73, 27, 74, 9, 75, 3, 76, 28, 77, 29, 0, 3, 0, 79, 78, -1, 27, 2, 0, 3, 1, 4, 30, 5, 3, 15, 9, 80, 3, 81, 4, 82, 13, 83, 31, 84, 32, 85, 33, 86, 3, 87, 12, 88, 34, 89, 12, 90, 35, 91, 36, 92, 29, 93, 13, 94, 37, 95, 18, 96, 38, 97, 18, 29, 39, 98, 17, 99, 10, 100, 9, 0, 4, 0, 102, 101, -1, 6, 2, 0, 3, 1, 4, 40, 5, 3, 103, 3, 104, 41, 0, 4, 0, 102, 105, -1, 6, 2, 0, 3, 1, 4, 42, 5, 3, 103, 3, 104, 41, 0, 4, 0, 102, 106, -1, 6, 2, 0, 3, 1, 4, 43, 5, 3, 103, 3, 104, 41, 0, 4, 0, 102, 107, -1, 6, 2, 0, 3, 1, 4, 44, 5, 3, 103, 3, 104, 41, 0, 4, 0, 102, 108, -1, 6, 2, 0, 3, 1, 4, 45, 5, 3, 103, 3, 104, 41, 0, 3, 0, 109, 109, 46, 4, 2, 47, 3, 1, 4, 48, 30, 49, 0, 0, 0, 65, 110, -1, 6, 2, 0, 3, 1, 4, 8, 5, 3, 66, 6, 67, 4, 0 </int_array>
+			<int_array  len="450"> 				-1, -1, 1, 0, -1, 31, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 4, 12, 6, 13, 8, 14, 4, 15, 9, 16, 5, 17, 10, 18, 11, 19, 12, 20, 4, 21, 4, 22, 9, 23, 4, 24, 4, 25, 4, 26, 13, 27, 14, 28, 14, 29, 15, 30, 16, 31, 17, 32, 17, 2, 33, 34, 0, 0, 35, 35, -1, 6, 2, 0, 3, 1, 4, 7, 5, 3, 36, 6, 37, 4, 0, 0, 0, 39, 38, -1, 12, 2, 0, 3, 1, 5, 3, 40, 13, 41, 18, 42, 19, 43, 20, 44, 9, 45, 3, 46, 21, 47, 22, 30, 23, 0, 2, 0, 49, 48, -1, 27, 2, 0, 3, 1, 4, 24, 5, 3, 15, 9, 50, 3, 51, 4, 52, 13, 53, 25, 54, 26, 55, 27, 56, 3, 57, 12, 58, 28, 59, 12, 60, 29, 61, 30, 62, 22, 63, 13, 64, 31, 65, 32, 66, 33, 67, 32, 29, 34, 68, 17, 69, 10, 70, 9, 0, 3, 0, 72, 71, -1, 6, 2, 0, 3, 1, 4, 35, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 75, -1, 6, 2, 0, 3, 1, 4, 37, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 76, -1, 6, 2, 0, 3, 1, 4, 38, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 77, -1, 6, 2, 0, 3, 1, 4, 39, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 78, -1, 6, 2, 0, 3, 1, 4, 40, 5, 3, 73, 3, 74, 36, 0, 2, 0, 79, 79, 41, 4, 2, 42, 3, 1, 4, 43, 30, 44, 0, 0, 0, 35, 80, -1, 6, 2, 0, 3, 1, 4, 8, 5, 3, 36, 6, 37, 4, 0, 0, 0, 82, 81, -1, 1, 2, 0, 0, 11, 0, 84, 83, -1, 30, 2, 0, 5, 3, 85, 32, 86, 32, 87, 4, 88, 45, 89, 46, 90, 47, 91, 48, 92, 0, 93, 0, 94, 0, 95, 0, 96, 3, 97, 3, 98, 5, 99, 32, 100, 12, 101, 32, 102, 32, 103, 32, 104, 12, 105, 4, 106, 4, 107, 49, 108, 13, 109, 13, 110, 4, 111, 4, 112, 50, 0, 11, 0, 84, 113, -1, 28, 2, 0, 5, 3, 85, 32, 86, 32, 87, 4, 90, 51, 91, 52, 92, 0, 93, 0, 94, 0, 95, 0, 96, 3, 97, 3, 98, 5, 99, 32, 100, 12, 101, 32, 102, 32, 103, 32, 104, 12, 105, 4, 106, 4, 107, 53, 108, 13, 109, 13, 110, 4, 111, 4, 112, 50, 0 </int_array>
 			<string> "conns" </string>
-			<int_array  len="6"> 				4, 4, 112, 111, 2, 0 </int_array>
+			<int_array  len="6"> 				3, 3, 115, 114, 2, 0 </int_array>
 		</dictionary>
 
 	</main_resource>
