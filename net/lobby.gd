@@ -16,11 +16,10 @@ const NET_OKGO = 7  # launch map
 
 const PROTOCOL="H2" #haunt protocol version 2
 
-var peers         #array of StreamPeerTCP objects
-var peernames = []    #array of player names
-var peerready = []    #array of player ready status
+var peers        #array of StreamPeerTCP objects
+var peernames    #array of player names
+var peerready    #array of player ready status
 var current_time
-var PlayerName
 
 var map   #scene to launch
 
@@ -35,6 +34,7 @@ var LaunchButton
 var LobbyChat
 var EnterChat
 var PlayerList
+var PlayerNameBox
 
 var is_server = false
 var ready = false
@@ -45,6 +45,9 @@ func _ready():
 	peer = StreamPeerTCP.new()
 	# create server
 	server = TCP_Server.new()
+	peers = []
+	peernames = []
+	peerready = []
 	current_time = ""
 	
 	map = "res://map1/map1.xscn"
@@ -53,9 +56,9 @@ func _ready():
 	DebugButton = get_node("Debug")
 	DebugButton.connect("pressed", self, "_debug")
 	
-	PlayerName = get_node("Lobby_Name_Area/Lobby_Player_Name")
-	PlayerName.get_node("Lobby_Name_Text").add_text("Name:")
-	PlayerName.set_text("Player1")
+	PlayerNameBox = get_node("Lobby_Name_Area/Lobby_Player_Name")
+	PlayerNameBox.get_node("Lobby_Name_Text").add_text("Name:")
+	PlayerNameBox.set_text("Player1")
 	
 	HostButton = get_node("Lobby_Host_Area/Lobby_Host_Button")
 	HostButton.get_node("Lobby_Host_Port_text").add_text("Server Port")
@@ -110,15 +113,15 @@ func _on_lobby_launch():
 	launched=true
 	
 	#Switch scenes while passing info from lobby
-	get_node("/root/scene_switcher").net_goto_map(PlayerName, is_server, peers, peernames, map)
+	get_node("/root/scene_switcher").net_goto_map(PlayerNameBox.get_text(), is_server, peers, peernames, map)
 
 func _on_lobby_ready():
 	var text
 	if is_server:
 		if ready:
-			text=(str("<",PlayerName.get_text(),"> is NOT ready."))
+			text=(str("<",PlayerNameBox.get_text(),"> is NOT ready."))
 		else:
-			text=(str("<",PlayerName.get_text(),"> is ready!"))
+			text=(str("<",PlayerNameBox.get_text(),"> is ready!"))
 		_chat(text)
 		for apeer in peers:
 			_net_tcp_send(apeer, NET_CHAT, text)
@@ -139,7 +142,7 @@ func _chat ( text ):
 
 func _on_enter_chat( text ):
 	if is_server:
-		text=str("<",PlayerName.get_text(),">",text)
+		text=str("<",PlayerNameBox.get_text(),">",text)
 		_chat(text)
 		for apeer in peers:
 			_net_tcp_send(apeer, NET_CHAT, text)
@@ -157,7 +160,7 @@ func _on_lobby_stop_server( ):
 	HostButton.set_disabled(false)
 	JoinButton.set_disabled(false)
 	StopServerButton.set_disabled(true)
-	PlayerName.set_editable(true)
+	PlayerNameBox.set_editable(true)
 	ReadyButton.set_disabled(true)
 
 func _on_lobby_disconnect( ):
@@ -168,12 +171,11 @@ func _on_lobby_disconnect( ):
 	_chat("[PEER] disconnected.")
 	JoinButton.set_disabled(false)
 	DisconnectButton.set_disabled(true)
-	PlayerName.set_editable(true)
+	PlayerNameBox.set_editable(true)
 	ReadyButton.set_disabled(true)
 
 func _on_lobby_host_start( ):
 	_chat("[SERVER] init!")
-	peers = []
 	is_server = true
 	port=HostButton.get_node("Lobby_Host_Port").get_text()
 	_update_player_list()
@@ -182,6 +184,7 @@ func _on_lobby_host_start( ):
 	JoinButton.set_disabled(true)
 	StopServerButton.set_disabled(false)
 	ReadyButton.set_disabled(false)
+	LaunchButton.set_disabled(false)
 
 
 func _on_lobby_join_start( ):
@@ -190,7 +193,7 @@ func _on_lobby_join_start( ):
 	var check_time=0
 	HostButton.set_disabled(true)
 	JoinButton.set_disabled(true)
-	PlayerName.set_editable(false)
+	PlayerNameBox.set_editable(false)
 	ReadyButton.set_disabled(false)
 	_chat("[PEER] init!")
 	host=IP.resolve_hostname(JoinButton.get_node("Lobby_Join_IP").get_text())
@@ -206,7 +209,7 @@ func _on_lobby_join_start( ):
 	
 	if status == StreamPeerTCP.STATUS_CONNECTED:
 		_chat(str("[PEER] connection to ", host, ":", port, "... SUCCESS!"))
-		_net_tcp_send(peer, NET_NAME, PlayerName.get_text())
+		_net_tcp_send(peer, NET_NAME, PlayerNameBox.get_text())
 		DisconnectButton.set_disabled(false)
 	else:
 		_chat(str("[PEER] connection to ", host, ":", port, "... FAIL!"))
@@ -218,7 +221,7 @@ func _update_player_list():
 	PlayerList.add_text("Players:")
 	PlayerList.newline()
 	if is_server:
-		PlayerList.add_text(PlayerName.get_text())
+		PlayerList.add_text(PlayerNameBox.get_text())
 		PlayerList.newline()
 	for i in range(0,peernames.size()):
 		PlayerList.add_text(peernames[i])
@@ -294,9 +297,11 @@ func _net_peer_recv():
 		_update_player_list()
 		JoinButton.set_disabled(false)
 		DisconnectButton.set_disabled(true)
-		PlayerName.set_editable(true)
+		PlayerNameBox.set_editable(true)
 	if(type==NET_OKGO):
 		_chat("Launching map..")
+		peers.append(peer) #evil++
+		get_node("/root/scene_switcher").net_goto_map(PlayerNameBox.get_text(), is_server, peers, peernames, map)
 		#switch scene
 
 
@@ -370,7 +375,7 @@ func _net_server_recv( index, apeer ):
 			if count==peerready.size():
 				LaunchButton.set_disabled(false)
 		else:
-			peerready[index]=1
+			peerready[index]=0
 			text=(str("<",peernames[index],"> is NOT ready."))
 			LaunchButton.set_disabled(true)
 		_chat(text)
@@ -384,8 +389,9 @@ func _process(delta):
 			var newpeer = server.take_connection()
 			_chat(str("[SERVER] new peer, ", newpeer.get_connected_host(), ":", newpeer.get_connected_port()))
 			peers.append(newpeer)
+			LaunchButton.set_disabled(true)
 			#send server player name to new peer
-			_net_tcp_send(newpeer, NET_JOIN, PlayerName.get_text())
+			_net_tcp_send(newpeer, NET_JOIN, PlayerNameBox.get_text())
 			#send other player names to new peer
 			for i in range (0, peernames.size()):
 				_net_tcp_send(newpeer, NET_JOIN, peernames[i])
