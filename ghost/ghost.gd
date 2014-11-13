@@ -37,7 +37,7 @@ func _ready():
 	set_rotation(rot)
 	camera = get_node("Cam")
 	win_hsize = OS.get_video_mode_size()/2
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+
 	speed_mod = 2.0
 	set_process_input(true)
 	
@@ -45,8 +45,9 @@ func _ready():
 
 func _integrate_forces(state):
 	
+	# NOW PLACED AT LOBBY, UGLY FIX BUT WE NEED THIS FOR NOT HAVING TO CHANGE A LOT OF STUFF
 	# Reset mouse
-	Input.warp_mouse_pos(win_hsize)
+	# Input.warp_mouse_pos(win_hsize)
 	
 	# Get directions
 	var forward = camera.get_transform().basis[2]
@@ -92,7 +93,7 @@ func _integrate_forces(state):
 	
 	# Clamp pitch
 	rotation.y = min( max_pitch, abs(rotation.y) ) * sign( rotation.y )
-	
+
 	# Rotate camera by using transform
 	var rot = Matrix3().rotated(Vector3(0,1,0), rotation.x).rotated(Vector3(1,0,0),rotation.y)
 	var transf = camera.get_transform()
@@ -105,6 +106,7 @@ func _integrate_forces(state):
 func _input(ev):
 	if ev.type == InputEvent.MOUSE_MOTION:
 		rotation += (ev.pos - win_hsize) * 0.001
+
 
 # Called by lantern when raycast hits ghost.
 func reveal():

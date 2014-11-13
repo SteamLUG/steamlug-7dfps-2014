@@ -28,15 +28,15 @@ func _ready():
 	lantern = get_node("Cam/Lantern")
 	win_hsize = OS.get_video_mode_size()/2
 	set_process_input(true)
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 	pass
 
 
 func _integrate_forces(state):
 	
+	# NOW PLACED AT LOBBY, UGLY FIX BUT WE NEED THIS FOR NOT HAVING TO CHANGE A LOT OF STUFF
 	# Reset mouse
-	Input.warp_mouse_pos(win_hsize)
+	# Input.warp_mouse_pos(win_hsize)
 	
 	# Get directions
 	var forward = camera.get_transform().basis[2]

@@ -36,10 +36,15 @@ var EnterChat
 var PlayerList
 var PlayerNameBox
 var QuitButton
+var SelectMap
 
 var is_server = false
 var ready = false
 var launched = false
+
+var win_hsize
+
+var available_maps = ["map1", "test"]
 
 func _ready():
 	# create peer
@@ -52,6 +57,8 @@ func _ready():
 	current_time = ""
 	
 	map = "res://map1/map1.xscn"
+	
+	win_hsize = OS.get_video_mode_size()/2
 	
 	# init text and buttons
 	DebugButton = get_node("Debug")
@@ -94,6 +101,11 @@ func _ready():
 	EnterChat = get_node("Lobby_Chat_Area/Lobby_Enter_Chat")
 	EnterChat.connect("text_entered", self, "_on_enter_chat")
 	
+	SelectMap = get_node("Lobby_Host_Area/Lobby_Map_Selection")
+	SelectMap.add_item("Map1", 0)
+	SelectMap.add_item("Test", 1)
+	SelectMap.connect("item_selected", self, "_on_map_select")
+	
 	PlayerList = get_node("Lobby_Chat_Area/Lobby_Player_List")
 	
 	QuitButton = get_node("Quit")
@@ -105,6 +117,12 @@ func _ready():
 #add server browser later?
 #func _on_selected_item(id):
 #	is_server = id == 0
+
+func _on_map_select(id):
+	if id == 0:
+		map = "res://map1/map1.xscn"
+	elif id == 1:
+		map = "res://test/test.xscn"
 
 func _quit():
 	_on_lobby_disconnect()
@@ -403,10 +421,15 @@ func _process(delta):
 	if nowhit and !prevhit:
 		if is_hidden():
 			show()
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			hide()
 
 	prevhit = nowhit
+
+	if is_hidden():
+		Input.warp_mouse_pos(win_hsize)
 
 	if is_server:
 		if(launched==false && server.is_connection_available()):
