@@ -465,7 +465,6 @@ func _process(delta):
 		Input.warp_mouse_pos(win_hsize)
 
 	if is_server:
-		print("ok, I'll take ", _this_id)
 		if(launched==false && server.is_connection_available()):
 			var newpeer = server.take_connection()
 			_chat(str("[SERVER] new peer, ", newpeer.get_connected_host(), ":", newpeer.get_connected_port()))
