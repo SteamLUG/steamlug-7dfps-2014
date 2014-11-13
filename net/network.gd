@@ -10,6 +10,7 @@ var peernames
 var peer
 var dt
 var tcpstreams
+var playernode_name
 
 var player_placement # Array or dictionary to hold player values from network
 
@@ -25,7 +26,7 @@ func _ready():
 	
 	is_set = false
 
-func set_from_lobby(name, server_bool, peer_streams, peer_names):
+func set_from_lobby(name, server_bool, peer_streams, peer_names, camera):
 	PlayerName = name
 	is_server = server_bool
 	tcpstreams = peer_streams
@@ -38,6 +39,17 @@ func set_from_lobby(name, server_bool, peer_streams, peer_names):
 	else:
 		peer = PacketPeerStream.new()
 		peer.set_stream_peer(peer_streams[0])
+	
+	if camera == 0:
+		playernode_name = "/root/Map/Ghost"
+	elif camera == 1:
+		playernode_name = "/root/Map/Human1"
+	elif camera == 2:
+		playernode_name = "/root/Map/Human2"
+	elif camera == 3:
+		playernode_name = "/root/Map/Human3"
+	elif camera == 4:
+		playernode_name = "/root/Map/Human4"
 	
 	# Gather some data from above variables, like player count
 	# Store this data in new vars, create arrays (or dictionaries or something)
