@@ -35,6 +35,7 @@ var LobbyChat
 var EnterChat
 var PlayerList
 var PlayerNameBox
+var QuitButton
 
 var is_server = false
 var ready = false
@@ -94,12 +95,19 @@ func _ready():
 	EnterChat.connect("text_entered", self, "_on_enter_chat")
 	
 	PlayerList = get_node("Lobby_Chat_Area/Lobby_Player_List")
+	
+	QuitButton = get_node("Quit")
+	QuitButton.connect("pressed", self, "_quit")
+
 	set_process_input(true)
 	set_process(true)
 
 #add server browser later?
 #func _on_selected_item(id):
 #	is_server = id == 0
+
+func _quit():
+	OS.get_main_loop().quit()
 
 func _debug():
 	_chat("peer names:")
