@@ -1,4 +1,3 @@
-# This should make the light flicker subtly, as lanterns do.
 
 extends SpotLight
 
@@ -41,7 +40,7 @@ func _ready():
 	append_rc(get_node("RCBot"))
 	append_rc(get_node("RCLeft"))
 	append_rc(get_node("RCRight"))
-
+	
 	set_process(true)
 	pass
 
@@ -68,4 +67,8 @@ func _process(dt):
 		oil = 0
 		lantern_off()
 	get_node("../../HUD/OilLevel").set_text( "Oil level: " + str(int(oil)) )
-	pass
+	
+	# Make lantern flicker
+	var new_energy = get_parameter(4) + rand_range(-.5,5)
+	if new_energy < 3 && new_energy > 1.5:
+		set_parameter(4, new_energy)
