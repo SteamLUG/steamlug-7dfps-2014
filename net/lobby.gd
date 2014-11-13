@@ -126,6 +126,8 @@ func _ready():
 
 	set_process_input(true)
 	set_process(true)
+	
+	randomize()
 
 #add server browser later?
 #func _on_selected_item(id):
@@ -155,15 +157,18 @@ func _pop_rand_id():
 func _on_lobby_launch():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	_chat("Launching map..")
+	_this_id = _pop_rand_id()
 	for apeer in peers:
 			var selected_id = _pop_rand_id()
 			_net_tcp_send(apeer, NET_OKGO, String(selected_id))
 	launched=true
+
+	print("ok, I'll take ", _this_id)
 	
 	#Switch trees while passing info from lobby
 	#TODO: Logic to replace the last argument with a number that represents which player to control
 	#0 is ghost, 1-4 are humans
-	get_node("/root/tree_switcher").net_goto_map(PlayerNameBox.get_text(), is_server, peers, peernames, map, 0)
+	get_node("/root/tree_switcher").net_goto_map(PlayerNameBox.get_text(), is_server, peers, peernames, map, _this_id)
 
 func _on_lobby_ready():
 	var text
@@ -460,6 +465,7 @@ func _process(delta):
 		Input.warp_mouse_pos(win_hsize)
 
 	if is_server:
+		print("ok, I'll take ", _this_id)
 		if(launched==false && server.is_connection_available()):
 			var newpeer = server.take_connection()
 			_chat(str("[SERVER] new peer, ", newpeer.get_connected_host(), ":", newpeer.get_connected_port()))
