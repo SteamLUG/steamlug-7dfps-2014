@@ -112,7 +112,7 @@ func _process(delta):
 	if(dt > 1.0):
 		print("Send position")
 		
-		# Get coords, direction from scene
+		# Get coords, direction from tree
 		var player = get_node(playernode_name)
 		var player_coords = player.get_translation()
 		var player_rot = player.get_node("Cam").get_rotation()

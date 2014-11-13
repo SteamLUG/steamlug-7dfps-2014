@@ -104,7 +104,7 @@
 							<string> "sources" </string>
 							<array  len="2" shared="false">
 								<string> "res://oil/oil.gd" </string>
-								<string> "res://helpers/scene_switcher.gd" </string>
+								<string> "res://helpers/tree_switcher.gd" </string>
 							</array>
 						</dictionary>
 						<string> "2D" </string>

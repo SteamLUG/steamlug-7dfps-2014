@@ -21,7 +21,7 @@ var peernames    #array of player names
 var peerready    #array of player ready status
 var current_time
 
-var map   #scene to launch
+var map   #tree to launch
 
 #widgets
 var DebugButton
@@ -140,10 +140,10 @@ func _on_lobby_launch():
 			_net_tcp_send(apeer, NET_OKGO, "go!")
 	launched=true
 	
-	#Switch scenes while passing info from lobby
+	#Switch trees while passing info from lobby
 	#TODO: Logic to replace the last argument with a number that represents which player to control
 	#0 is ghost, 1-4 are humans
-	get_node("/root/scene_switcher").net_goto_map(PlayerNameBox.get_text(), is_server, peers, peernames, map, 0)
+	get_node("/root/tree_switcher").net_goto_map(PlayerNameBox.get_text(), is_server, peers, peernames, map, 0)
 
 func _on_lobby_ready():
 	var text
@@ -331,8 +331,8 @@ func _net_peer_recv():
 	if(type==NET_OKGO):
 		_chat("Launching map..")
 		peers.append(peer) #evil++
-		get_node("/root/scene_switcher").net_goto_map(PlayerNameBox.get_text(), is_server, peers, peernames, map)
-		#switch scene
+		get_node("/root/tree_switcher").net_goto_map(PlayerNameBox.get_text(), is_server, peers, peernames, map)
+		#switch tree
 
 
 func _net_server_recv( index, apeer ):

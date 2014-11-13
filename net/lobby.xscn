@@ -97,7 +97,7 @@
 							<string> "sources" </string>
 							<array  len="5" shared="false">
 								<string> "res://net/lobby.gd" </string>
-								<string> "res://helpers/scene_switcher.gd" </string>
+								<string> "res://helpers/tree_switcher.gd" </string>
 								<string> "res://net/network.gd" </string>
 								<string> "res://ghost/ghost.gd" </string>
 								<string> "res://player/player.gd" </string>
