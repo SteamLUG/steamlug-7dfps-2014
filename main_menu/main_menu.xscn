@@ -64,9 +64,11 @@
 							<string> "current" </string>
 							<int> 1 </int>
 							<string> "sources" </string>
-							<array  len="2" shared="false">
+							<array  len="4" shared="false">
 								<string> "res://main_menu/main_menu.gd" </string>
+								<string> "res://net/lobby.gd" </string>
 								<string> "res://player/lantern.gd" </string>
+								<string> "res://helpers/tree_switcher.gd" </string>
 							</array>
 						</dictionary>
 						<string> "2D" </string>
@@ -74,11 +76,11 @@
 							<string> "pixel_snap" </string>
 							<bool> False </bool>
 							<string> "zoom" </string>
-							<real> 0.735092 </real>
+							<real> 0.9025 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -220.11, -96.2916 </vector2>
+							<vector2> -208.332, -28.7209 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -183,7 +185,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
+					<string> "Script" </string>
 				</dictionary>
 				<real> 122 </real>
 				<real> 245 </real>

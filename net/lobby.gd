@@ -12,9 +12,22 @@ const NET_JOIN = 3  # new player joined
 const NET_PART = 4  # player left
 const NET_STOP = 5  # server stopped
 const NET_REDY = 6  # peer toggled ready status
-const NET_OKGO = 7  # launch map
+const NET_OKGO = 7  # launch map ghost
+const NET_OKGO1 = 8  # launch map human1
+const NET_OKGO2 = 9  # launch map human2
+const NET_OKGO3 = 10  # launch map human3
+const NET_OKGO4 = 11  # launch map human4
 
 const PROTOCOL="H2" #haunt protocol version 2
+
+# Constants used to define which camera to use
+const GHOST = 0
+const HUMAN1 = 1
+const HUMAN2 = 2
+const HUMAN3 = 3
+const HUMAN4 = 4
+
+var ids = range(GHOST, HUMAN4)
 
 var peers        #array of StreamPeerTCP objects
 var peernames    #array of player names
@@ -22,6 +35,8 @@ var peerready    #array of player ready status
 var current_time
 
 var map   #tree to launch
+
+var _this_id = 99
 
 #widgets
 var DebugButton
@@ -45,6 +60,8 @@ var launched = false
 var win_hsize
 
 var available_maps = ["map1", "test"]
+
+
 
 func _ready():
 	# create peer
@@ -133,10 +150,17 @@ func _debug():
 	for i in range(0,peernames.size()):
 		_chat(peernames[i])
 
+func _pop_rand_id():
+	var pos = randi() % ids.size()
+	var ret = ids[pos]
+	ids.remove(pos)
+	return ret
+
 func _on_lobby_launch():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	_chat("Launching map..")
 	for apeer in peers:
+			var selected_id = _pop_rand_id()
 			_net_tcp_send(apeer, NET_OKGO, "go!")
 	launched=true
 	
@@ -330,6 +354,13 @@ func _net_peer_recv():
 		PlayerNameBox.set_editable(true)
 	if(type==NET_OKGO):
 		_chat("Launching map..")
+		var rawtext=RawArray()
+		for i in range(0,raw_data.size()):
+			rawtext.push_back( raw_data[i] )
+		var id=rawtext.get_string_from_utf8().to_int()
+		_this_id = id
+		print("my id is ", _this_id, "!")
+		
 		peers.append(peer) #evil++
 		get_node("/root/tree_switcher").net_goto_map(PlayerNameBox.get_text(), is_server, peers, peernames, map)
 		#switch tree
