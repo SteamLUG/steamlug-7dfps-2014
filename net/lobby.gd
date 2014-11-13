@@ -107,6 +107,7 @@ func _ready():
 #	is_server = id == 0
 
 func _quit():
+	_on_lobby_disconnect()
 	OS.get_main_loop().quit()
 
 func _debug():
