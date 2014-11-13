@@ -35,7 +35,7 @@ func _ready():
 	rotation.x = rot.y
 	rot.y = 0
 	set_rotation(rot)
-	camera = get_node("Camera")
+	camera = get_node("Cam")
 	win_hsize = OS.get_video_mode_size()/2
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	set_process_input(true)
