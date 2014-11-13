@@ -113,7 +113,7 @@ func _process(delta):
 		print("Send position")
 		
 		# Get coords, direction from scene
-		var player = get_node("/root/Map/Player")
+		var player = get_node(playernode_name)
 		var player_coords = player.get_translation()
 		var player_rot = player.get_node("Cam").get_rotation()
 		var player_num = 0
