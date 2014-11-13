@@ -157,7 +157,7 @@ func _on_lobby_launch():
 	_chat("Launching map..")
 	for apeer in peers:
 			var selected_id = _pop_rand_id()
-			_net_tcp_send(apeer, NET_OKGO, "go!")
+			_net_tcp_send(apeer, NET_OKGO, String(selected_id))
 	launched=true
 	
 	#Switch trees while passing info from lobby
