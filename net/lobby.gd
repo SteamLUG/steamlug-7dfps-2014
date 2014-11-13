@@ -12,11 +12,7 @@ const NET_JOIN = 3  # new player joined
 const NET_PART = 4  # player left
 const NET_STOP = 5  # server stopped
 const NET_REDY = 6  # peer toggled ready status
-const NET_OKGO = 7  # launch map ghost
-const NET_OKGO1 = 8  # launch map human1
-const NET_OKGO2 = 9  # launch map human2
-const NET_OKGO3 = 10  # launch map human3
-const NET_OKGO4 = 11  # launch map human4
+const NET_OKGO = 7  # launch map
 
 const PROTOCOL="H2" #haunt protocol version 2
 
