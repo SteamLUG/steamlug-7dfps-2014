@@ -39,15 +39,29 @@ func net_goto_map(PlayerName, is_server, peers, peernames, scene, camera):
 	goto_scene_nofree(scene, camera)
 
 func set_camera(scene, camera):
+	var player
+	var is_ghost = false
+	
 	if camera == GHOST:
-		scene.get_node("Ghost/Cam").make_current()
+		player = scene.get_node("Ghost")
+		is_ghost = true
 	elif camera == HUMAN1:
-		scene.get_node("Human1/Cam").make_current()
+		player = scene.get_node("Human1")
 	elif camera == HUMAN2:
-		scene.get_node("Human2/Cam").make_current()
+		player = scene.get_node("Human2")
 	elif camera == HUMAN3:
-		scene.get_node("Human3/Cam").make_current()
+		player = scene.get_node("Human3")
 	elif camera == HUMAN4:
-		scene.get_node("Human4/Cam").make_current()
+		player = scene.get_node("Human4")
 	else:
 		printerr("Wrong camera value: " + str(camera))
+	
+	player.get_node("Cam").make_current()
+	
+	if is_ghost:
+		player.set_script(load("res://ghost/ghost.gd"))
+	else:
+		player.set_script(load("res://player/player.gd"))
+	
+	player._ready()
+	

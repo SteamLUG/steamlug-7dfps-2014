@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="7" version="1.0" version_name="Godot Engine v1.0.3917-beta1">
+<resource_file type="PackedScene" subresource_count="6" version="1.0" version_name="Godot Engine v1.0.3917-beta1">
 	<ext_resource path="res://player/220180__gameaudio__click-pop.wav" type="Sample"></ext_resource>
-	<ext_resource path="res://v_lantern/v_lantern.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://player/player.gd" type="Script"></ext_resource>
 	<ext_resource path="res://player/lantern.gd" type="Script"></ext_resource>
+	<ext_resource path="res://v_lantern/v_lantern.xscn" type="PackedScene"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
 		<real name="radius"> 1 </real>
 		<real name="height"> 1 </real>
@@ -23,7 +22,7 @@
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="131">
+			<string_array  len="129">
 				<string> "Human" </string>
 				<string> "RigidBody" </string>
 				<string> "_import_path" </string>
@@ -53,10 +52,7 @@
 				<string> "axis_lock" </string>
 				<string> "velocity/linear" </string>
 				<string> "velocity/angular" </string>
-				<string> "script/script" </string>
 				<string> "__meta__" </string>
-				<string> "walk_speed" </string>
-				<string> "jump_force" </string>
 				<string> "player" </string>
 				<string> "human" </string>
 				<string> "CollisionShape" </string>
@@ -92,6 +88,7 @@
 				<string> "params/attenuation" </string>
 				<string> "params/spot_angle" </string>
 				<string> "params/spot_attenuation" </string>
+				<string> "script/script" </string>
 				<string> "effective_distance" </string>
 				<string> "oil" </string>
 				<string> "oil_decay" </string>
@@ -179,7 +176,6 @@
 				<real> 0 </real>
 				<int> 0 </int>
 				<vector3> 0, 0, 0 </vector3>
-				<resource  resource_type="Script" path="res://player/player.gd">  </resource>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -310,16 +306,11 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "Script" </string>
 				</dictionary>
-				<int> 10 </int>
 				<real> 76.445801 </real>
 				<real> 0.1 </real>
 				<real> 9000 </real>
 				<int> 1048575 </int>
-				<resource name=""></resource>				<dictionary  shared="false">
-					<string> "_editor_collapsed" </string>
-					<bool> True </bool>
-				</dictionary>
-				<transform> 0.997452, 0, 0.0713368, 0, 1, 0, -0.0713368, 0, 0.997452, 0.79449, -0.44837, -2.31207 </transform>
+				<resource name=""></resource>				<transform> 0.997452, 0, 0.0713368, 0, 1, 0, -0.0713368, 0, 0.997452, 0.79449, -0.44837, -2.31207 </transform>
 				<real> 2.93 </real>
 				<color> 0.677705, 0.596215, 0.442629, 1 </color>
 				<color> 0.855534, 0.706557, 0.425876, 1 </color>
@@ -330,6 +321,11 @@
 				<real> 1 </real>
 				<real> 30 </real>
 				<resource  resource_type="Script" path="res://player/lantern.gd">  </resource>
+				<dictionary  shared="false">
+					<string> "_editor_collapsed" </string>
+					<bool> True </bool>
+				</dictionary>
+				<int> 10 </int>
 				<transform> 1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0.232247, 0, -3.24734 </transform>
 				<vector3> 0, 0, -10 </vector3>
 				<transform> 0.999646, 0.0261505, 0.00495327, -0.0261504, 0.930388, 0.365643, 0.00495327, -0.365643, 0.930742, 0.232247, -0.967317, -3.24734 </transform>
@@ -357,10 +353,6 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -428,8 +420,12 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "default_light" </string>
 							<bool> True </bool>
 							<string> "viewport_mode" </string>
@@ -458,6 +454,10 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "3D" </string>
 				</dictionary>
+				<dictionary  shared="false">
+					<string> "_editor_collapsed" </string>
+					<bool> True </bool>
+				</dictionary>
 				<real> 671 </real>
 				<real> 3 </real>
 				<real> 796 </real>
@@ -471,9 +471,9 @@
 				<nil>  </nil>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="487"> 				-1, -1, 1, 0, -1, 31, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 4, 12, 6, 13, 8, 14, 4, 15, 9, 16, 5, 17, 10, 18, 11, 19, 12, 20, 4, 21, 4, 22, 9, 23, 4, 24, 4, 25, 4, 26, 13, 27, 14, 28, 14, 29, 15, 30, 16, 31, 17, 32, 17, 2, 33, 34, 0, 0, 35, 35, -1, 6, 2, 0, 3, 1, 4, 7, 5, 3, 36, 6, 37, 4, 0, 0, 0, 39, 38, -1, 12, 2, 0, 3, 1, 5, 3, 40, 13, 41, 18, 42, 19, 43, 20, 44, 9, 45, 4, 46, 21, 47, 22, 30, 23, 0, 2, 0, 49, 48, -1, 27, 2, 0, 3, 1, 4, 24, 5, 3, 15, 9, 50, 3, 51, 4, 52, 13, 53, 25, 54, 26, 55, 27, 56, 3, 57, 12, 58, 28, 59, 12, 60, 29, 61, 30, 62, 22, 63, 13, 64, 31, 65, 32, 66, 33, 67, 32, 29, 34, 68, 17, 69, 10, 70, 9, 0, 3, 0, 72, 71, -1, 6, 2, 0, 3, 1, 4, 35, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 75, -1, 6, 2, 0, 3, 1, 4, 37, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 76, -1, 6, 2, 0, 3, 1, 4, 38, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 77, -1, 6, 2, 0, 3, 1, 4, 39, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 78, -1, 6, 2, 0, 3, 1, 4, 40, 5, 3, 73, 3, 74, 36, 0, 2, 0, 79, 79, 41, 4, 2, 42, 3, 1, 4, 43, 30, 44, 0, 0, 0, 35, 80, -1, 6, 2, 0, 3, 1, 4, 8, 5, 3, 36, 6, 37, 4, 0, 0, 0, 82, 81, -1, 1, 2, 0, 0, 11, 0, 84, 83, -1, 30, 2, 0, 5, 3, 85, 32, 86, 32, 87, 4, 88, 45, 89, 46, 90, 47, 91, 48, 92, 0, 93, 0, 94, 0, 95, 0, 96, 3, 97, 3, 98, 5, 99, 32, 100, 12, 101, 32, 102, 32, 103, 32, 104, 12, 105, 4, 106, 4, 107, 49, 108, 13, 109, 13, 110, 4, 111, 4, 112, 50, 0, 11, 0, 84, 113, -1, 28, 2, 0, 5, 3, 85, 32, 86, 32, 87, 4, 90, 51, 91, 52, 92, 0, 93, 0, 94, 0, 95, 0, 96, 3, 97, 3, 98, 5, 99, 32, 100, 12, 101, 32, 102, 32, 103, 32, 104, 12, 105, 4, 106, 4, 107, 53, 108, 13, 109, 13, 110, 4, 111, 4, 112, 50, 0, 0, 0, 114, 114, -1, 15, 2, 0, 115, 9, 116, 54, 117, 12, 118, 32, 119, 12, 120, 12, 121, 12, 122, 55, 123, 55, 124, 55, 125, 55, 126, 5, 127, 12, 128, 12, 0 </int_array>
+			<int_array  len="483"> 				-1, -1, 1, 0, -1, 28, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 4, 12, 6, 13, 8, 14, 4, 15, 9, 16, 5, 17, 10, 18, 11, 19, 12, 20, 4, 21, 4, 22, 9, 23, 4, 24, 4, 25, 4, 26, 13, 27, 14, 28, 14, 29, 15, 2, 30, 31, 0, 0, 32, 32, -1, 6, 2, 0, 3, 1, 4, 7, 5, 3, 33, 6, 34, 4, 0, 0, 0, 36, 35, -1, 11, 2, 0, 3, 1, 5, 3, 37, 13, 38, 16, 39, 17, 40, 18, 41, 9, 42, 4, 43, 19, 44, 20, 0, 2, 0, 46, 45, -1, 28, 2, 0, 3, 1, 4, 21, 5, 3, 15, 9, 47, 3, 48, 4, 49, 13, 50, 22, 51, 23, 52, 24, 53, 3, 54, 12, 55, 25, 56, 12, 57, 26, 58, 27, 59, 20, 60, 13, 61, 28, 62, 29, 63, 30, 64, 29, 65, 31, 29, 32, 66, 33, 67, 10, 68, 9, 0, 3, 0, 70, 69, -1, 6, 2, 0, 3, 1, 4, 34, 5, 3, 71, 3, 72, 35, 0, 3, 0, 70, 73, -1, 6, 2, 0, 3, 1, 4, 36, 5, 3, 71, 3, 72, 35, 0, 3, 0, 70, 74, -1, 6, 2, 0, 3, 1, 4, 37, 5, 3, 71, 3, 72, 35, 0, 3, 0, 70, 75, -1, 6, 2, 0, 3, 1, 4, 38, 5, 3, 71, 3, 72, 35, 0, 3, 0, 70, 76, -1, 6, 2, 0, 3, 1, 4, 39, 5, 3, 71, 3, 72, 35, 0, 2, 0, 77, 77, 40, 4, 2, 41, 3, 1, 4, 42, 29, 43, 0, 0, 0, 32, 78, -1, 6, 2, 0, 3, 1, 4, 8, 5, 3, 33, 6, 34, 4, 0, 0, 0, 80, 79, -1, 2, 2, 0, 29, 44, 0, 11, 0, 82, 81, -1, 30, 2, 0, 5, 3, 83, 29, 84, 29, 85, 4, 86, 45, 87, 46, 88, 47, 89, 48, 90, 0, 91, 0, 92, 0, 93, 0, 94, 3, 95, 3, 96, 5, 97, 29, 98, 12, 99, 29, 100, 29, 101, 29, 102, 12, 103, 4, 104, 4, 105, 49, 106, 13, 107, 13, 108, 4, 109, 4, 110, 50, 0, 11, 0, 82, 111, -1, 28, 2, 0, 5, 3, 83, 29, 84, 29, 85, 4, 88, 51, 89, 52, 90, 0, 91, 0, 92, 0, 93, 0, 94, 3, 95, 3, 96, 5, 97, 29, 98, 12, 99, 29, 100, 29, 101, 29, 102, 12, 103, 4, 104, 4, 105, 53, 106, 13, 107, 13, 108, 4, 109, 4, 110, 50, 0, 0, 0, 112, 112, -1, 15, 2, 0, 113, 9, 114, 54, 115, 12, 116, 29, 117, 12, 118, 12, 119, 12, 120, 55, 121, 55, 122, 55, 123, 55, 124, 5, 125, 12, 126, 12, 0 </int_array>
 			<string> "conns" </string>
-			<int_array  len="6"> 				3, 3, 130, 129, 2, 0 </int_array>
+			<int_array  len="6"> 				3, 3, 128, 127, 2, 0 </int_array>
 		</dictionary>
 
 	</main_resource>

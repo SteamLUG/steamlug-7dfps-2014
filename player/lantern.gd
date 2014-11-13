@@ -58,15 +58,17 @@ func check_raycasts():
 	#print("\n")
 
 func _process(dt):
-	check_raycasts()
-	
-	# Reduce oil by decay amount
-	if (oil - rate_of_decay > 0):
-		oil -= rate_of_decay * dt
-	else:
-		oil = 0
-		lantern_off()
-	get_node("../../HUD/OilLevel").set_text( "Oil level: " + str(int(oil)) )
+	# Check if this player is even active first
+	if get_node("../").is_current():
+		check_raycasts()
+		
+		# Reduce oil by decay amount
+		if (oil - rate_of_decay > 0):
+			oil -= rate_of_decay * dt
+		else:
+			oil = 0
+			lantern_off()
+		get_node("../../HUD/OilLevel").set_text( "Oil level: " + str(int(oil)) )
 	
 	# Make lantern flicker
 	var new_energy = get_parameter(4) + rand_range(-.5,5)

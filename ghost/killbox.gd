@@ -1,5 +1,6 @@
 
-extends Area
+# *Grumble* This entire script shouldn't be needed.
+extends CollisionObject
 
 var ghost
 var is_set = false
@@ -16,7 +17,11 @@ func set_ghost(node):
 	set_process(true)
 
 func reveal():
-	ghost.reveal()
+	#ghost.reveal()
+	if is_set:
+		ghost.get_resource("ghostmat2.mtl")
+	else:
+		pass
 
 func _process():
 	if is_set:
