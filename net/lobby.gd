@@ -134,6 +134,7 @@ func _debug():
 		_chat(peernames[i])
 
 func _on_lobby_launch():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	_chat("Launching map..")
 	for apeer in peers:
 			_net_tcp_send(apeer, NET_OKGO, "go!")

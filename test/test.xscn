@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resource_file type="PackedScene" subresource_count="11" version="1.0" version_name="Godot Engine v1.0.3917-beta1">
 	<ext_resource path="res://test/environ.res" type="Environment"></ext_resource>
-	<ext_resource path="res://player/player.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://test/concept.png" type="Texture"></ext_resource>
+	<ext_resource path="res://player/player.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://oil/oil.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://ghost/ghost.xscn" type="PackedScene"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
@@ -171,13 +171,14 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 0 </int>
+							<int> 4 </int>
 							<string> "sources" </string>
-							<array  len="4" shared="false">
+							<array  len="5" shared="false">
 								<string> "res://player/lantern.gd" </string>
 								<string> "res://player/player.gd" </string>
 								<string> "res://ghost/ghost.gd" </string>
 								<string> "res://oil/oil.gd" </string>
+								<string> "res://net/lobby.gd" </string>
 							</array>
 						</dictionary>
 						<string> "2D" </string>
@@ -205,11 +206,11 @@
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
 									<string> "distance" </string>
-									<real> 13.703761 </real>
+									<real> 29.585398 </real>
 									<string> "x_rot" </string>
-									<real> 0.270797 </real>
+									<real> 0.320797 </real>
 									<string> "y_rot" </string>
-									<real> 85.460464 </real>
+									<real> 92.772522 </real>
 									<string> "listener" </string>
 									<bool> True </bool>
 									<string> "use_environment" </string>
@@ -217,7 +218,7 @@
 									<string> "use_orthogonal" </string>
 									<bool> False </bool>
 									<string> "pos" </string>
-									<vector3> 27.0888, 9.09767, 7.48621 </vector3>
+									<vector3> 22.8602, 2.80727, 0.00673021 </vector3>
 								</dictionary>
 								<dictionary  shared="false">
 									<string> "distance" </string>
@@ -294,7 +295,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "3D" </string>
+					<string> "Script" </string>
 				</dictionary>
 				<resource  resource_type="PackedScene" path="res://player/player.xscn">  </resource>
 				<int> 2 </int>
@@ -303,8 +304,6 @@
 				<bool> False </bool>
 				<transform> 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0.764286, -0.3947, -1.95751 </transform>
 				<dictionary  shared="false">
-					<string> "_editor_collapsed" </string>
-					<bool> True </bool>
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
 						<string> "Script" </string>
@@ -331,6 +330,10 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -398,28 +401,24 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "default_light" </string>
-							<bool> True </bool>
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
+							<string> "default_light" </string>
+							<bool> True </bool>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
 							<string> "show_origin" </string>
 							<bool> True </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
+							<string> "znear" </string>
+							<real> 0.1 </real>
 							<string> "default_srgb" </string>
 							<bool> False </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_show_subtree" </string>
@@ -488,6 +487,10 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -555,28 +558,24 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -590,7 +589,7 @@
 					<string> "3D" </string>
 				</dictionary>
 				<resource  resource_type="PackedScene" path="res://ghost/ghost.xscn">  </resource>
-				<transform> -0.492269, -4.30355e-08, -0.439626, -1.92657e-08, 0.66, -4.30355e-08, 0.439626, -1.92657e-08, -0.492269, 21.0569, 3.63836, 11.8333 </transform>
+				<transform> -0.492269, -7.43306e-08, -0.439626, -3.32755e-08, 0.66, -7.43306e-08, 0.439626, -3.32755e-08, -0.492269, 21.0569, 3.63836, 11.8333 </transform>
 				<resource  resource_type="Shape" path="local://5">  </resource>
 				<transform> 4.7, 0, 0, 0, 7.2, 0, 0, 0, 2, 0, 7.10143, 1.72654 </transform>
 				<dictionary  shared="false">
@@ -620,12 +619,6 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -693,22 +686,28 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
+							<string> "zfar" </string>
+							<real> 500 </real>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_show_subtree" </string>
