@@ -1,9 +1,15 @@
 
-# *Grumble* This entire script shouldn't be needed.
+# *Grumble* This entire script shouldn't be needed. This is messy.
 extends CollisionObject
 
 var ghost
 var is_set = false
+var revealed = false
+var mesh
+
+func _ready():
+	mesh = get_node("chumpus")
+	set_process(true)
 
 # This doesn't work right now, don't know why
 func _on_killbox_body_enter(body):
@@ -17,13 +23,18 @@ func set_ghost(node):
 	set_process(true)
 
 func reveal():
-	#ghost.reveal()
 	if is_set:
-		ghost.get_resource("ghostmat2.mtl")
+		ghost.reveal()
 	else:
-		pass
+		revealed = true
 
-func _process():
+func _process(delta):
 	if is_set:
 		set_translation(ghost.get_translation())
 		set_rotation(ghost.get_rotation())
+	elif revealed:
+		mesh.show()
+		revealed = false
+	else:
+		mesh.hide()
+		pass
