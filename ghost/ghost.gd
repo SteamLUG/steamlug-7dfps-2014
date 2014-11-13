@@ -38,7 +38,7 @@ func _ready():
 	camera = get_node("Cam")
 	win_hsize = OS.get_video_mode_size()/2
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	speed_mod = 1.0
+	speed_mod = 2.0
 	set_process_input(true)
 	
 	set_process(true)
@@ -65,13 +65,13 @@ func _integrate_forces(state):
 	# Handle movement
 	var lv = state.get_linear_velocity()
 	if Input.is_action_pressed("player_forward"):
-		lv -= (forward * speed_mod)
+		lv -= (forward * walk_speed * speed_mod)
 	elif Input.is_action_pressed("player_backwards"):
-		lv += (forward * speed_mod)
+		lv += (forward * walk_speed * speed_mod)
 	if Input.is_action_pressed("player_left"):
-		lv -= (strafe * speed_mod)
+		lv -= (strafe * walk_speed * speed_mod)
 	elif Input.is_action_pressed("player_right"):
-		lv += (strafe * speed_mod)
+		lv += (strafe * walk_speed * speed_mod)
 	
 	# Clamp speed
 	var tmp = Vector3( lv.x, 0, lv.z )
