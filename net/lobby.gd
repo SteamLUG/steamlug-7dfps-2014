@@ -94,7 +94,7 @@ func _ready():
 	EnterChat.connect("text_entered", self, "_on_enter_chat")
 	
 	PlayerList = get_node("Lobby_Chat_Area/Lobby_Player_List")
-	
+	set_process_input(true)
 	set_process(true)
 
 #add server browser later?
@@ -385,7 +385,20 @@ func _net_server_recv( index, apeer ):
 			_net_tcp_send(apeer, NET_CHAT, text)
 
 
+var prevhit = false
+
 func _process(delta):
+
+	var nowhit = Input.is_action_pressed("switch_lobby_visible")
+
+	if nowhit and !prevhit:
+		if is_hidden():
+			show()
+		else:
+			hide()
+
+	prevhit = nowhit
+
 	if is_server:
 		if(launched==false && server.is_connection_available()):
 			var newpeer = server.take_connection()

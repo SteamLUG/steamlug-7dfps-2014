@@ -62,10 +62,9 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 2 </int>
+							<int> 1 </int>
 							<string> "sources" </string>
-							<array  len="3" shared="false">
-								<string> "res://scene_switcher.gd" </string>
+							<array  len="2" shared="false">
 								<string> "res://main_menu/main_menu.gd" </string>
 								<string> "res://player/lantern.gd" </string>
 							</array>
@@ -79,7 +78,7 @@
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -711.205, -367.006 </vector2>
+							<vector2> -220.11, -96.2916 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -184,7 +183,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "Script" </string>
+					<string> "2D" </string>
 				</dictionary>
 				<real> 122 </real>
 				<real> 245 </real>

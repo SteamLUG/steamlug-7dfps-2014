@@ -88,7 +88,7 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 2 </int>
+							<int> 0 </int>
 							<string> "sources" </string>
 							<array  len="3" shared="false">
 								<string> "res://net/lobby.gd" </string>
@@ -101,11 +101,11 @@
 							<string> "pixel_snap" </string>
 							<bool> False </bool>
 							<string> "zoom" </string>
-							<real> 3.794776 </real>
+							<real> 0.735092 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -6.55002, 328.71 </vector2>
+							<vector2> -227.713, -105.695 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -123,9 +123,9 @@
 									<string> "distance" </string>
 									<real> 4 </real>
 									<string> "x_rot" </string>
-									<real> 0.8875 </real>
+									<real> 0.5625 </real>
 									<string> "y_rot" </string>
-									<real> -0.9625 </real>
+									<real> -1.262499 </real>
 									<string> "listener" </string>
 									<bool> True </bool>
 									<string> "use_environment" </string>
