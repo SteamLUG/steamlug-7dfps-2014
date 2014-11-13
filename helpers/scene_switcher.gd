@@ -21,7 +21,8 @@ func goto_scene(scene, camera=HUMAN1):
 	current_scene.queue_free()
 	current_scene = new_scene.instance()
 	root.add_child(current_scene)
-	set_camera(current_scene, camera)
+	if current_scene.get_name() == "Map":
+		set_camera(current_scene, camera)
 
 # This does not not unload current scene, need to manually hide
 func goto_scene_nofree(scene, camera=HUMAN1):
