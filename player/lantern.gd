@@ -29,6 +29,7 @@ func lantern_on():
 
 func add_oil( bottle_holds_how_much ):
 	oil += bottle_holds_how_much
+	get_node("../../SamplePlayer").play("pop")
 
 func append_rc(rc):
 	rc.set_cast_to(rc.get_cast_to() * effective_distance)
@@ -44,7 +45,7 @@ func _ready():
 	set_process(true)
 	pass
 
-# If ghost is hit, reveals it.
+# If ghost is hit, reveal it.
 func check_raycasts():
 	for rc in raycasts:
 		if rc.is_colliding():

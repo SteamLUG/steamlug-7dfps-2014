@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="5" version="1.0" version_name="Godot Engine v1.0.3917-beta1">
-	<ext_resource path="res://player/lantern.gd" type="Script"></ext_resource>
+<resource_file type="PackedScene" subresource_count="7" version="1.0" version_name="Godot Engine v1.0.3917-beta1">
+	<ext_resource path="res://player/220180__gameaudio__click-pop.wav" type="Sample"></ext_resource>
 	<ext_resource path="res://v_lantern/v_lantern.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://player/player.gd" type="Script"></ext_resource>
+	<ext_resource path="res://player/lantern.gd" type="Script"></ext_resource>
 	<resource type="CapsuleShape" path="local://1">
 		<real name="radius"> 1 </real>
 		<real name="height"> 1 </real>
 
 	</resource>
+	<resource type="SampleLibrary" path="local://2">
+		<dictionary name="samples/pop" shared="false">
+			<string> "db" </string>
+			<real> 0 </real>
+			<string> "pitch" </string>
+			<real> 1 </real>
+			<string> "sample" </string>
+			<resource  resource_type="Sample" path="res://player/220180__gameaudio__click-pop.wav">  </resource>
+		</dictionary>
+
+	</resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="116">
+			<string_array  len="131">
 				<string> "Human" </string>
 				<string> "RigidBody" </string>
 				<string> "_import_path" </string>
@@ -126,6 +138,21 @@
 				<string> "uppercase" </string>
 				<string> "percent_visible" </string>
 				<string> "Instructions" </string>
+				<string> "SamplePlayer" </string>
+				<string> "config/voices" </string>
+				<string> "config/samples" </string>
+				<string> "default/volume_db" </string>
+				<string> "default/pitch_scale" </string>
+				<string> "default/pan" </string>
+				<string> "default/depth" </string>
+				<string> "default/height" </string>
+				<string> "default/filter/type" </string>
+				<string> "default/filter/cutoff" </string>
+				<string> "default/filter/resonance" </string>
+				<string> "default/filter/gain" </string>
+				<string> "default/reverb_room" </string>
+				<string> "default/reverb_send" </string>
+				<string> "default/chorus_send" </string>
 				<string> "_on_visibility_changed" </string>
 				<string> "visibility_changed" </string>
 			</string_array>
@@ -134,9 +161,9 @@
 			<string> "conn_count" </string>
 			<int> 1 </int>
 			<string> "node_count" </string>
-			<int> 14 </int>
+			<int> 15 </int>
 			<string> "variants" </string>
-			<array  len="54" shared="false">
+			<array  len="56" shared="false">
 				<node_path> "" </node_path>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 </transform>
 				<transform> 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.6676, 0 </transform>
@@ -159,7 +186,7 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 0 </int>
+							<int> 1 </int>
 							<string> "sources" </string>
 							<array  len="3" shared="false">
 								<string> "res://player/player.gd" </string>
@@ -281,7 +308,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "3D" </string>
+					<string> "Script" </string>
 				</dictionary>
 				<int> 10 </int>
 				<real> 76.445801 </real>
@@ -330,6 +357,10 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -397,28 +428,24 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -440,11 +467,13 @@
 				<real> 40 </real>
 				<real> 13 </real>
 				<string> "F: Lantern" </string>
+				<resource  resource_type="SampleLibrary" path="local://2">  </resource>
+				<nil>  </nil>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="450"> 				-1, -1, 1, 0, -1, 31, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 4, 12, 6, 13, 8, 14, 4, 15, 9, 16, 5, 17, 10, 18, 11, 19, 12, 20, 4, 21, 4, 22, 9, 23, 4, 24, 4, 25, 4, 26, 13, 27, 14, 28, 14, 29, 15, 30, 16, 31, 17, 32, 17, 2, 33, 34, 0, 0, 35, 35, -1, 6, 2, 0, 3, 1, 4, 7, 5, 3, 36, 6, 37, 4, 0, 0, 0, 39, 38, -1, 12, 2, 0, 3, 1, 5, 3, 40, 13, 41, 18, 42, 19, 43, 20, 44, 9, 45, 4, 46, 21, 47, 22, 30, 23, 0, 2, 0, 49, 48, -1, 27, 2, 0, 3, 1, 4, 24, 5, 3, 15, 9, 50, 3, 51, 4, 52, 13, 53, 25, 54, 26, 55, 27, 56, 3, 57, 12, 58, 28, 59, 12, 60, 29, 61, 30, 62, 22, 63, 13, 64, 31, 65, 32, 66, 33, 67, 32, 29, 34, 68, 17, 69, 10, 70, 9, 0, 3, 0, 72, 71, -1, 6, 2, 0, 3, 1, 4, 35, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 75, -1, 6, 2, 0, 3, 1, 4, 37, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 76, -1, 6, 2, 0, 3, 1, 4, 38, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 77, -1, 6, 2, 0, 3, 1, 4, 39, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 78, -1, 6, 2, 0, 3, 1, 4, 40, 5, 3, 73, 3, 74, 36, 0, 2, 0, 79, 79, 41, 4, 2, 42, 3, 1, 4, 43, 30, 44, 0, 0, 0, 35, 80, -1, 6, 2, 0, 3, 1, 4, 8, 5, 3, 36, 6, 37, 4, 0, 0, 0, 82, 81, -1, 1, 2, 0, 0, 11, 0, 84, 83, -1, 30, 2, 0, 5, 3, 85, 32, 86, 32, 87, 4, 88, 45, 89, 46, 90, 47, 91, 48, 92, 0, 93, 0, 94, 0, 95, 0, 96, 3, 97, 3, 98, 5, 99, 32, 100, 12, 101, 32, 102, 32, 103, 32, 104, 12, 105, 4, 106, 4, 107, 49, 108, 13, 109, 13, 110, 4, 111, 4, 112, 50, 0, 11, 0, 84, 113, -1, 28, 2, 0, 5, 3, 85, 32, 86, 32, 87, 4, 90, 51, 91, 52, 92, 0, 93, 0, 94, 0, 95, 0, 96, 3, 97, 3, 98, 5, 99, 32, 100, 12, 101, 32, 102, 32, 103, 32, 104, 12, 105, 4, 106, 4, 107, 53, 108, 13, 109, 13, 110, 4, 111, 4, 112, 50, 0 </int_array>
+			<int_array  len="487"> 				-1, -1, 1, 0, -1, 31, 2, 0, 3, 1, 4, 2, 5, 3, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 4, 12, 6, 13, 8, 14, 4, 15, 9, 16, 5, 17, 10, 18, 11, 19, 12, 20, 4, 21, 4, 22, 9, 23, 4, 24, 4, 25, 4, 26, 13, 27, 14, 28, 14, 29, 15, 30, 16, 31, 17, 32, 17, 2, 33, 34, 0, 0, 35, 35, -1, 6, 2, 0, 3, 1, 4, 7, 5, 3, 36, 6, 37, 4, 0, 0, 0, 39, 38, -1, 12, 2, 0, 3, 1, 5, 3, 40, 13, 41, 18, 42, 19, 43, 20, 44, 9, 45, 4, 46, 21, 47, 22, 30, 23, 0, 2, 0, 49, 48, -1, 27, 2, 0, 3, 1, 4, 24, 5, 3, 15, 9, 50, 3, 51, 4, 52, 13, 53, 25, 54, 26, 55, 27, 56, 3, 57, 12, 58, 28, 59, 12, 60, 29, 61, 30, 62, 22, 63, 13, 64, 31, 65, 32, 66, 33, 67, 32, 29, 34, 68, 17, 69, 10, 70, 9, 0, 3, 0, 72, 71, -1, 6, 2, 0, 3, 1, 4, 35, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 75, -1, 6, 2, 0, 3, 1, 4, 37, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 76, -1, 6, 2, 0, 3, 1, 4, 38, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 77, -1, 6, 2, 0, 3, 1, 4, 39, 5, 3, 73, 3, 74, 36, 0, 3, 0, 72, 78, -1, 6, 2, 0, 3, 1, 4, 40, 5, 3, 73, 3, 74, 36, 0, 2, 0, 79, 79, 41, 4, 2, 42, 3, 1, 4, 43, 30, 44, 0, 0, 0, 35, 80, -1, 6, 2, 0, 3, 1, 4, 8, 5, 3, 36, 6, 37, 4, 0, 0, 0, 82, 81, -1, 1, 2, 0, 0, 11, 0, 84, 83, -1, 30, 2, 0, 5, 3, 85, 32, 86, 32, 87, 4, 88, 45, 89, 46, 90, 47, 91, 48, 92, 0, 93, 0, 94, 0, 95, 0, 96, 3, 97, 3, 98, 5, 99, 32, 100, 12, 101, 32, 102, 32, 103, 32, 104, 12, 105, 4, 106, 4, 107, 49, 108, 13, 109, 13, 110, 4, 111, 4, 112, 50, 0, 11, 0, 84, 113, -1, 28, 2, 0, 5, 3, 85, 32, 86, 32, 87, 4, 90, 51, 91, 52, 92, 0, 93, 0, 94, 0, 95, 0, 96, 3, 97, 3, 98, 5, 99, 32, 100, 12, 101, 32, 102, 32, 103, 32, 104, 12, 105, 4, 106, 4, 107, 53, 108, 13, 109, 13, 110, 4, 111, 4, 112, 50, 0, 0, 0, 114, 114, -1, 15, 2, 0, 115, 9, 116, 54, 117, 12, 118, 32, 119, 12, 120, 12, 121, 12, 122, 55, 123, 55, 124, 55, 125, 55, 126, 5, 127, 12, 128, 12, 0 </int_array>
 			<string> "conns" </string>
-			<int_array  len="6"> 				3, 3, 115, 114, 2, 0 </int_array>
+			<int_array  len="6"> 				3, 3, 130, 129, 2, 0 </int_array>
 		</dictionary>
 
 	</main_resource>
