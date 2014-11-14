@@ -11,6 +11,7 @@ var peer
 var dt
 var tcpstreams
 var playernode_name
+var Player_id
 
 var player_placement # Array or dictionary to hold player values from network
 
@@ -26,10 +27,25 @@ func _ready():
 	
 	is_set = false
 
+func get_player_node(var Player_id):
+	var node
+	if Player_id == 0:
+		node = "/root/Map/Ghost"
+	elif Player_id == 1:
+		node = "/root/Map/Human1"
+	elif Player_id == 2:
+		node = "/root/Map/Human2"
+	elif Player_id == 3:
+		node = "/root/Map/Human3"
+	elif Player_id == 4:
+		node = "/root/Map/Human4"
+	return node
+
 func set_from_lobby(name, server_bool, peer_streams, peer_names, camera):
 	PlayerName = name
 	is_server = server_bool
 	tcpstreams = peer_streams
+	Player_id = camera
 	if is_server:
 		peernames = peer_names
 		for apeer in peer_streams:
@@ -40,23 +56,14 @@ func set_from_lobby(name, server_bool, peer_streams, peer_names, camera):
 		peer = PacketPeerStream.new()
 		peer.set_stream_peer(peer_streams[0])
 	
-	if camera == 0:
-		playernode_name = "/root/Map/Ghost"
-	elif camera == 1:
-		playernode_name = "/root/Map/Human1"
-	elif camera == 2:
-		playernode_name = "/root/Map/Human2"
-	elif camera == 3:
-		playernode_name = "/root/Map/Human3"
-	elif camera == 4:
-		playernode_name = "/root/Map/Human4"
+	playernode_name=get_player_node(Player_id)
 	
 	# Gather some data from above variables, like player count
 	# Store this data in new vars, create arrays (or dictionaries or something)
 	# and add them to player_placement array
 	# Set camera
 	
-	print("Passed to network.gd: "+str(PlayerName)+"/"+str(is_server)+"/"+str(peer_streams)+"/"+str(peer_names))
+	#print("Passed to network.gd: "+str(PlayerName)+"/"+str(is_server)+"/"+str(peer_streams)+"/"+str(peer_names))
 	
 	is_set = true
 	set_process(true)
@@ -75,11 +82,25 @@ func Net_Get_Data(apeer, index):
 				#send recieved position to other players
 				print ("Got position from player: i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," r=", data[5])
 				Net_Send_Data_All(peers, [data])
-				#TODO: set player position
+				#set player position
+				if (data[1] == Player_id):
+					return #player sent us server position.  this shouldn't happen.
+				var vp=Vector3(data[2], data[3], data[4])
+				var vr=Vector3(data[5], 0, 0)
+				var player = get_node(get_player_node(data[1]))
+				player.set_translation(vp)
+				player.get_node("Cam").set_rotation(vr)
 		else:
 			if(data[0]==NET_POS):
-				print ("Got position. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," r=", data[5])
-				#TODO: set  player position
+				print ("Got position from server. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," r=", data[5])
+				if (data[1] == Player_id):
+					return #we dont want to set our own position
+				#set  player position
+				var vp=Vector3(data[2], data[3], data[4])
+				var vr=Vector3(data[5], 0, 0)
+				var player = get_node(get_player_node(data[1]))
+				player.set_translation(vp)
+				player.get_node("Cam").set_rotation(vr)
 
 func Net_Send_Data(apeer, data, index):
 	if(tcpstreams[index].is_connected()):
@@ -96,7 +117,7 @@ func Net_Send_Data_All(_peers, data):
 
 func _process(delta):
 	# Let's try to receive data ASAP
-
+	
 	if is_server:
 		# Recieve from clients
 		var i=0
@@ -106,18 +127,18 @@ func _process(delta):
 	else:
 		# Recieve from server
 			Net_Get_Data(peer, 0)
-
+	
 	# Let's send data less often.
 	#print("Send position? " + str(dt))
 	if(dt > 1.0):
-		print("Send position")
+		#print("Send position")
 		
 		# Get coords, direction from tree
 		var player = get_node(playernode_name)
 		var player_coords = player.get_translation()
 		var player_rot = player.get_node("Cam").get_rotation()
 		var player_num = 0
-		var player_data = [[int(NET_POS), int(player_num), player_coords.x, player_coords.y, player_coords.z, player_rot.x]]
+		var player_data = [[int(NET_POS), int(Player_id), player_coords.x, player_coords.y, player_coords.z, player_rot.x]]
 		
 		#print(str(player_coords) + str(player_rot))
 		if is_server:
@@ -132,10 +153,4 @@ func _process(delta):
 	else:
 		dt += delta
 
-
-	
-	# Set player coords from updated player_placement
-	#for something in player_placement
-	#	get_node(player_object).set_translation(from_array)
-	#	get_node(player_object).set_rotation(from_array)
 

@@ -32,7 +32,7 @@ var current_time
 
 var map   #tree to launch
 
-var _this_id = 99
+var Player_id = 99
 
 #widgets
 var DebugButton
@@ -154,21 +154,28 @@ func _pop_rand_id():
 	ids.remove(pos)
 	return ret
 
-func _on_lobby_launch():
+func _start_map():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	_chat("Launching map..")
-	_this_id = _pop_rand_id()
-	for apeer in peers:
-			var selected_id = _pop_rand_id()
-			_net_tcp_send(apeer, NET_OKGO, String(selected_id))
 	launched=true
-
-	print("ok, I'll take ", _this_id)
-	
+	_chat("Launching map..")
 	#Switch trees while passing info from lobby
-	#TODO: Logic to replace the last argument with a number that represents which player to control
+	get_node("/root/tree_switcher").net_goto_map(PlayerNameBox.get_text(), is_server, peers, peernames, map, Player_id)
+
+func _on_lobby_launch():
+	#this function is only called by server
+	#Player_id = _pop_rand_id()
+	Player_id = 0
+	var i=1
+	for apeer in peers:
+			#var selected_id = _pop_rand_id()
+			#_net_tcp_send(apeer, NET_OKGO, str(selected_id))
+			_net_tcp_send(apeer, NET_OKGO, str(i))
+			i=i+1
+	print("ok, I'll take ", Player_id)
+	_start_map()
+	#Logic to replace the last argument with a number that represents which player to control
 	#0 is ghost, 1-4 are humans
-	get_node("/root/tree_switcher").net_goto_map(PlayerNameBox.get_text(), is_server, peers, peernames, map, _this_id)
+	
 
 func _on_lobby_ready():
 	var text
@@ -358,12 +365,10 @@ func _net_peer_recv():
 		var rawtext=RawArray()
 		for i in range(0,raw_data.size()):
 			rawtext.push_back( raw_data[i] )
-		var id=rawtext.get_string_from_utf8().to_int()
-		_this_id = id
-		print("my id is ", _this_id, "!")
-		
+		Player_id = rawtext.get_string_from_utf8().to_int()
+		print("my id is ", Player_id, "!")
 		peers.append(peer) #evil++
-		get_node("/root/tree_switcher").net_goto_map(PlayerNameBox.get_text(), is_server, peers, peernames, map)
+		_start_map()
 		#switch tree
 
 
