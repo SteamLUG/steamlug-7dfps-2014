@@ -24,8 +24,11 @@ func _ready():
 	peers = []
 	peernames = []
 	# Set the rest of the things
-	
+	ghost_sound = false
 	is_set = false
+	
+func make_ghost_sound():
+	ghost_sound = true
 
 func get_player_node(var Player_id):
 	var node
@@ -95,6 +98,10 @@ func Net_Get_Data(apeer, index):
 						player.get_node("Cam/Lantern").lantern_on()
 					else:
 						player.get_node("Cam/Lantern").lantern_off()
+						
+					if ghost_sound:
+						player.get_node("../Ghost/SamplePlayer").play("ghost3m")
+						ghost_sound = false
 		else:
 			if(data[0]==NET_POS):
 				#print ("Got position from server. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," rx=", data[5]," ry=", data[6]," rz=", data[7])
@@ -111,6 +118,10 @@ func Net_Get_Data(apeer, index):
 						player.get_node("Cam/Lantern").lantern_on()
 					else:
 						player.get_node("Cam/Lantern").lantern_off()
+					
+					if ghost_sound:
+						player.get_node("../Ghost/SamplePlayer").play("ghost3m")
+						ghost_sound = false
 
 func Net_Send_Data(apeer, data, index):
 	if(tcpstreams[index].is_connected()):

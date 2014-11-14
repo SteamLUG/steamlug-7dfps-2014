@@ -50,6 +50,7 @@ func _integrate_forces(state):
 	# Input.warp_mouse_pos(win_hsize)
 	if(Input.is_action_pressed("player_lantern")):
 		get_node("SamplePlayer").play("ghost3m")
+		get_node("/root/network").make_ghost_sound()
 	
 	# Get directions
 	var forward = camera.get_transform().basis[2]
