@@ -91,9 +91,11 @@ func _integrate_forces(state):
 		lv.z = tmp.z
 	
 	if footsteps_playing and totalspeed <= 0.2:
+		footsteps_playing = false
 		footsteps.stop(0)
 	if not footsteps_playing and totalspeed > 0.2:
 		footsteps.play("pop")
+		footsteps_playing = true
 	
 	# Handle jump
 	var onfloor = state.get_contact_count()
