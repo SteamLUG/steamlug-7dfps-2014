@@ -33,7 +33,7 @@ func _ready():
 	lantern = get_node("Cam/Lantern")
 	win_hsize = OS.get_video_mode_size()/2
 	set_process_input(true)
-	footsteps = get_node("SamplePlayer")
+	footsteps = get_node("FootstepsSamplePlayer")
 	var fs_sample = footsteps.get_sample_library().get_sample("steps_soft1")
 	fs_sample.set_loop_format(Sample.LOOP_FORWARD)
 	fs_sample.set_loop_begin(20000)
