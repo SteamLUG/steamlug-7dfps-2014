@@ -37,8 +37,12 @@ func net_goto_map(PlayerName, is_server, peers, peernames, tree, camera):
 	get_node("/root/network").set_from_lobby(PlayerName, is_server, peers, peernames, camera)
 	current_tree.get_child(0).hide()
 	goto_tree_nofree(tree, camera)
-	
-	var player_count = peernames.size() + 1
+
+	var player_count = peernames.size()
+	# Server player count is off by one
+	if is_server:
+		player_count += player_count
+	# Remove unused players in multiplayer, remove all but one otherwise.
 	for node in get_node("/root/Map").get_children():
 		var human_num
 		if node.is_in_group("human"):
