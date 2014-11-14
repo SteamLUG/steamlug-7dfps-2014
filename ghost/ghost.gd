@@ -48,6 +48,8 @@ func _integrate_forces(state):
 	# NOW PLACED AT LOBBY, UGLY FIX BUT WE NEED THIS FOR NOT HAVING TO CHANGE A LOT OF STUFF
 	# Reset mouse
 	# Input.warp_mouse_pos(win_hsize)
+	if(Input.is_action_pressed("player_lantern")):
+		get_node("SamplePlayer").play("ghost3m")
 	
 	# Get directions
 	var forward = camera.get_transform().basis[2]

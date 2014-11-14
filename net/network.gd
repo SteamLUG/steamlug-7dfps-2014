@@ -80,7 +80,7 @@ func Net_Get_Data(apeer, index):
 		if is_server:
 			if(data[0]==NET_POS):
 				#send recieved position to other players
-				print ("Got position from player. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," rx=", data[5]," ry=", data[6]," rz=", data[7])
+				#print ("Got position from player. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," rx=", data[5]," ry=", data[6]," rz=", data[7])
 				Net_Send_Data_All(peers, [data])
 				#set player position
 				if (data[1] == Player_id):
@@ -97,7 +97,7 @@ func Net_Get_Data(apeer, index):
 						player.get_node("Cam/Lantern").lantern_off()
 		else:
 			if(data[0]==NET_POS):
-				print ("Got position from server. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," rx=", data[5]," ry=", data[6]," rz=", data[7])
+				#print ("Got position from server. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," rx=", data[5]," ry=", data[6]," rz=", data[7])
 				if (data[1] == Player_id):
 					return #we dont want to set our own position
 				#set  player position
@@ -140,7 +140,7 @@ func _process(delta):
 	
 	# Let's send data less often.
 	#print("Send position? " + str(dt))
-	if(dt > 1.0):
+	if(dt > 0.25):
 		#print("Send position")
 		
 		# Get coords, direction from tree
@@ -158,11 +158,11 @@ func _process(delta):
 		#print(str(player_coords) + str(player_rot))
 		if is_server:
 			# Send to clients
-			print("Server, send position to clients")
+			#print("Server, send position to clients")
 			Net_Send_Data_All(peers, player_data)
 		else:
 			# Send to server
-			print("Player, send position to server")
+			#print("Player, send position to server")
 			Net_Send_Data(peer, player_data, 0)
 		dt = 0
 	else:
