@@ -22,6 +22,7 @@ var lantern_then = false
 # Footsteps
 var footsteps
 var footsteps_playing = false
+var fs_voice
 
 func _ready():
 	var rot = get_rotation()
@@ -33,7 +34,8 @@ func _ready():
 	win_hsize = OS.get_video_mode_size()/2
 	set_process_input(true)
 	footsteps = get_node("SamplePlayer")
-	
+	var fs_sample = footsteps.get_sampler_library().get_sample("steps_soft1")
+	fs_sample.set_loop_format(LOOP_FORWARD)
 	pass
 
 
@@ -92,9 +94,9 @@ func _integrate_forces(state):
 	
 	if footsteps_playing and totalspeed <= 0.2:
 		footsteps_playing = false
-		footsteps.stop(0)
+		footsteps.stop(fs_voice)
 	if not footsteps_playing and totalspeed > 0.2:
-		footsteps.play("pop")
+		fs_voice = footsteps.play("steps_soft1")
 		footsteps_playing = true
 	
 	# Handle jump
