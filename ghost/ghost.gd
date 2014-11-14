@@ -37,8 +37,8 @@ func _ready():
 	set_rotation(rot)
 	camera = get_node("Cam")
 	win_hsize = OS.get_video_mode_size()/2
-
-	speed_mod = 2.0
+	
+	speed_mod = 5
 	set_process_input(true)
 	
 	set_process(true)
@@ -76,8 +76,8 @@ func _integrate_forces(state):
 	
 	# Clamp speed
 	var tmp = Vector3( lv.x, 0, lv.z )
-	if tmp.length() > walk_speed:
-		tmp = tmp.normalized() * walk_speed
+	if tmp.length() > walk_speed * speed_mod:
+		tmp = tmp.normalized() * walk_speed * speed_mod
 		lv.x = tmp.x
 		lv.z = tmp.z
 	
@@ -107,7 +107,6 @@ func _input(ev):
 	if ev.type == InputEvent.MOUSE_MOTION:
 		rotation += (ev.pos - win_hsize) * 0.001
 
-
 # Called by lantern when raycast hits ghost.
 func reveal():
 	revealed = true
@@ -118,6 +117,3 @@ func _process(delta):
 		revealed = false
 	else:
 		mesh.hide()
-		pass
-	
-	pass
