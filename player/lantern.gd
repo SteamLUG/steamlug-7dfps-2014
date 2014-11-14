@@ -36,6 +36,10 @@ func append_rc(rc):
 
 func _ready():
 	append_rc(get_node("RCMid"))
+	append_rc(get_node("RCMid 2"))
+	append_rc(get_node("RCMid 3"))
+	append_rc(get_node("RCMid 4"))
+	append_rc(get_node("RCMid 5"))
 	append_rc(get_node("RCTop"))
 	append_rc(get_node("RCBot"))
 	append_rc(get_node("RCLeft"))
