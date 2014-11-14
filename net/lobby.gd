@@ -80,6 +80,7 @@ func _ready():
 	PlayerNameBox = get_node("Lobby_Name_Area/Lobby_Player_Name")
 	PlayerNameBox.get_node("Lobby_Name_Text").add_text("Name:")
 	PlayerNameBox.set_text("Player1")
+	PlayerNameBox.grab_focus()
 	
 	HostButton = get_node("Lobby_Host_Area/Lobby_Host_Button")
 	HostButton.get_node("Lobby_Host_Port_text").add_text("Server Port")
