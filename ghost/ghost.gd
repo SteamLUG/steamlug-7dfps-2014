@@ -25,7 +25,7 @@ func _ready():
 	mesh = get_node("chumpus")
 	mesh.hide()
 	
-	# Killbox follows ghost and marks humans for death. Doesn't work right now :(
+	# Killbox follows ghost and marks humans for death.
 	killbox = ResourceLoader.load("res://ghost/killbox.xscn").instance()
 	get_node("/root/Map").add_child(killbox)
 	killbox.set_ghost(self)
