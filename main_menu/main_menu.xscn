@@ -4,7 +4,7 @@
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="36">
+			<string_array  len="47">
 				<string> "main_menu" </string>
 				<string> "Control" </string>
 				<string> "_import_path" </string>
@@ -23,7 +23,7 @@
 				<string> "size_flags/stretch_ratio" </string>
 				<string> "script/script" </string>
 				<string> "__meta__" </string>
-				<string> "goto_test" </string>
+				<string> "goto_multi" </string>
 				<string> "Button" </string>
 				<string> "margin/left" </string>
 				<string> "margin/top" </string>
@@ -37,19 +37,30 @@
 				<string> "flat" </string>
 				<string> "clip_text" </string>
 				<string> "align" </string>
-				<string> "goto_multi" </string>
-				<string> "_on_goto_test_pressed" </string>
-				<string> "pressed" </string>
+				<string> "Label" </string>
+				<string> "custom_colors/font_color" </string>
+				<string> "range/min" </string>
+				<string> "range/max" </string>
+				<string> "range/step" </string>
+				<string> "range/page" </string>
+				<string> "range/value" </string>
+				<string> "range/exp_edit" </string>
+				<string> "rounded_values" </string>
+				<string> "valign" </string>
+				<string> "autowrap" </string>
+				<string> "uppercase" </string>
+				<string> "percent_visible" </string>
 				<string> "_on_goto_multi_pressed" </string>
+				<string> "pressed" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
-			<int> 2 </int>
+			<int> 1 </int>
 			<string> "node_count" </string>
 			<int> 3 </int>
 			<string> "variants" </string>
-			<array  len="17" shared="false">
+			<array  len="23" shared="false">
 				<node_path> "" </node_path>
 				<bool> True </bool>
 				<real> 1 </real>
@@ -62,7 +73,7 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 2 </int>
+							<int> 0 </int>
 							<string> "sources" </string>
 							<array  len="3" shared="false">
 								<string> "res://main_menu/main_menu.gd" </string>
@@ -184,22 +195,28 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "Script" </string>
+					<string> "2D" </string>
 				</dictionary>
 				<real> 122 </real>
-				<real> 245 </real>
-				<real> 204 </real>
-				<real> 265 </real>
-				<string> "Test Scene" </string>
-				<resource name=""></resource>				<int> 1 </int>
 				<real> 308 </real>
+				<real> 204 </real>
 				<real> 328 </real>
 				<string> "Multiplayer" </string>
+				<resource name=""></resource>				<int> 1 </int>
+				<real> 91 </real>
+				<real> 69 </real>
+				<real> 664 </real>
+				<real> 219 </real>
+				<color> 0, 0, 0, 1 </color>
+				<real> 0 </real>
+				<real> 3 </real>
+				<string> "Haunt is a work-in-progress and will continue to be worked on after the 7dfps.&#10;&#10;Thanks to the SteamLUG 7dfps team for all their hard work." </string>
+				<real> -1 </real>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="157"> 				-1, -1, 1, 0, -1, 16, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 0, 8, 0, 9, 0, 10, 0, 11, 3, 12, 1, 13, 4, 14, 4, 15, 2, 16, 5, 17, 6, 0, 0, 0, 19, 18, -1, 26, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 20, 7, 21, 8, 22, 9, 23, 10, 7, 0, 8, 0, 9, 0, 10, 0, 11, 3, 12, 1, 13, 4, 14, 4, 15, 2, 24, 3, 25, 3, 26, 3, 27, 11, 28, 12, 29, 3, 30, 3, 31, 13, 0, 0, 0, 19, 32, -1, 26, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 20, 7, 21, 14, 22, 9, 23, 15, 7, 0, 8, 0, 9, 0, 10, 0, 11, 3, 12, 1, 13, 4, 14, 4, 15, 2, 24, 3, 25, 3, 26, 3, 27, 16, 28, 12, 29, 3, 30, 3, 31, 13, 0 </int_array>
+			<int_array  len="167"> 				-1, -1, 1, 0, -1, 16, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 0, 8, 0, 9, 0, 10, 0, 11, 3, 12, 1, 13, 4, 14, 4, 15, 2, 16, 5, 17, 6, 0, 0, 0, 19, 18, -1, 26, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 20, 7, 21, 8, 22, 9, 23, 10, 7, 0, 8, 0, 9, 0, 10, 0, 11, 3, 12, 1, 13, 4, 14, 4, 15, 2, 24, 3, 25, 3, 26, 3, 27, 11, 28, 12, 29, 3, 30, 3, 31, 13, 0, 0, 0, 32, 32, -1, 31, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 20, 14, 21, 15, 22, 16, 23, 17, 7, 0, 8, 0, 9, 0, 10, 0, 11, 1, 12, 1, 13, 4, 15, 2, 33, 18, 34, 19, 35, 20, 36, 2, 37, 20, 38, 19, 39, 3, 40, 3, 27, 21, 31, 13, 41, 13, 42, 3, 43, 1, 44, 22, 0 </int_array>
 			<string> "conns" </string>
-			<int_array  len="12"> 				1, 0, 34, 33, 2, 0, 2, 0, 34, 35, 2, 0 </int_array>
+			<int_array  len="6"> 				1, 0, 46, 45, 2, 0 </int_array>
 		</dictionary>
 
 	</main_resource>
