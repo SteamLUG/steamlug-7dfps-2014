@@ -12,6 +12,7 @@ var dt
 var tcpstreams
 var playernode_name
 var Player_id
+var ghost_sound
 
 var player_placement # Array or dictionary to hold player values from network
 
