@@ -453,8 +453,6 @@ func _net_server_recv( index, apeer ):
 var prevhit = false
 
 func _process(delta):
-	if launched:
-		return  #lobby cannot run after packetpeer eats stream or bad things happen
 	var nowhit = Input.is_action_pressed("switch_lobby_visible")
 
 	if nowhit and !prevhit:
@@ -469,7 +467,9 @@ func _process(delta):
 
 	if is_hidden():
 		Input.warp_mouse_pos(win_hsize)
-
+	
+	if launched:
+		return  #lobby cannot run after packetpeer eats stream or bad things happen
 	if is_server:
 		if(server.is_connection_available()):
 			var newpeer = server.take_connection()
