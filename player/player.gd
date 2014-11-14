@@ -19,6 +19,10 @@ var lantern
 var lantern_now = false
 var lantern_then = false
 
+# Footsteps
+var footsteps
+var footsteps_playing = false
+
 func _ready():
 	var rot = get_rotation()
 	rotation.x = rot.y
@@ -28,6 +32,7 @@ func _ready():
 	lantern = get_node("Cam/Lantern")
 	win_hsize = OS.get_video_mode_size()/2
 	set_process_input(true)
+	footsteps = get_node("SamplePlayer")
 	
 	pass
 
@@ -79,10 +84,16 @@ func _integrate_forces(state):
 	
 	# Clamp speed
 	var tmp = Vector3( lv.x, 0, lv.z )
-	if tmp.length() > walk_speed:
+	var totalspeed = tmp.length()
+	if totalspeed > walk_speed:
 		tmp = tmp.normalized() * walk_speed
 		lv.x = tmp.x
 		lv.z = tmp.z
+	
+	if footsteps_playing and totalspeed <= 0.2:
+		footsteps.stop(0)
+	if not footsteps_playing and totalspeed > 0.2:
+		footsteps.play("pop")
 	
 	# Handle jump
 	var onfloor = state.get_contact_count()
