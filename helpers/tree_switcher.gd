@@ -16,7 +16,7 @@ func _ready():
 	current_tree = root.get_child( root.get_child_count() - 1 )
 
 # Completely removes current tree
-func goto_tree(tree, camera=HUMAN1):
+func goto_tree(tree, camera=HUMAN1, player_count=1):
 	var new_tree = ResourceLoader.load(tree)
 	current_tree.queue_free()
 	current_tree = new_tree.instance()
@@ -25,18 +25,23 @@ func goto_tree(tree, camera=HUMAN1):
 		set_camera(current_tree, camera)
 
 # This does not not unload current tree, need to manually hide
-func goto_tree_nofree(tree, camera=HUMAN1):
+func goto_tree_nofree(tree, camera=HUMAN1, player_count=1):
 	var new_tree = ResourceLoader.load(tree)
 	var old_tree = current_tree
 	current_tree = new_tree.instance()
 	root.add_child(current_tree)
 	set_camera(current_tree, camera)
 
-# Passes info to network script and hides lobby
+# Passes info to network script and hides lobby, removes unused players.
 func net_goto_map(PlayerName, is_server, peers, peernames, tree, camera):
 	get_node("/root/network").set_from_lobby(PlayerName, is_server, peers, peernames, camera)
 	current_tree.get_child(0).hide()
 	goto_tree_nofree(tree, camera)
+	
+	var player_count = peernames.size() + 1
+	for node in get_node("/root/Map").get_children():
+		if node.is_in_group("human") && node.get_name().right(5).to_int() > player_count:
+			node.queue_free()
 
 func set_camera(tree, camera):
 	var player
