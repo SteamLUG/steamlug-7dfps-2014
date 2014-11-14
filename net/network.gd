@@ -99,10 +99,8 @@ func Net_Get_Data(apeer, index):
 						player.get_node("Cam/Lantern").lantern_on()
 					else:
 						player.get_node("Cam/Lantern").lantern_off()
-						
-					if ghost_sound:
+					if data[9]:
 						player.get_node("../Ghost/SamplePlayer").play("ghost3m")
-						ghost_sound = false
 		else:
 			if(data[0]==NET_POS):
 				#print ("Got position from server. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," rx=", data[5]," ry=", data[6]," rz=", data[7])
@@ -119,10 +117,8 @@ func Net_Get_Data(apeer, index):
 						player.get_node("Cam/Lantern").lantern_on()
 					else:
 						player.get_node("Cam/Lantern").lantern_off()
-					
-					if ghost_sound:
+					if data[9]:
 						player.get_node("../Ghost/SamplePlayer").play("ghost3m")
-						ghost_sound = false
 
 func Net_Send_Data(apeer, data, index):
 	if(tcpstreams[index].is_connected()):
@@ -165,7 +161,7 @@ func _process(delta):
 			player_lantern = player.get_node("Cam/Lantern").is_visible()
 		else:
 			player_lantern = false
-		var player_data = [[int(NET_POS), int(Player_id), player_coords.x, player_coords.y, player_coords.z, player_rot.x, player_rot.y, player_rot.z, player_lantern]]
+		var player_data = [[int(NET_POS), int(Player_id), player_coords.x, player_coords.y, player_coords.z, player_rot.x, player_rot.y, player_rot.z, player_lantern, ghost_sound]]
 		
 		#print(str(player_coords) + str(player_rot))
 		if is_server:
@@ -177,6 +173,7 @@ func _process(delta):
 			#print("Player, send position to server")
 			Net_Send_Data(peer, player_data, 0)
 		dt = 0
+		ghost_sound = false
 	else:
 		dt += delta
 
