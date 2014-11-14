@@ -80,34 +80,34 @@ func Net_Get_Data(apeer, index):
 		if is_server:
 			if(data[0]==NET_POS):
 				#send recieved position to other players
-				print ("Got position from player: i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," r=", data[5])
+				print ("Got position from player. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," rx=", data[5]," ry=", data[6]," rz=", data[7])
 				Net_Send_Data_All(peers, [data])
 				#set player position
 				if (data[1] == Player_id):
 					return #player sent us server position.  this shouldn't happen.
 				var vp=Vector3(data[2], data[3], data[4])
-				var vr=Vector3(data[5], 0, 0)
+				var vr=Vector3(data[5], data[6], data[7])
 				var player = get_node(get_player_node(data[1]))
 				player.set_translation(vp)
 				player.get_node("Cam").set_rotation(vr)
 				if player.is_in_group("human"):
-					if data[6]:
+					if data[8]:
 						player.get_node("Cam/Lantern").lantern_on()
 					else:
 						player.get_node("Cam/Lantern").lantern_off()
 		else:
 			if(data[0]==NET_POS):
-				print ("Got position from server. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," r=", data[5])
+				print ("Got position from server. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," rx=", data[5]," ry=", data[6]," rz=", data[7])
 				if (data[1] == Player_id):
 					return #we dont want to set our own position
 				#set  player position
 				var vp=Vector3(data[2], data[3], data[4])
-				var vr=Vector3(data[5], 0, 0)
+				var vr=Vector3(data[5], data[6], data[7])
 				var player = get_node(get_player_node(data[1]))
 				player.set_translation(vp)
 				player.get_node("Cam").set_rotation(vr)
 				if player.is_in_group("human"):
-					if data[6]:
+					if data[8]:
 						player.get_node("Cam/Lantern").lantern_on()
 					else:
 						player.get_node("Cam/Lantern").lantern_off()
@@ -153,7 +153,7 @@ func _process(delta):
 			player_lantern = player.get_node("Cam/Lantern").is_visible()
 		else:
 			player_lantern = false
-		var player_data = [[int(NET_POS), int(Player_id), player_coords.x, player_coords.y, player_coords.z, player_rot.x, player_lantern]]
+		var player_data = [[int(NET_POS), int(Player_id), player_coords.x, player_coords.y, player_coords.z, player_rot.x, player_rot.y, player_rot.z, player_lantern]]
 		
 		#print(str(player_coords) + str(player_rot))
 		if is_server:
