@@ -9,7 +9,13 @@ export(int) var oil_decay = 1   # Allow for different types of lamps in the futu
 var rate_of_decay = oil_decay
 var oil_amount = oil
 
+var lantern_sampleplayer
+var lanternloop_sampleplayer
+var lanternloop_voice = 0
+
 func lantern_off():
+	lantern_sampleplayer.play("lanternoff")
+	lanternloop_sampleplayer.stop(lanternloop_voice)
 	rate_of_decay = 0
 	# Turn off raycasts
 	for rc in raycasts:
@@ -20,6 +26,8 @@ func lantern_on():
 	if oil == 0:
 		lantern_off()
 		return
+	lantern_sampleplayer.play("lanternon")
+	lanternloop_voice = lanternloop_sampleplayer.play("lanternloop")
 	rate_of_decay = oil_decay
 	# Turn on raycasts
 	for rc in raycasts:
@@ -35,6 +43,13 @@ func append_rc(rc):
 	raycasts.append(rc)
 
 func _ready():
+	lantern_sampleplayer = get_node("../../LanternSamplePlayer")
+	lanternloop_sampleplayer = get_node("../../LanternLoopSamplePlayer")
+	var looped = lanternloop_sampleplayer.get_sample_library().get_sample("lanternloop")
+	looped.set_loop_format(Sample.LOOP_FORWARD)
+	looped.set_loop_begin(0)
+	looped.set_loop_end(441000)
+
 	append_rc(get_node("RCMid"))
 	append_rc(get_node("RCMid 2"))
 	append_rc(get_node("RCMid 3"))
