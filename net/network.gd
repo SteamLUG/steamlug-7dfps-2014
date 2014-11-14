@@ -90,6 +90,10 @@ func Net_Get_Data(apeer, index):
 				var player = get_node(get_player_node(data[1]))
 				player.set_translation(vp)
 				player.get_node("Cam").set_rotation(vr)
+				if data[6] && player.is_in_group("human"):
+					player.get_node("Cam/Lantern").lantern_on()
+				else:
+					player.get_node("Cam/Lantern").lantern_off()
 		else:
 			if(data[0]==NET_POS):
 				print ("Got position from server. i=", data[1]," x=", data[2]," y=", data[3]," z=", data[4]," r=", data[5])
@@ -101,6 +105,10 @@ func Net_Get_Data(apeer, index):
 				var player = get_node(get_player_node(data[1]))
 				player.set_translation(vp)
 				player.get_node("Cam").set_rotation(vr)
+				if data[6] && player.is_in_group("human"):
+					player.get_node("Cam/Lantern").lantern_on()
+				else:
+					player.get_node("Cam/Lantern").lantern_off()
 
 func Net_Send_Data(apeer, data, index):
 	if(tcpstreams[index].is_connected()):
@@ -138,7 +146,12 @@ func _process(delta):
 		var player_coords = player.get_translation()
 		var player_rot = player.get_node("Cam").get_rotation()
 		var player_num = 0
-		var player_data = [[int(NET_POS), int(Player_id), player_coords.x, player_coords.y, player_coords.z, player_rot.x]]
+		var player_lantern
+		if player.is_in_group("human"):
+			player_lantern = player.get_node("Cam/Lantern").is_visible()
+		else:
+			player_lantern = false
+		var player_data = [[int(NET_POS), int(Player_id), player_coords.x, player_coords.y, player_coords.z, player_rot.x, player_lantern]]
 		
 		#print(str(player_coords) + str(player_rot))
 		if is_server:
