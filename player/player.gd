@@ -94,12 +94,7 @@ func _integrate_forces(state):
 		lv.x = tmp.x
 		lv.z = tmp.z
 	
-	if footsteps_playing and totalspeed <= 0.01:
-		footsteps_playing = false
-		footsteps.stop(fs_voice)
-	if not footsteps_playing and totalspeed > 0.01:
-		fs_voice = footsteps.play("steps_soft1")
-		footsteps_playing = true
+
 
 	# Handle jump
 	var onfloor = state.get_contact_count()
@@ -107,6 +102,13 @@ func _integrate_forces(state):
 		lv.y = jump_force
 		# if we use forces, jump_force should be over 9000
 		#state.add_force(Vector3(0,jump_force,0), Vector3(0,1,0))
+	
+	if footsteps_playing and (totalspeed <= 0.01 or not onfloor):
+		footsteps_playing = false
+		footsteps.stop(fs_voice)
+	if not footsteps_playing and totalspeed > 0.01:
+		fs_voice = footsteps.play("steps_soft1")
+		footsteps_playing = true
 	
 	# Apply walk velocity
 	state.set_linear_velocity(lv)
