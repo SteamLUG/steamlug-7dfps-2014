@@ -34,8 +34,10 @@ func _ready():
 	win_hsize = OS.get_video_mode_size()/2
 	set_process_input(true)
 	footsteps = get_node("SamplePlayer")
-	var fs_sample = footsteps.get_sampler_library().get_sample("steps_soft1")
-	fs_sample.set_loop_format(LOOP_FORWARD)
+	var fs_sample = footsteps.get_sample_library().get_sample("steps_soft1")
+	fs_sample.set_loop_format(Sample.LOOP_FORWARD)
+	fs_sample.set_loop_begin(20000)
+	fs_sample.set_loop_end(96480)
 	pass
 
 
@@ -92,13 +94,13 @@ func _integrate_forces(state):
 		lv.x = tmp.x
 		lv.z = tmp.z
 	
-	if footsteps_playing and totalspeed <= 0.2:
+	if footsteps_playing and totalspeed <= 0.01:
 		footsteps_playing = false
 		footsteps.stop(fs_voice)
-	if not footsteps_playing and totalspeed > 0.2:
+	if not footsteps_playing and totalspeed > 0.01:
 		fs_voice = footsteps.play("steps_soft1")
 		footsteps_playing = true
-	
+
 	# Handle jump
 	var onfloor = state.get_contact_count()
 	if onfloor and Input.is_action_pressed("player_jump"):
