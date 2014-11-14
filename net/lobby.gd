@@ -199,7 +199,7 @@ func _on_lobby_ready():
 		ReadyButton.get_node("Lobby_Ready_Text").add_text("YES")
 
 func _chat ( text ):
-	current_time = str(OS.get_time().hour) + ":" + str(OS.get_time().minute)
+	current_time = str(OS.get_time().hour).pad_zeros(2) + ":" + str(OS.get_time().minute).pad_zeros(2)
 	LobbyChat.add_text(current_time + " " + text)
 	LobbyChat.newline()
 
