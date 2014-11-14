@@ -40,8 +40,13 @@ func net_goto_map(PlayerName, is_server, peers, peernames, tree, camera):
 	
 	var player_count = peernames.size() + 1
 	for node in get_node("/root/Map").get_children():
-		if node.is_in_group("human") && node.get_name().right(5).to_int() > player_count:
-			node.queue_free()
+		var human_num
+		if node.is_in_group("human"):
+			human_num = node.get_name().right(5).to_int()
+			if human_num >= player_count && player_count > 1:
+				node.queue_free()
+			elif human_num > player_count:
+				node.queue_free()
 
 func set_camera(tree, camera):
 	var player
