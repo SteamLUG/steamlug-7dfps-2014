@@ -12,7 +12,7 @@ func _ready():
 	set_process(true)
 
 # This doesn't work right now, don't know why
-func _on_killbox_body_enter(body):
+func _on_body_enter(body):
 	if body.is_in_group("human"):
 		print ( " ******* GHOST ******** " )
 		#body.die()

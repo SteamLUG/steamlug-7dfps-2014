@@ -34,7 +34,7 @@
 				<string> "CollisionShape" </string>
 				<string> "shape" </string>
 				<string> "trigger" </string>
-				<string> "_on_killbox_body_enter" </string>
+				<string> "_on_body_enter" </string>
 				<string> "body_enter" </string>
 			</string_array>
 			<string> "version" </string>
@@ -52,7 +52,7 @@
 				<bool> False </bool>
 				<int> 1 </int>
 				<resource  resource_type="Shape" path="local://1">  </resource>
-				<transform> 7, 0, 0, 0, 9, 0, 0, 0, 6, 0, 0, 0.648821 </transform>
+				<transform> 4.6666, 0, 0, 0, 6, 0, 0, 0, 4, 0, 0, 0.648821 </transform>
 				<int> 0 </int>
 				<vector3> 0, -1, 0 </vector3>
 				<real> 9.8 </real>
@@ -185,7 +185,7 @@
 						<int> 0 </int>
 					</dictionary>
 					<string> "__editor_plugin_screen__" </string>
-					<string> "Script" </string>
+					<string> "3D" </string>
 				</dictionary>
 			</array>
 			<string> "nodes" </string>
