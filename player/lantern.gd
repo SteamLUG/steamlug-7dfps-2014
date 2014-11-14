@@ -28,7 +28,7 @@ func lantern_on():
 
 func add_oil( bottle_holds_how_much ):
 	oil += bottle_holds_how_much
-	get_node("../../SamplePlayer").play("pop")
+	get_node("../../SamplePlayer 2").play("pop")
 
 func append_rc(rc):
 	rc.set_cast_to(rc.get_cast_to() * effective_distance)
