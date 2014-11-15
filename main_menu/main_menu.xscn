@@ -91,11 +91,11 @@
 							<string> "pixel_snap" </string>
 							<bool> False </bool>
 							<string> "zoom" </string>
-							<real> 0.735092 </real>
+							<real> 0.54036 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -220.11, -96.2916 </vector2>
+							<vector2> -59.7751, -153.419 </vector2>
 							<string> "snap" </string>
 							<int> 10 </int>
 						</dictionary>
@@ -214,13 +214,13 @@
 				<real> 412 </real>
 				<string> "Multiplayer" </string>
 				<resource name=""></resource>				<int> 1 </int>
-				<real> 106 </real>
-				<real> 91 </real>
-				<real> 679 </real>
-				<real> 218 </real>
+				<real> -98 </real>
+				<real> 69 </real>
+				<real> 895 </real>
+				<real> 196 </real>
 				<real> 0 </real>
-				<real> 3 </real>
-				<string> "Haunt is a work-in-progress and will continue to be worked on after the 7dfps.&#10;&#10;Thanks to the SteamLUG 7dfps team for all their hard work." </string>
+				<real> 2 </real>
+				<string> "Haunt is a work-in-progress and will continue to be worked on after the 7dfps.&#16;&#16;&#10;Thanks to the SteamLUG 7dfps team for all their hard work." </string>
 				<real> -1 </real>
 			</array>
 			<string> "nodes" </string>
