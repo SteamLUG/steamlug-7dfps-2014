@@ -25,6 +25,7 @@ var footsteps_playing = false
 var fs_voice
 
 func _ready():
+	lantern_sampleplayer = get_node("LanternSamplePlayer")
 	var rot = get_rotation()
 	rotation.x = rot.y
 	rot.y = 0
@@ -40,6 +41,7 @@ func _ready():
 	fs_sample.set_loop_end(96480)
 	pass
 
+var lantern_sampleplayer
 
 func _integrate_forces(state):
 	
@@ -71,8 +73,10 @@ func _integrate_forces(state):
 	
 	if lantern_press:
 		if lantern.is_visible():
+			lantern_sampleplayer.play("lanternoff")
 			lantern.lantern_off()
 		else:
+			lantern_sampleplayer.play("lanternon")
 			lantern.lantern_on()
 	
 	# Handle movement
