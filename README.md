@@ -3,7 +3,8 @@
 
 ![alt text]( https://github.com/SteamLUG/steamlug-7dfps-2014/blob/master/haunt_logo.png "Haunt, a horror multiplayer FPS game")
 
-**Powered by Godot Engine** ![alt text]( https://github.com/SteamLUG/steamlug-7dfps-2014/blob/master/icon.png "Godot Engine") 
+![alt text]( https://github.com/SteamLUG/steamlug-7dfps-2014/blob/master/icon.png "Godot Engine") **Powered by Godot Engine** 
+
 
 ******
 
