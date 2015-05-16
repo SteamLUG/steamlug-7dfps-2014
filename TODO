@@ -1,0 +1,16 @@
+Bug hunt and update compat with latest godot
+
+Switch (entirely?) to udp for networking
+	Make networked movement smoother (increased update frequency, lerping)
+
+Proper collision detection
+	Networked death of humans
+
+Networked reveal state of ghost
+	Ghost slow when revealed
+
+Make UI scale nicely
+
+Art pass (currently, almost EVERYTHING is placeholder)
+
+Add more to TODO
