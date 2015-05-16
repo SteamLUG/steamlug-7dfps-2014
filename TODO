@@ -6,6 +6,8 @@ Switch (entirely?) to udp for networking
 Proper collision detection
 	Networked death of humans
 
+More reliable lantern hitting ghost detection (not a bunch of raycasts)
+
 Networked reveal state of ghost
 	Ghost slow when revealed
 
