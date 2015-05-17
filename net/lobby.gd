@@ -4,7 +4,7 @@ extends Node
 var server
 var peer
 export (String) var host = "127.0.0.1"
-export (int) var port     #Set the port in the Godot inspector
+export (int) var port = 9998    #Set the port in the Godot inspector
 
 const NET_NAME = 1  # player name
 const NET_CHAT = 2  # chat message
@@ -240,7 +240,7 @@ func _on_lobby_disconnect( ):
 func _on_lobby_host_start( ):
 	_chat("[SERVER] init!")
 	is_server = true
-	port=HostButton.get_node("Lobby_Host_Port").get_text()
+	port=HostButton.get_node("Lobby_Host_Port").get_text().to_int()
 	_update_player_list()
 	server.listen(port)
 	HostButton.set_disabled(true)
@@ -260,7 +260,7 @@ func _on_lobby_join_start( ):
 	ReadyButton.set_disabled(false)
 	_chat("[PEER] init!")
 	host=IP.resolve_hostname(JoinButton.get_node("Lobby_Join_IP").get_text())
-	port=JoinButton.get_node("Lobby_Join_Port").get_text()
+	port=JoinButton.get_node("Lobby_Join_Port").get_text().to_int()
 	peer.connect(host, port)
 	status=peer.get_status()
 	start_time=OS.get_ticks_msec()
