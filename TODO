@@ -11,6 +11,9 @@ More reliable lantern hitting ghost detection (not a bunch of raycasts)
 Networked reveal state of ghost
 	Ghost slow when revealed
 
+Add goals for humans.
+	End game screen and return to lobby when end conditions are met.
+
 Make UI scale nicely
 
 Art pass (currently, almost EVERYTHING is placeholder)
