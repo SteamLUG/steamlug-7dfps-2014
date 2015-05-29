@@ -2,6 +2,7 @@ Bug hunt and update compat with latest godot
 
 Switch (entirely?) to udp for networking
 	Make networked movement smoother (increased update frequency, lerping)
+	TCP (so not how we want it) but here is an interesting networked physics demo: https://github.com/jrimclean/network-demo-tcp
 
 Proper collision detection
 	Networked death of humans
