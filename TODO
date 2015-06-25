@@ -19,8 +19,6 @@ Make UI scale nicely
 
 Art pass (currently, almost EVERYTHING is placeholder)
 
-We decided on an MIT license, put notices in code
-
 Scan for available maps to choose from instead of predefining, maybe with sharing of maps
 
 Interface to choose who is the ghost (but first decide how)
