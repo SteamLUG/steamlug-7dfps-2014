@@ -15,6 +15,11 @@ func _ready():
 	root = get_tree().get_root()
 	current_tree = root.get_child( root.get_child_count() - 1 )
 
+# Add tree as a child of root, but do not replace anything
+func add_tree_to_root(tree):
+	var new_tree = ResourceLoader.load(tree).instance()
+	root.add_child(new_tree)
+
 # Completely removes current tree
 func goto_tree(tree, camera=HUMAN1, player_count=1):
 	var new_tree = ResourceLoader.load(tree)
