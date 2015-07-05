@@ -239,6 +239,9 @@ func _on_lobby_disconnect( ):
 
 func _on_lobby_host_start( ):
 	_chat("[SERVER] init!")
+	
+	get_node("/root/tree_switcher").add_tree_to_root("res://net/server.xscn")
+	
 	is_server = true
 	port=HostButton.get_node("Lobby_Host_Port").get_text().to_int()
 	_update_player_list()
