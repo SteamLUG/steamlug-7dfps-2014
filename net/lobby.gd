@@ -14,7 +14,7 @@ const NET_STOP = 5  # server stopped
 const NET_REDY = 6  # peer toggled ready status
 const NET_OKGO = 7  # launch map
 
-const PROTOCOL="H2" #haunt protocol version 2
+const PROTOCOL="H3" #haunt protocol version 3
 
 # Constants used to define which camera to use
 const GHOST = 0
