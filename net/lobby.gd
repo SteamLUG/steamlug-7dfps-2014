@@ -14,7 +14,7 @@ const NET_STOP = 5  # server stopped
 const NET_REDY = 6  # peer toggled ready status
 const NET_OKGO = 7  # launch map
 
-const PROTOCOL="H2" #haunt protocol version 2
+const PROTOCOL="H3" #haunt protocol version 3
 
 # Constants used to define which camera to use
 const GHOST = 0
@@ -239,6 +239,9 @@ func _on_lobby_disconnect( ):
 
 func _on_lobby_host_start( ):
 	_chat("[SERVER] init!")
+	
+	#get_node("/root/tree_switcher").add_tree_to_root("res://net/server.xscn")  # Doesn't actually do anything yet, eventual separate server
+	
 	is_server = true
 	port=HostButton.get_node("Lobby_Host_Port").get_text().to_int()
 	_update_player_list()
