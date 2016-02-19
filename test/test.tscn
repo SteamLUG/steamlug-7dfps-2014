@@ -1,0 +1,243 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://test/environ.res" type="Environment" id=1]
+[ext_resource path="res://player/player.xscn" type="PackedScene" id=2]
+[ext_resource path="res://test/concept.png" type="Texture" id=3]
+[ext_resource path="res://ghost/ghost.xscn" type="PackedScene" id=4]
+[ext_resource path="res://oil/oil.xscn" type="PackedScene" id=5]
+
+[sub_resource type="PlaneShape" id=1]
+
+plane = Plane( 0, 1, 0, 0 )
+
+[sub_resource type="FixedMaterial" id=2]
+
+flags/visible = true
+flags/double_sided = false
+flags/invert_faces = false
+flags/unshaded = false
+flags/on_top = false
+flags/lightmap_on_uv2 = true
+flags/colarray_is_srgb = true
+params/blend_mode = 0
+params/depth_draw = 1
+params/line_width = 0.0
+fixed_flags/use_alpha = false
+fixed_flags/use_color_array = false
+fixed_flags/use_point_size = false
+fixed_flags/discard_alpha = false
+fixed_flags/use_xy_normalmap = false
+params/diffuse = Color( 1, 1, 1, 1 )
+params/specular = Color( 0, 0, 0, 1 )
+params/emission = Color( 0, 0, 0, 1 )
+params/specular_exp = 40
+params/detail_mix = 1.0
+params/normal_depth = 1
+params/shader = 0
+params/shader_param = 0.5
+params/glow = 0
+params/point_size = 1.0
+uv_xform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+textures/diffuse = ExtResource( 3 )
+textures/diffuse_tc = 0
+textures/detail_tc = 0
+textures/specular_tc = 0
+textures/emission_tc = 0
+textures/specular_exp_tc = 0
+textures/glow_tc = 0
+textures/normal_tc = 0
+textures/shade_param_tc = 0
+
+[sub_resource type="BoxShape" id=3]
+
+extents = Vector3( 1, 1, 1 )
+
+[node name="Map" type="WorldEnvironment"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+environment = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"3D" }
+
+[node name="Human1" parent="." instance=ExtResource( 2 )]
+
+friction = 0.7
+gravity_scale = 1.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+
+[node name="DirectionalLight Shadowed" type="DirectionalLight" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( -0.577481, 0.293184, -0.761945, 0.0175251, 0.93753, 0.347464, 0.816216, 0.1873, -0.546543, -14.6266, 20.8372, -15.7398 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 1.0
+colors/diffuse = Color( 0.387786, 0.387786, 0.387786, 1 )
+colors/specular = Color( 0.394161, 0.394161, 0.394161, 1 )
+shadow/shadow = true
+shadow/darkening = 0.0
+shadow/z_offset = 0.05
+shadow/z_slope_scale = 0.0
+shadow/esm_multiplier = 60.0
+shadow/blur_passes = 4.0
+projector = null
+operator = 0
+shadow/mode = 0
+shadow/max_distance = 45.0
+shadow/split_weight = 0.5
+shadow/zoffset_scale = 2.0
+
+[node name="DirectionalLight 2" type="DirectionalLight" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.756678, 0, 0.653787, -0.362541, 0.832168, 0.419597, -0.544061, -0.554524, 0.629683, 16.6496, 19.4106, 17.3775 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 1.0
+colors/diffuse = Color( 0.09, 0.09, 0.09, 1 )
+colors/specular = Color( 0.089958, 0.089958, 0.089958, 1 )
+shadow/shadow = false
+shadow/darkening = 0.0
+shadow/z_offset = 0.05
+shadow/z_slope_scale = 0.0
+shadow/esm_multiplier = 60.0
+shadow/blur_passes = 1.0
+projector = null
+operator = 0
+shadow/mode = 0
+shadow/max_distance = 0.0
+shadow/split_weight = 0.5
+shadow/zoffset_scale = 2.0
+
+[node name="Floor" type="StaticBody" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+input/ray_pickable = false
+input/capture_on_drag = false
+shape_count = 1
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398912, 0.0594292, -1.37823 )
+shapes/0/trigger = false
+layers = 1
+friction = 1.0
+bounce = 0.0
+constant_linear_velocity = Vector3( 0, 0, 0 )
+constant_angular_velocity = Vector3( 0, 0, 0 )
+__meta__ = { "_editor_collapsed":true }
+
+[node name="PlaneShape" type="CollisionShape" parent="Floor"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398912, 0.0594292, -1.37823 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Quad" type="Quad" parent="Floor"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 60, 0, 0, 0, -2.62268e-06, 60, 0, -60, -2.62268e-06, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = SubResource( 2 )
+geometry/cast_shadow = false
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = false
+geometry/baked_light_tex_id = 0
+quad/axis = 2
+quad/size = Vector2( 1, 1 )
+quad/offset = Vector2( 0, 0 )
+quad/centered = true
+
+[node name="Ghost" parent="." instance=ExtResource( 4 )]
+
+gravity_scale = 1.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+
+[node name="Crate 5" type="RigidBody" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 3.80378, 3.77612, 9.77392 )
+input/ray_pickable = true
+input/capture_on_drag = false
+shape_count = 1
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shapes/0/trigger = false
+layers = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = false
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+axis_lock = 0
+velocity/linear = Vector3( 0, 0, 0 )
+velocity/angular = Vector3( 0, 0, 0 )
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+__meta__ = { "_editor_collapsed":true }
+
+[node name="CollisionShape" type="CollisionShape" parent="Crate 5"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="TestCube" type="TestCube" parent="Crate 5"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+layers = 1
+geometry/visible = true
+geometry/material_override = null
+geometry/cast_shadow = true
+geometry/receive_shadows = true
+geometry/range_begin = 0.0
+geometry/range_end = 0.0
+geometry/extra_cull_margin = 0.0
+geometry/billboard = false
+geometry/billboard_y = false
+geometry/depth_scale = false
+geometry/visible_in_all_rooms = false
+geometry/use_baked_light = true
+geometry/baked_light_tex_id = 0
+
+[node name="Oil" parent="." instance=ExtResource( 5 )]
+
+transform/local = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -9.02991, 0.270458, -9.06081 )
+
+[node name="Oil 2" parent="." instance=ExtResource( 5 )]
+
+transform/local = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -9.39386, 0.270458, -21.4969 )
+
+[node name="Oil 3" parent="." instance=ExtResource( 5 )]
+
+transform/local = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -25.108, 0.270458, -9.33472 )
+
+[node name="Oil 4" parent="." instance=ExtResource( 5 )]
+
+transform/local = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 16.2947, 0.270458, -9.33472 )
+
+[node name="Oil 5" parent="." instance=ExtResource( 5 )]
+
+transform/local = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -9.02991, 0.270458, 10.4493 )
+
+

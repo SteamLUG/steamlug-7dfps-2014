@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://main_menu/main_menu.gd" type="Script" id=1]
+[ext_resource path="res://main_menu/haunt_logo.png" type="Texture" id=2]
+
+[node name="main_menu" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"2D" }
+
+[node name="TextureFrame" type="TextureFrame" parent="."]
+
+margin/left = 4.0
+margin/top = 19.0
+margin/right = 804.0
+margin/bottom = 567.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+texture = ExtResource( 2 )
+
+[node name="goto_multi" type="Button" parent="."]
+
+margin/left = 357.0
+margin/top = 392.0
+margin/right = 439.0
+margin/bottom = 412.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "Multiplayer"
+flat = false
+
+[node name="Label" type="Label" parent="."]
+
+margin/left = 116.0
+margin/top = 72.0
+margin/right = 704.0
+margin/bottom = 199.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Haunt is a work-in-progress and will continue to be worked on after the 7dfps. Thanks to the SteamLUG 7dfps team for all their hard work."
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="pressed" from="goto_multi" to="." method="_on_goto_multi_pressed"]
+
+

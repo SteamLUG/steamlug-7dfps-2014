@@ -1,0 +1,352 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://net/lobby.gd" type="Script" id=1]
+
+[node name="World" type="Node"]
+
+__meta__ = { "__editor_plugin_screen__":"2D" }
+
+[node name="Lobby" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+script/script = ExtResource( 1 )
+host = "127.0.0.1"
+port = 9998
+
+[node name="Lobby_Host_Area" type="Panel" parent="Lobby"]
+
+margin/left = 200.0
+margin/top = 10.0
+margin/right = 760.0
+margin/bottom = 50.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="Lobby_Host_Button" type="Button" parent="Lobby/Lobby_Host_Area"]
+
+margin/left = 90.0
+margin/top = 1.0
+margin/right = 172.0
+margin/bottom = 21.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "Host Lobby"
+flat = false
+
+[node name="Lobby_Host_Port_text" type="RichTextLabel" parent="Lobby/Lobby_Host_Area/Lobby_Host_Button"]
+
+margin/left = 91.0
+margin/top = 2.0
+margin/right = 191.0
+margin/bottom = 22.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+bbcode/enabled = false
+bbcode/bbcode = ""
+visible_characters = -1
+
+[node name="Lobby_Host_Port" type="LineEdit" parent="Lobby/Lobby_Host_Area/Lobby_Host_Button"]
+
+margin/left = 201.0
+margin/top = -1.0
+margin/right = 371.0
+margin/bottom = 20.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+text = ""
+max_length = 0
+editable = true
+secret = false
+
+[node name="Lobby_Stop_Server_Button" type="Button" parent="Lobby/Lobby_Host_Area"]
+
+margin/left = 470.0
+margin/top = 1.0
+margin/right = 560.0
+margin/bottom = 21.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "Stop Server"
+flat = false
+
+[node name="Lobby_Launch_Button" type="Button" parent="Lobby/Lobby_Host_Area"]
+
+margin/top = 1.0
+margin/right = 89.0
+margin/bottom = 21.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "Launch Map!"
+flat = false
+
+[node name="Lobby_Map_Selection" type="OptionButton" parent="Lobby/Lobby_Host_Area"]
+
+margin/left = 3.0
+margin/top = 20.0
+margin/right = 89.0
+margin/bottom = 40.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+flat = false
+align = 0
+selected = -1
+items = [  ]
+
+[node name="Lobby_Join_Area" type="Panel" parent="Lobby"]
+
+margin/left = 290.0
+margin/top = 30.0
+margin/right = 760.0
+margin/bottom = 50.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+__meta__ = { "_editor_collapsed":true }
+
+[node name="Lobby_Join_Button" type="Button" parent="Lobby/Lobby_Join_Area"]
+
+margin/right = 82.0
+margin/bottom = 20.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "Join Lobby"
+flat = false
+
+[node name="Lobby_Join_IP_text" type="RichTextLabel" parent="Lobby/Lobby_Join_Area/Lobby_Join_Button"]
+
+margin/left = 90.0
+margin/top = 3.0
+margin/right = 190.0
+margin/bottom = 23.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+bbcode/enabled = false
+bbcode/bbcode = ""
+visible_characters = -1
+
+[node name="Lobby_Join_IP" type="LineEdit" parent="Lobby/Lobby_Join_Area/Lobby_Join_Button"]
+
+margin/left = 200.0
+margin/right = 310.0
+margin/bottom = 21.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+text = ""
+max_length = 0
+editable = true
+secret = false
+
+[node name="Lobby_Join_Port" type="LineEdit" parent="Lobby/Lobby_Join_Area/Lobby_Join_Button"]
+
+margin/left = 311.0
+margin/right = 371.0
+margin/bottom = 21.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+text = ""
+max_length = 0
+editable = true
+secret = false
+
+[node name="Lobby_Disconnect_Button" type="Button" parent="Lobby/Lobby_Join_Area"]
+
+margin/left = 380.0
+margin/right = 470.0
+margin/bottom = 20.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "Disconnect"
+flat = false
+
+[node name="Lobby_Chat_Area" type="Panel" parent="Lobby"]
+
+margin/left = 10.0
+margin/top = 60.0
+margin/right = 760.0
+margin/bottom = 430.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="Lobby_Chat" type="RichTextLabel" parent="Lobby/Lobby_Chat_Area"]
+
+margin/left = 90.0
+margin/right = 750.0
+margin/bottom = 350.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+bbcode/enabled = false
+bbcode/bbcode = ""
+visible_characters = -1
+
+[node name="Lobby_Enter_Chat" type="LineEdit" parent="Lobby/Lobby_Chat_Area"]
+
+margin/left = 90.0
+margin/top = 350.0
+margin/right = 750.0
+margin/bottom = 371.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+text = ""
+max_length = 0
+editable = true
+secret = false
+
+[node name="Lobby_Player_List" type="RichTextLabel" parent="Lobby/Lobby_Chat_Area"]
+
+margin/right = 80.0
+margin/bottom = 350.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+custom_constants/line_separation = 0
+bbcode/enabled = false
+bbcode/bbcode = ""
+visible_characters = -1
+
+[node name="VSeparator" type="VSeparator" parent="Lobby/Lobby_Chat_Area"]
+
+margin/left = 80.0
+margin/right = 100.0
+margin/bottom = 370.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+
+[node name="Lobby_Ready_Button" type="Button" parent="Lobby/Lobby_Chat_Area"]
+
+margin/top = 350.0
+margin/right = 53.0
+margin/bottom = 370.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "Ready"
+flat = false
+
+[node name="Lobby_Ready_Text" type="RichTextLabel" parent="Lobby/Lobby_Chat_Area/Lobby_Ready_Button"]
+
+margin/left = 55.0
+margin/top = 4.0
+margin/right = 88.0
+margin/bottom = 24.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+bbcode/enabled = false
+bbcode/bbcode = ""
+visible_characters = -1
+
+[node name="Lobby_Name_Area" type="Panel" parent="Lobby"]
+
+margin/left = 10.0
+margin/top = 10.0
+margin/right = 190.0
+margin/bottom = 50.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+__meta__ = { "_editor_collapsed":true }
+
+[node name="Lobby_Player_Name" type="LineEdit" parent="Lobby/Lobby_Name_Area"]
+
+margin/top = 20.0
+margin/right = 180.0
+margin/bottom = 41.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+text = ""
+max_length = 0
+editable = true
+secret = false
+
+[node name="Lobby_Name_Text" type="RichTextLabel" parent="Lobby/Lobby_Name_Area/Lobby_Player_Name"]
+
+margin/top = -20.0
+margin/right = 180.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+bbcode/enabled = false
+bbcode/bbcode = ""
+visible_characters = -1
+
+[node name="Debug" type="Button" parent="Lobby"]
+
+margin/left = 737.0
+margin/top = 570.0
+margin/right = 790.0
+margin/bottom = 590.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "Debug"
+flat = false
+
+[node name="Quit" type="Button" parent="Lobby"]
+
+margin/left = 685.0
+margin/top = 570.0
+margin/right = 725.0
+margin/bottom = 590.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+toggle_mode = false
+text = "Quit"
+flat = false
+
+[connection signal="pressed" from="Lobby/Lobby_Host_Area/Lobby_Host_Button" to="." method="_on_netmode_start"]
+
+

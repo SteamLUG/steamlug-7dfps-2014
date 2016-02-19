@@ -1,0 +1,279 @@
+[gd_scene load_steps=10 format=1]
+
+[ext_resource path="res://player/lantern.gd" type="Script" id=1]
+[ext_resource path="res://v_lantern/v_lantern.xscn" type="PackedScene" id=2]
+[ext_resource path="res://player/lanternloop.wav" type="Sample" id=3]
+[ext_resource path="res://player/lanternoff.wav" type="Sample" id=4]
+[ext_resource path="res://player/lanternon.wav" type="Sample" id=5]
+[ext_resource path="res://player/220180__gameaudio__click-pop.wav" type="Sample" id=6]
+[ext_resource path="res://player/steps_soft1.wav" type="Sample" id=7]
+
+[sub_resource type="CapsuleShape" id=1]
+
+radius = 1.0
+height = 1.0
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/pop = { "db":0.0, "pitch":1.0, "sample":ExtResource( 6 ) }
+samples/lanternloop = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
+samples/lanternon = { "db":0.0, "pitch":1.0, "sample":ExtResource( 5 ) }
+samples/steps_soft1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/lanternoff = { "db":0.0, "pitch":1.0, "sample":ExtResource( 4 ) }
+
+[node name="Human" type="RigidBody" groups=[ "player", "human" ]]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.6676, 0 )
+input/ray_pickable = true
+input/capture_on_drag = false
+shape_count = 0
+layers = 1
+mode = 2
+mass = 10.0
+friction = 0.7
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = false
+contacts_reported = 1
+contact_monitor = false
+sleeping = false
+can_sleep = false
+axis_lock = 0
+velocity/linear = Vector3( 0, 0, 0 )
+velocity/angular = Vector3( 0, 0, 0 )
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+__meta__ = { "__editor_plugin_screen__":"3D" }
+
+[node name="Cam" type="Camera" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.421124 )
+projection = 0
+fov = 76.4458
+near = 0.1
+far = 9000.0
+keep_aspect = 1
+current = false
+visible_layers = 1048575
+environment = null
+h_offset = 0.0
+v_offset = 0.0
+
+[node name="Lantern" type="SpotLight" parent="Cam"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.997452, 0, 0.0713368, 0, 1, 0, -0.0713368, 0, 0.997452, 0.79449, -0.9505, -1.67844 )
+layers = 1
+params/enabled = true
+params/editor_only = false
+params/bake_mode = 0
+params/energy = 2.93
+colors/diffuse = Color( 0.677705, 0.596215, 0.442629, 1 )
+colors/specular = Color( 0.855534, 0.706557, 0.425876, 1 )
+shadow/shadow = true
+shadow/darkening = 0.0
+shadow/z_offset = 0.05
+shadow/z_slope_scale = 0.0
+shadow/esm_multiplier = 60.0
+shadow/blur_passes = 4.0
+projector = null
+operator = 0
+params/radius = 30.4351
+params/attenuation = 1.0
+params/spot_angle = 30.0
+params/spot_attenuation = 1.0
+script/script = ExtResource( 1 )
+__meta__ = { "_editor_collapsed":true }
+effective_distance = 10
+oil = 10.0
+oil_decay = 1
+
+[node name="RCMid" type="RayCast" parent="Cam/Lantern"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, 0.232247, 0, -3.24734 )
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="RCBot" type="RayCast" parent="Cam/Lantern"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.999646, 0.0261505, 0.00495327, -0.0261504, 0.930388, 0.365643, 0.00495327, -0.365643, 0.930742, 0.232247, -0.967317, -3.24734 )
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="RCTop" type="RayCast" parent="Cam/Lantern"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.999566, -0.0288523, 0.00607952, 0.0288523, 0.91456, -0.403421, 0.00607952, 0.403421, 0.914995, 0.232247, 1.0884, -3.24734 )
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="RCLeft" type="RayCast" parent="Cam/Lantern"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.898447, 0, -0.439082, 0, 1, 0, 0.439082, 0, 0.898447, 0.232247, 0, -3.24734 )
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="RCRight" type="RayCast" parent="Cam/Lantern"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.895981, 0, 0.444092, 0, 1, 0, -0.444092, 0, 0.895981, 0.232247, 0, -3.24734 )
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="RCMid 2" type="RayCast" parent="Cam/Lantern"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.980177, -0.0243726, -0.19662, -0.0445794, 0.939826, -0.338734, 0.193044, 0.340784, 0.920109, 0.232247, 0, -3.24734 )
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="RCMid 3" type="RayCast" parent="Cam/Lantern"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.962788, 0.130889, 0.236447, -0.0445794, 0.939826, -0.338734, -0.266555, 0.315588, 0.910688, 0.232247, 0, -3.24734 )
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="RCMid 4" type="RayCast" parent="Cam/Lantern"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.955947, 0.176102, 0.234848, -0.238661, 0.932072, 0.27255, -0.170899, -0.316592, 0.93304, 0.232247, 0, -3.24734 )
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="RCMid 5" type="RayCast" parent="Cam/Lantern"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.979847, 0.0157547, -0.199129, 0.0288166, 0.975308, 0.218961, 0.197662, -0.220286, 0.955198, 0.232247, 0, -3.24734 )
+enabled = true
+cast_to = Vector3( 0, 0, -10 )
+
+[node name="Spatial" parent="Cam" instance=ExtResource( 2 )]
+
+transform/local = Transform( -0.1, -8.74228e-09, 0, -8.74228e-09, 0.1, -8.74228e-09, 7.64274e-16, -8.74228e-09, -0.1, 0, -6.43627, 0.633628 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Cam"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, 0, -3.2251, 0.633628 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = -1
+
+[node name="CollisionShape 2" type="CollisionShape" parent="Cam"]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0.764286, -0.896831, -1.32388 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = -1
+
+[node name="HUD" type="Node" parent="."]
+
+__meta__ = { "_editor_collapsed":true }
+
+[node name="OilLevel" type="Label" parent="HUD"]
+
+anchor/left = 1
+anchor/right = 1
+margin/left = 129.0
+margin/top = 3.0
+margin/right = 4.0
+margin/bottom = 24.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Instructions" type="Label" parent="HUD"]
+
+margin/right = 40.0
+margin/bottom = 13.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+text = "F: Lantern"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="FootstepsSamplePlayer" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 2 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 0.0
+default/filter/resonance = 0.0
+default/filter/gain = 0.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+[node name="OilSamplePlayer" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 2 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 0.0
+default/filter/resonance = 0.0
+default/filter/gain = 0.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+[node name="LanternSamplePlayer" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 2 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 0.0
+default/filter/resonance = 0.0
+default/filter/gain = 0.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+[node name="LanternLoopSamplePlayer" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 2 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 0.0
+default/filter/resonance = 0.0
+default/filter/gain = 0.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+[connection signal="visibility_changed" from="Cam/Lantern" to="Cam/Lantern" method="_on_visibility_changed"]
+
+

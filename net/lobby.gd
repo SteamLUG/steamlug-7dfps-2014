@@ -69,7 +69,7 @@ func _ready():
 	peerready = []
 	current_time = ""
 	
-	map = "res://map1/map1.xscn"
+	map = "res://map1/map1.tscn"
 	
 	win_hsize = OS.get_video_mode_size()/2
 	
@@ -136,9 +136,9 @@ func _ready():
 
 func _on_map_select(id):
 	if id == 0:
-		map = "res://map1/map1.xscn"
+		map = "res://map1/map1.tscn"
 	elif id == 1:
-		map = "res://test/test.xscn"
+		map = "res://test/test.tscn"
 
 func _quit():
 	_on_lobby_disconnect()
@@ -240,7 +240,7 @@ func _on_lobby_disconnect( ):
 func _on_lobby_host_start( ):
 	_chat("[SERVER] init!")
 	
-	#get_node("/root/tree_switcher").add_tree_to_root("res://net/server.xscn")  # Doesn't actually do anything yet, eventual separate server
+	#get_node("/root/tree_switcher").add_tree_to_root("res://net/server.tscn")  # Doesn't actually do anything yet, eventual separate server
 	
 	is_server = true
 	port=HostButton.get_node("Lobby_Host_Port").get_text().to_int()

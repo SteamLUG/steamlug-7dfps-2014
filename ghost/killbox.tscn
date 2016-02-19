@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://ghost/killbox.gd" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=1]
+
+extents = Vector3( 1, 1, 1 )
+
+[node name="killbox" type="Area" groups=[ "ghost" ]]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.95387, 1.60779 )
+input/ray_pickable = false
+input/capture_on_drag = false
+shape_count = 1
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Transform( 4.6666, 0, 0, 0, 6, 0, 0, 0, 4, 0, 0, 0.648821 )
+shapes/0/trigger = true
+space_override = 0
+gravity_point = false
+gravity_distance_scale = 0.0
+gravity_vec = Vector3( 0, -1, 0 )
+gravity = 9.8
+linear_damp = 0.1
+angular_damp = 1.0
+priority = 0.0
+monitoring = true
+monitorable = true
+script/script = ExtResource( 1 )
+__meta__ = { "__editor_plugin_screen__":"3D" }
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+
+_import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+transform/local = Transform( 4.6666, 0, 0, 0, 6, 0, 0, 0, 4, 0, 0, 0.648821 )
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
+
+[connection signal="body_enter" from="." to="." method="_on_body_enter"]
+
+
