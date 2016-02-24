@@ -5,10 +5,9 @@ extends CollisionObject
 var ghost
 var is_set = false
 var revealed = false
-var mesh
+onready var mesh = get_node("chumpus")
 
 func _ready():
-	mesh = get_node("chumpus")
 	set_process(true)
 
 # This doesn't work right now, don't know why

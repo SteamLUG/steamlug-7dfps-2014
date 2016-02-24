@@ -10,7 +10,7 @@ var rate_of_decay = oil_decay
 var oil_amount = oil
 
 
-var lanternloop_sampleplayer
+onready var lanternloop_sampleplayer = get_node("../../LanternLoopSamplePlayer")
 var lanternloop_voice = 0
 
 func lantern_off():
@@ -41,7 +41,6 @@ func append_rc(rc):
 	raycasts.append(rc)
 
 func _ready():
-	lanternloop_sampleplayer = get_node("../../LanternLoopSamplePlayer")
 	var looped = lanternloop_sampleplayer.get_sample_library().get_sample("lanternloop")
 	looped.set_loop_format(Sample.LOOP_FORWARD)
 	looped.set_loop_begin(0)

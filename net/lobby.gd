@@ -1,8 +1,8 @@
 
 extends Node
 
-var server
-var peer
+onready var server = TCP_Server.new()
+onready var peer = StreamPeerTCP.new()
 export (String) var host = "127.0.0.1"
 export (int) var port = 9998    #Set the port in the Godot inspector
 
@@ -25,104 +25,76 @@ const HUMAN4 = 4
 
 var ids = range(GHOST, HUMAN4)
 
-var peers        #array of StreamPeerTCP objects
-var peernames    #array of player names
-var peerready    #array of player ready status
-var current_time
+var peers = []      #array of StreamPeerTCP objects
+var peernames = []  #array of player names
+var peerready = []  #array of player ready status
+var current_time = ""
 
-var map   #tree to launch
+var map = "res://map1/map1.tscn"  #default tree to launch
 
 var Player_id = 99
 
 #widgets
-var DebugButton
-var HostButton
-var JoinButton
-var StopServerButton
-var DisconnectButton
-var ReadyButton
-var LaunchButton
-var LobbyChat
-var EnterChat
-var PlayerList
-var PlayerNameBox
-var QuitButton
-var SelectMap
+onready var DebugButton = get_node("Debug")
+onready var HostButton = get_node("Lobby_Host_Area/Lobby_Host_Button")
+onready var JoinButton = get_node("Lobby_Join_Area/Lobby_Join_Button")
+onready var StopServerButton = get_node("Lobby_Host_Area/Lobby_Stop_Server_Button")
+onready var DisconnectButton = get_node("Lobby_Join_Area/Lobby_Disconnect_Button")
+onready var ReadyButton = get_node("Lobby_Chat_Area/Lobby_Ready_Button")
+onready var LaunchButton = get_node("Lobby_Host_Area/Lobby_Launch_Button")
+onready var LobbyChat = get_node("Lobby_Chat_Area/Lobby_Chat")
+onready var EnterChat = get_node("Lobby_Chat_Area/Lobby_Enter_Chat")
+onready var PlayerList = get_node("Lobby_Chat_Area/Lobby_Player_List")
+onready var PlayerNameBox = get_node("Lobby_Name_Area/Lobby_Player_Name")
+onready var QuitButton = get_node("Quit")
+onready var SelectMap = get_node("Lobby_Host_Area/Lobby_Map_Selection")
 
 var is_server = false
 var ready = false
 var launched = false
 
-var win_hsize
+onready var win_hsize = OS.get_video_mode_size()/2
 
 var available_maps = ["map1", "test"]
 
 
 
 func _ready():
-	# create peer
-	peer = StreamPeerTCP.new()
-	# create server
-	server = TCP_Server.new()
-	peers = []
-	peernames = []
-	peerready = []
-	current_time = ""
-	
-	map = "res://map1/map1.tscn"
-	
-	win_hsize = OS.get_video_mode_size()/2
-	
 	# init text and buttons
-	DebugButton = get_node("Debug")
 	DebugButton.connect("pressed", self, "_debug")
 	
-	PlayerNameBox = get_node("Lobby_Name_Area/Lobby_Player_Name")
 	PlayerNameBox.get_node("Lobby_Name_Text").add_text("Name:")
 	PlayerNameBox.set_text("Player1")
 	PlayerNameBox.grab_focus()
 	
-	HostButton = get_node("Lobby_Host_Area/Lobby_Host_Button")
 	HostButton.get_node("Lobby_Host_Port_text").add_text("Server Port")
 	HostButton.get_node("Lobby_Host_Port").set_text(str(port))
 	HostButton.connect("pressed", self, "_on_lobby_host_start")
 	
-	JoinButton = get_node("Lobby_Join_Area/Lobby_Join_Button")
 	JoinButton.get_node("Lobby_Join_IP_text").add_text("Remote IP : Port")
 	JoinButton.get_node("Lobby_Join_IP").set_text(host)
 	JoinButton.get_node("Lobby_Join_Port").set_text(str(port))
 	JoinButton.connect("pressed", self, "_on_lobby_join_start")
 	
-	StopServerButton = get_node("Lobby_Host_Area/Lobby_Stop_Server_Button")
 	StopServerButton.connect("pressed", self, "_on_lobby_stop_server")
 	StopServerButton.set_disabled(true)
 	
-	LaunchButton = get_node("Lobby_Host_Area/Lobby_Launch_Button")
 	LaunchButton.connect("pressed", self, "_on_lobby_launch")
 	LaunchButton.set_disabled(true)
 	
-	DisconnectButton = get_node("Lobby_Join_Area/Lobby_Disconnect_Button")
 	DisconnectButton.connect("pressed", self, "_on_lobby_disconnect")
 	DisconnectButton.set_disabled(true)
 	
-	ReadyButton = get_node("Lobby_Chat_Area/Lobby_Ready_Button")
 	ReadyButton.connect("pressed", self, "_on_lobby_ready")
 	ReadyButton.get_node("Lobby_Ready_Text").add_text("NO")
 	ReadyButton.set_disabled(true)
 	
-	LobbyChat = get_node("Lobby_Chat_Area/Lobby_Chat")
-	
-	EnterChat = get_node("Lobby_Chat_Area/Lobby_Enter_Chat")
 	EnterChat.connect("text_entered", self, "_on_enter_chat")
 	
-	SelectMap = get_node("Lobby_Host_Area/Lobby_Map_Selection")
 	SelectMap.add_item("Map1", 0)
 	SelectMap.add_item("Test", 1)
 	SelectMap.connect("item_selected", self, "_on_map_select")
 	
-	PlayerList = get_node("Lobby_Chat_Area/Lobby_Player_List")
-	
-	QuitButton = get_node("Quit")
 	QuitButton.connect("pressed", self, "_quit")
 
 	set_process_input(true)

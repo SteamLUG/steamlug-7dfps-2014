@@ -2,7 +2,7 @@
 extends RigidBody
 
 # Game stuff
-var win_hsize
+onready var win_hsize = OS.get_video_mode_size()/2
 var exit_game = false
 
 # Movement
@@ -10,38 +10,35 @@ export var walk_speed = 10
 export var jump_force = 10
 
 # Camera
-var camera
+onready var camera = get_node("Cam")
 var rotation = Vector2(0,0)
 var max_pitch = deg2rad(80)
 
 # Lantern
-var lantern
+onready var lantern = get_node("Cam/Lantern")
 var lantern_now = false
 var lantern_then = false
 
 # Footsteps
-var footsteps
+onready var footsteps = get_node("FootstepsSamplePlayer")
 var footsteps_playing = false
-var fs_voice
+onready var fs_voice = footsteps.play("steps_soft1")
+
+onready var lantern_sampleplayer = get_node("LanternSamplePlayer")
 
 func _ready():
-	lantern_sampleplayer = get_node("LanternSamplePlayer")
 	var rot = get_rotation()
 	rotation.x = rot.y
 	rot.y = 0
 	set_rotation(rot)
-	camera = get_node("Cam")
-	lantern = get_node("Cam/Lantern")
-	win_hsize = OS.get_video_mode_size()/2
+	
 	set_process_input(true)
-	footsteps = get_node("FootstepsSamplePlayer")
+	
 	var fs_sample = footsteps.get_sample_library().get_sample("steps_soft1")
 	fs_sample.set_loop_format(Sample.LOOP_FORWARD)
 	fs_sample.set_loop_begin(20000)
 	fs_sample.set_loop_end(96480)
 	pass
-
-var lantern_sampleplayer
 
 func _integrate_forces(state):
 	
@@ -111,7 +108,6 @@ func _integrate_forces(state):
 		footsteps_playing = false
 		footsteps.stop(fs_voice)
 	if not footsteps_playing and totalspeed > 0.01:
-		fs_voice = footsteps.play("steps_soft1")
 		footsteps_playing = true
 	
 	# Apply walk velocity

@@ -3,31 +3,24 @@ extends Node
 
 const NET_POS = 1
 
-var PlayerName
-var is_server
-var peers
-var peernames
+var PlayerName = ""
+var is_server = true
+var peers = []
+var peernames = []
 var peer
-var dt
+var dt = 0
 var tcpstreams
 var playernode_name
 var Player_id
-var ghost_sound
+var ghost_sound = false
 
 var player_placement # Array or dictionary to hold player values from network
 
-var is_set # Has recieved values from lobby
+var is_set = false # Has recieved values from lobby
 
 func _ready():
-	PlayerName = ""
-	is_server = true
-	dt = 0
-	peers = []
-	peernames = []
-	# Set the rest of the things
-	ghost_sound = false
-	is_set = false
-	
+	pass
+
 func make_ghost_sound():
 	ghost_sound = true
 

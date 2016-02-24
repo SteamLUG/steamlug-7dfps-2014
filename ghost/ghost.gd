@@ -1,32 +1,29 @@
 
 extends Spatial
 
-var revealed
-var mesh
-var killbox
+var revealed = false
+onready var mesh = get_node("chumpus")
+onready var killbox = ResourceLoader.load("res://ghost/killbox.tscn").instance()
 
 var exit_game = false
-var win_hsize
+onready var win_hsize = OS.get_video_mode_size()/2
 
 # From player.gd
 export var walk_speed = 10
 export var jump_force = 10
 
 # Camera
-var camera
+onready var camera = get_node("Cam")
 var rotation = Vector2(0,0)
 var max_pitch = deg2rad(80)
 
 # Speed modifier
-var speed_mod
+var speed_mod = 5
 
 func _ready():
-	revealed = false
-	mesh = get_node("chumpus")
 	mesh.hide()
 	
 	# Killbox follows ghost and marks humans for death.
-	killbox = ResourceLoader.load("res://ghost/killbox.tscn").instance()
 	get_node("/root/Map").add_child(killbox)
 	killbox.set_ghost(self)
 	
@@ -35,10 +32,7 @@ func _ready():
 	rotation.x = rot.y
 	rot.y = 0
 	set_rotation(rot)
-	camera = get_node("Cam")
-	win_hsize = OS.get_video_mode_size()/2
 	
-	speed_mod = 5
 	set_process_input(true)
 	
 	set_process(true)
