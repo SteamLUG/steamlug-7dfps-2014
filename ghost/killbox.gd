@@ -36,4 +36,3 @@ func _process(delta):
 		revealed = false
 	else:
 		mesh.hide()
-		pass

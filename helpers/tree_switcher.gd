@@ -83,4 +83,3 @@ func set_camera(tree, camera):
 		player.set_script(load("res://player/player.gd"))
 	
 	player._ready()
-	

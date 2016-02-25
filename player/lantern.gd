@@ -57,7 +57,6 @@ func _ready():
 	append_rc(get_node("RCRight"))
 	
 	set_process(true)
-	pass
 
 # If ghost is hit, reveal it.
 func check_raycasts():

@@ -129,5 +129,3 @@ func _integrate_forces(state):
 func _input(ev):
 	if ev.type == InputEvent.MOUSE_MOTION:
 		rotation += (ev.pos - win_hsize) * 0.001
-
-

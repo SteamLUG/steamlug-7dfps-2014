@@ -466,5 +466,3 @@ func _process(delta):
 		#process new data from server
 		if(peer.is_connected()):
 			_net_peer_recv()
-
-

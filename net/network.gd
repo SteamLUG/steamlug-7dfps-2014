@@ -169,5 +169,3 @@ func _process(delta):
 		ghost_sound = false
 	else:
 		dt += delta
-
-

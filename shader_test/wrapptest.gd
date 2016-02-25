@@ -23,7 +23,6 @@ func _ready():
 	#set_shadermat()
 	set_fixedmat()
 	set_process(true)
-	pass
 
 func _process(dt):
 	#set_shadermat()
