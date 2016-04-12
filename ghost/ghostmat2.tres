@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=1]
+
+[ext_resource path="res://ghost/ghostshader.tres" type="Shader" id=1]
+[ext_resource path="res://ghost/tmptex.png" type="Texture" id=2]
+
+
+[resource]
+
+flags/visible = true
+flags/double_sided = false
+flags/invert_faces = false
+flags/unshaded = false
+flags/on_top = false
+flags/lightmap_on_uv2 = true
+flags/colarray_is_srgb = false
+params/blend_mode = 0
+params/depth_draw = 1
+params/line_width = 0.0
+shader/shader = ExtResource( 1 )
+shader_param/alpha = 0.55
+shader_param/c1 = Color( 1, 0.665668, 0, 1 )
+shader_param/c2 = Color( 0.263366, 0.135673, 0, 1 )
+shader_param/ttex = ExtResource( 2 )
+
